@@ -2,19 +2,68 @@
 <html>
 <head>
 
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>B</title>
+	<title>blag</title>
 
-		<link href="/css/" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
 
-		<link rel="shortcut icon" type="image/png" href="/img/clock.png">
+	<link href="/img/clock.png" rel="shortcut icon" type="image/png">
 
 </head>
 
 <body>
-Hello
+
+<section class="container">
+<div class="grid">
+
+	<div class="cell cHead">
+		<h4>[reader@blog.justin.com]$pwd</h4>
+		<h4>/home</h4>
+	</div>
+
+	<div class="cell cTree">
+		<ul class="tree">
+			<li class="root">/</li>
+			<li>home</li>
+			<li>articles</li>
+			<ul>
+				<li>security</li>
+			</ul>
+			<li>info</li>
+			<li>contact_me</li>
+		</ul>
+	</div>
+
+	<div class="small cTree">
+		<h4 id='show-btn'>[reader@blog.justin.com]$</h4>
+		<ul id='tree' class="tree">
+			<li class="root">/</li>
+			<li>home</li>
+			<li>articles</li>
+			<ul>
+				<li>security</li>
+			</ul>
+			<li>info</li>
+			<li>contact_me</li>
+		</ul>
+	</div>
+
+	<div class="cell cBody">
+		<p>Heading</p>
+	</div>
+
+	<div class="cell cFoot">
+		<b>Copyleft</b> Justin Duch (1970-The Heat Death of the Universe)
+	</div>
+
+</div>
+</section>
+
 </body>
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 </html>

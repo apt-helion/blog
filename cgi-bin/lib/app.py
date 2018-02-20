@@ -23,7 +23,7 @@ class App:
 	# Renders page - stash is an object that will contain all variables to be passed to jinja
 	def render(self):
 		fileName = "templates/" + self.callingFile[1]
-		jinja_env = jinja2.Environment( loader=jinja2.FileSystemLoader(self.callingFile[0]), autoescape=True)
+		jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(self.callingFile[0]), autoescape=True)
 		jinja_env.filters['escapejs'] = App.escapejs
 		print("content-type:text/html\n\n")
 		print(jinja_env.get_template(fileName).render(stash=self.stash))
@@ -42,7 +42,7 @@ class App:
 	@staticmethod
 	def setupDB():
 		projectRoot = os.path.realpath(os.path.dirname(__file__))
-		jsonUrl = os.path.join(projectRoot, 'database.json')
+		jsonUrl     = os.path.join(projectRoot, 'database.json')
 		data = json.load(open(jsonUrl))
 		conn = MySQLdb.connect(host=data['host'], user=data['user'], passwd=data['passwd'], db=data['db'])
 		return conn
