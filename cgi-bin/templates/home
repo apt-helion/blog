@@ -18,7 +18,7 @@
 <section class="container">
 <div class="grid">
 
-	<div class="cell cHead">
+	<div id="show-btn" class="cell cHead">
 		<h4>[reader@blog.justin.com]$pwd</h4>
 		<h4>/home</h4>
 		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
@@ -31,20 +31,7 @@
 			<li>articles</li>
 			<ul>
 				<li><a href="/articles/security">security</a></li>
-			</ul>
-			<li><a href="/info">info</a></li>
-			<li><a href="/contact">contact_me</a></li>
-		</ul>
-	</div>
-
-	<div class="cell small cTree">
-		<h4 id='show-btn'>[reader@blog.justin.com]$</h4>
-		<ul id='tree' class="tree">
-			<li class="root">/</li>
-			<li><a href="/">home</a></li>
-			<li>articles/</li>
-			<ul>
-				<li><a href="/articles/security">security</a></li>
+				<li><a href="/articles/how-to">how_to\'s</a></li>
 			</ul>
 			<li><a href="/info">info</a></li>
 			<li><a href="/contact">contact_me</a></li>

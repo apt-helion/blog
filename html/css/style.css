@@ -17,10 +17,10 @@ h4 {
 	justify-content : center;
 }
 .grid {
-	display : grid;
+	display               : grid;
 	grid-template-columns : 1fr 4fr;
-	grid-template-rows: auto;
-	grid-gap: 10px;
+	grid-template-rows    : auto;
+	grid-gap              : 10px;
 }
 .cell {
 	padding: 10px 20px;
@@ -103,31 +103,22 @@ h4 {
 		grid-template-rows    : auto;
 	}
 
-	.cHead { display: none; }
-	.cTree { display: none;	}
-	.small {
-		padding          : 10px 0px;
-		background-color : #212121;
-		display          : block;
-		grid-column      : 1;
-		grid-row         : 1;
-		align-items      : center;
-		justify-items    : center;
-	}
+	.cHead { grid-column: 1; grid-row: 1; }
+	.cFoot { grid-column: 1; grid-row: 4; }
+	.cBody { grid-column: 1; grid-row: 3; }
+	.cTree { grid-column: 1; grid-row: 2; display: none; background: url(''); }
 
-	.tree         { display : none; color: #ffffff; }
-	.tree a       { text-decoration: none; color: #ffffff; }
+	.cTree a { text-decoration: none; color: #ffffff; }
+	.cTree   { color: #ffffff; }
 	.cTree li:before {
 		border-left   : 1px solid #ffffff;
 		border-bottom : 1px solid #ffffff;
 	}
 	.cTree li:after { border-left: 1px solid #ffffff; }
-
-	.cBody { grid-column: 1; }
-	.cFoot { grid-column: 1; }
 }
 
 
 @media screen and (max-width: 500px) {
 	.grid { grid-template-columns: 300px; }
 }
+
