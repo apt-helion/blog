@@ -6,10 +6,9 @@ import sys
 import os
 import cgi, cgitb
 import jinja2
+import json
+import MySQLdb
 
-
-# Moved App into a class, this way we validate auth and parse params when creating an instance.
-# We also have a variable to work with for the stash and can parse things like SessionID easily to every page.
 class App:
 	# Main Func
 	def __init__(self, callingFile, stash, *args, **kwargs):
@@ -38,6 +37,15 @@ class App:
 		print(fileName)
 
 	# Main Func End
+
+	# Utils
+	@staticmethod
+	def setupDB():
+		projectRoot = os.path.realpath(os.path.dirname(__file__))
+		jsonUrl = os.path.join(projectRoot, 'database.json')
+		data = json.load(open(jsonUrl))
+		conn = MySQLdb.connect(host=data['host'], user=data['user'], passwd=data['passwd'], db=data['db'])
+		return conn
 
 	# Utils
 	@staticmethod
