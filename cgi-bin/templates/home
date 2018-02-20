@@ -19,19 +19,21 @@
 <div class="grid">
 
 	<div id="show-btn" class="cell cHead">
-		<h4>[reader@blog.justin.com]$pwd</h4>
-		<h4>/home</h4>
+		<span id="top-header">
+			<h4>[reader@blog.justin.com]$pwd</h4>
+			<h4>/home</h4>
+		</span>
 		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
 	</div>
 
 	<div class="cell background cTree">
 		<ul class="tree">
 			<li class="root">/</li>
-			<li><a href="/">home</a></li>
+			<li><a href="/home">home</a></li>
 			<li>articles</li>
 			<ul>
-				<li><a href="/articles/security">security</a></li>
-				<li><a href="/articles/how-to">how_to\'s</a></li>
+				<li><a href="/security">security</a></li>
+				<li><a href="/how-to">how_to\'s</a></li>
 			</ul>
 			<li><a href="/info">info</a></li>
 			<li><a href="/contact">contact_me</a></li>
