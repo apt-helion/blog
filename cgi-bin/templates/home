@@ -3,13 +3,13 @@
 <head>
 
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" background="width=device-width, initial-scale=1.0">
 
 	<title>blag</title>
 
 	<link href="/css/style.css" rel="stylesheet">
 
-	<link href="/img/clock.png" rel="shortcut icon" type="image/png">
+	<link href="/img/" rel="shortcut icon" type="image/png">
 
 </head>
 
@@ -21,41 +21,42 @@
 	<div class="cell cHead">
 		<h4>[reader@blog.justin.com]$pwd</h4>
 		<h4>/home</h4>
+		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
 	</div>
 
-	<div class="cell cTree">
+	<div class="cell background cTree">
 		<ul class="tree">
 			<li class="root">/</li>
-			<li>home</li>
+			<li><a href="/">home</a></li>
 			<li>articles</li>
 			<ul>
-				<li>security</li>
+				<li><a href="/articles/security">security</a></li>
 			</ul>
-			<li>info</li>
-			<li>contact_me</li>
+			<li><a href="/info">info</a></li>
+			<li><a href="/contact">contact_me</a></li>
 		</ul>
 	</div>
 
-	<div class="small cTree">
+	<div class="cell small cTree">
 		<h4 id='show-btn'>[reader@blog.justin.com]$</h4>
 		<ul id='tree' class="tree">
 			<li class="root">/</li>
-			<li>home</li>
-			<li>articles</li>
+			<li><a href="/">home</a></li>
+			<li>articles/</li>
 			<ul>
-				<li>security</li>
+				<li><a href="/articles/security">security</a></li>
 			</ul>
-			<li>info</li>
-			<li>contact_me</li>
+			<li><a href="/info">info</a></li>
+			<li><a href="/contact">contact_me</a></li>
 		</ul>
 	</div>
 
-	<div class="cell cBody">
+	<div class="cell background cBody">
 		<p>Heading</p>
 	</div>
 
-	<div class="cell cFoot">
-		<b>Copyleft</b> Justin Duch (1970-The Heat Death of the Universe)
+	<div class="cell background cFoot">
+		<p><b>Copyleft</b> Justin Duch 2018<p>
 	</div>
 
 </div>

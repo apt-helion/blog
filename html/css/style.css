@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css=?family=Source+Code+Pro');
 @import url('https://fonts.googleapis.com/css=?family=Roboto');
 
-*    { box-sizing : border-box; }
+*    { box-sizing: border-box; }
 body { background-color: #212121; margin: 0; }
 h4 {
 	color        : #77dd11;
@@ -9,25 +9,29 @@ h4 {
 	margin       : 0px 0px 5px 0px;
 }
 
-/* Grid Layout */
+/* Grid layout */
 
 .container {
 	display         : flex;
 	align-items     : center;
 	justify-content : center;
 }
-
 .grid {
 	display : grid;
 	grid-template-columns : 1fr 4fr;
 	grid-template-rows: auto;
 	grid-gap: 10px;
 }
+.cell {
+	padding: 10px 20px;
+}
 
-.cell { background-color : #e0e0e0; padding: 10px 20px; }
+/* Cell formatting */
 
-/* Cell Formatting */
-
+.background {
+	background: url(/img/grid.png);
+	background-repeat: repeat;
+}
 .cHead {
 	padding-top       : 30px;
 	background-color  : #212121;
@@ -41,13 +45,11 @@ h4 {
 	grid-row    : 2;
 }
 .small { display: none; }
-
 .cBody {
 	font-family : Roboto, monospace;
 	grid-column : 2;
 	grid-row    : 2;
 }
-
 .cFoot {
 	font-size         : 12px;
 	font-family       : Roboto, monospace;
@@ -65,7 +67,6 @@ h4 {
 .cTree li {
 	font-size : 16px;
 	position  : relative;
-
 }
 .cTree li:before {
 	position      : absolute;
@@ -87,6 +88,8 @@ h4 {
 	border-left : 1px solid #000000;
 	height      : 100%;
 }
+.tree a                    { text-decoration: none; color: #000000; }
+.tree a:hover              { color  : #77dd44; }
 .tree .root                { margin : 0px 0px 0px -20px; }
 .tree .root:before         { display: none; }
 .tree .root:after          { display: none; }
@@ -99,9 +102,9 @@ h4 {
 		grid-template-columns : 500px;
 		grid-template-rows    : auto;
 	}
+
 	.cHead { display: none; }
 	.cTree { display: none;	}
-
 	.small {
 		padding          : 10px 0px;
 		background-color : #212121;
@@ -112,22 +115,19 @@ h4 {
 		justify-items    : center;
 	}
 
-	.tree { display : none; color: #ffffff; }
+	.tree         { display : none; color: #ffffff; }
+	.tree a       { text-decoration: none; color: #ffffff; }
 	.cTree li:before {
 		border-left   : 1px solid #ffffff;
 		border-bottom : 1px solid #ffffff;
 	}
-	.cTree li:after {
-		border-left : 1px solid #ffffff;
-	}
+	.cTree li:after { border-left: 1px solid #ffffff; }
 
-	.cBody { grid-column : 1; }
-	.cFoot { grid-column : 1; }
+	.cBody { grid-column: 1; }
+	.cFoot { grid-column: 1; }
 }
 
 
 @media screen and (max-width: 500px) {
-	.grid {
-		grid-template-columns : 300px;
-	}
+	.grid { grid-template-columns: 300px; }
 }
