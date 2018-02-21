@@ -4,13 +4,12 @@
 	<div id="show-btn" class="cell cHead">
 		<span id="top-header">
 			<h4>[reader@blog.justin.com]$pwd</h4>
-			<h4>/home</h4>
+			<h4>/info</h4>
 		</span>
 		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
 	</div>
 
 	<div class="cell background cBody">
-		<small>a compliation of all my articles.</small>
 	</div>
 
 {% include 'templates/footer' %}
