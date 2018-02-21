@@ -58,6 +58,18 @@ h4 {
 	grid-row          : 3;
 }
 
+/* Article list */
+
+.article-container {
+	border-bottom : 1px dashed #000000;
+	padding       : 20px 5px;;
+}
+.article-container h3 { margin-bottom: 5px; }
+.article-container p  { margin-top: 5px; }
+.article-container a  { text-decoration: none; color: #000000; }
+.article-container .link:hover { color: #77dd44; }
+.article-container .ellipsis   { color: blue; }
+
 /* Tree style */
 
 .cTree ul {
