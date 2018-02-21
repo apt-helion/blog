@@ -3,6 +3,7 @@
 
 *    { box-sizing: border-box; }
 body { background: url(/img/background.png); margin: 0; }
+h3   { font-family: Source Code Pro, monospace; }
 h4 {
 	color        : #77dd11;
 	font-family  : Source Code Pro, monospace;
@@ -18,7 +19,7 @@ h4 {
 }
 .grid {
 	display               : grid;
-	grid-template-columns : 1fr 4fr;
+	grid-template-columns : 1fr minmax(100px, 900px);
 	grid-template-rows    : auto;
 	grid-gap              : 10px;
 }
