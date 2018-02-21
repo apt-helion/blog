@@ -70,6 +70,31 @@ h4 {
 .article-container .link:hover { color: #77dd44; }
 .article-container .ellipsis   { color: blue; }
 
+/* Contact form */
+
+.formview { padding: 20px; }
+.formview input,
+.formview textarea {
+	font-size : 12px;
+	border    : 1px solid #ddd;
+	padding   : 10px;
+	width     : 300px;
+}
+.formview textarea {
+	height: 150px;
+}
+.formview .btn {
+	border     : none;
+	padding    : 5px;
+	background : none;
+}
+.formview .btn:hover {
+	background-color    : #4caf50;
+	color               : #ffffff;
+	transition-duration : 0.2s
+}
+.smaller { float: left; font-size: 11px; }
+
 /* Tree style */
 
 .cTree ul {
@@ -129,6 +154,14 @@ h4 {
 	.cTree li:after { border-left: 1px solid #ffffff; }
 
 	#top-header { display: none; }
+
+	.formview input,
+	.formview textarea {
+		font-size : 12px;
+		border    : 1px solid #ddd;
+		padding   : 10px;
+		width     : 220px;
+	}
 }
 
 @media screen and (max-width: 500px) {
