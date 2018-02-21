@@ -3,10 +3,10 @@
 
 	<div id="show-btn" class="cell cHead">
 		<span id="top-header">
-			<h4>[reader@blog.justin.com]$pwd</h4>
+			<h4>[reader@blog.justinduch.com]$pwd</h4>
 			<h4>/articles/machine-learning</h4>
 		</span>
-		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
+		<h4>[reader@blog.justinduch.com]$<span id="blink">_</span></h4>
 	</div>
 
 	<div class="cell background cBody">

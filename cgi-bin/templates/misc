@@ -3,14 +3,14 @@
 
 	<div id="show-btn" class="cell cHead">
 		<span id="top-header">
-			<h4>[reader@blog.justin.com]$pwd</h4>
+			<h4>[reader@blog.justinduch.com]$pwd</h4>
 			<h4>/articles/misc</h4>
 		</span>
-		<h4>[reader@blog.justin.com]$<span id="blink">_</span></h4>
+		<h4>[reader@blog.justinduch.com]$<span id="blink">_</span></h4>
 	</div>
 
 	<div class="cell background cBody">
-		<small>fun stuff that has nothing to do with computers.</small>
+		<small>fun stuff for other things I'm interested in.</small>
 		{% for article in stash.articles %}
 		<div class="article-container">
 			<h3><a class="link" href="{{article.location}}">{{article.name}}</a></h3>
