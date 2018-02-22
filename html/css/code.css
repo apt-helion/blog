@@ -37,6 +37,10 @@ pre {
  	background    : #212121;
  	border-bottom : 2px solid #514c4c;
  	color         : #ffffff;
+	font-family   : Source Code Pro, monospace;
+	font-size     : 14px;
+	overflow      : auto;
+	overflow-y    : hidden;
 }
 
 code {
