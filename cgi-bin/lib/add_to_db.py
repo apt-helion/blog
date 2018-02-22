@@ -13,7 +13,7 @@ def add_to_db(title, category, blurb, created):
 	cur.execute("INSERT INTO articles values (null, %s, %s, %s, %s ,%s)",
 				[title, category, blurb, location, created])
 	conn.commit()
-	print(f'{sys.argv[1]} added to database')
+	print(f'{filename} added to database')
 
 def main():
 	location = f'html/articles/{filename}'
@@ -27,6 +27,9 @@ def main():
 	date     = soup.find(id="date").get_text()
 
 	created = date.split(" ")[1]
+
+	if blurb[len(blurb)-1] is ' ':
+		blurb = blurb[:-1] # Remove if there is a space char at the end
 
 	add_to_db(title, category, blurb, created)
 
