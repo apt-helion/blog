@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114590042-1"></script>
-	<script>
-  		window.dataLayer = window.dataLayer || [];
-  		function gtag(){dataLayer.push(arguments);}
-  		gtag('js', new Date());
-
-  		gtag('config', 'UA-114590042-1');
-	</script>
 
 	<meta charset="utf-8">
 	<meta name="viewport" background="width=device-width, initial-scale=1.0">
@@ -17,6 +8,7 @@
 	<title>article name</title>
 
 	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/code.css" rel="stylesheet">
 
 	<link href="/img/icon.png" rel="shortcut icon" type="image/png">
 
@@ -58,15 +50,21 @@
 		<p id="fp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 		<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 		<pre class="prettyprint">
-#include &ltstdio.h&gt
+<span class="comment">#include &ltstdio.h&gt</span>
 
-void main()
+<span class="keyword">void</span> <span class="function">main</span>()
 {
-    printf('Hello World!');
+    <span class="keyword">int</span> i = <span class="number">0</span>;
+    
+    <span class="conditional">for</span> (i = <span class="number">0</span> <span class="variable">i</span> < <span class="number">10</span>; i++) {
+        <span class="function">printf</span>(<span class="string">'Hello World!'</span>);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
 
-main()
-		</pre>
+<span class="function">main</span>()</pre>
+
+		<p>The function <code>main</code> prints <code class="string">"Hello World!"</code> 10 times.</p>
 		<p>Congue quisque egestas diam in arcu. In hac habitasse platea dictumst. Mauris in aliquam sem fringilla. Eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Sed pulvinar proin gravida hendrerit lectus. Vitae purus faucibus ornare suspendisse sed nisi lacus sed viverra. Senectus et netus et malesuada. Accumsan lacus vel facilisis volutpat est velit egestas dui id. Ultricies leo integer malesuada nunc vel. Feugiat vivamus at augue eget arcu dictum varius duis. In metus vulputate eu scelerisque. Aliquam faucibus purus in massa tempor nec. Sed cras ornare arcu dui vivamus arcu felis bibendum. Enim sed faucibus turpis in eu. Arcu odio ut sem nulla pharetra diam. Duis convallis convallis tellus id interdum velit. Aliquet eget sit amet tellus cras. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Amet cursus sit amet dictum sit amet justo.</p>
 
 	</div>
@@ -85,7 +83,6 @@ main()
 
 </body>
 
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/main.js"></script>
 
