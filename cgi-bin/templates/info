@@ -10,10 +10,10 @@
 	</div>
 
 	<div class="cell background cBody">
-		this is a blog where I document the things I've learnt.
+	    <p>Welcome to my blog. I intend for this page to be a source of resources I and everyone who reads this can use, as well as letting me write about whatever I find interesting.</p>
 		<h3>about me</h3>
-		<small>github : <a href="https://github.com/apt-helion">profile</a></small><br>
-		<small>twitter: <a href="https://twitter.com/beanpup_py">@beanpup_py</a></small>
+		<small>github : <a href="https://github.com/apt-helion" target="_blank">profile</a></small><br>
+		<small>twitter: <a href="https://twitter.com/beanpup_py" target="_blank">@beanpup_py</a></small>
 	</div>
 
 {% include 'templates/footer' %}

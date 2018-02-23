@@ -5,6 +5,8 @@ import os
 import app as app
 from bs4 import BeautifulSoup
 
+# Remember to run this from the root directory of the site
+
 def add_to_db(title, category, blurb, created):
 	location = f'/articles/{filename}'
 
