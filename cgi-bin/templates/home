@@ -14,6 +14,7 @@
 		{% for article in stash.articles %}
 		<div class="article-container">
 			<h3><a class="link" href="{{article.location}}">{{article.name}}</a></h3>
+			<small>/articles/{{article.category}}</small><br>
 			<p>{{article.blurb}}<a class="ellipsis" href="{{article.location}}">...</a></p>
 			<small>Date: {{article.created}}</small>
 		</div>

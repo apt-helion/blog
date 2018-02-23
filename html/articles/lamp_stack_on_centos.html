@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114590042-1"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+
+  		gtag('config', 'UA-114590042-1');
+	</script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" background="width=device-width, initial-scale=1.0">
+
+	<title>Setting up a LAMP stack on CentOS 7</title>
+
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/code.css" rel="stylesheet">
+
+	<link href="/img/icon.png" rel="shortcut icon" type="image/png">
+
+</head>
+
+<body>
+
+<section class="container">
+<div class="grid">
+
+	<div class="cell background cTree">
+		<ul class="tree">
+			<li class="root">/</li>
+			<li><a href="/home">home</a></li>
+			<li>articles</li>
+			<ul>
+				<li><a href="/security">security</a></li>
+				<li><a href="/machine-learning">machine_learning</a></li>
+				<li><a href="/misc">misc</a></li>
+			</ul>
+			<li><a href="/info">info</a></li>
+			<li><a href="/contact-me">contact_me</a></li>
+		</ul>
+	</div>
+
+	<div id="show-btn" class="cell cHead">
+		<span id="top-header">
+			<h4>[reader@blog.justinduch.com]$pwd</h4>
+			<h4>/articles/lamp_stack_on_centos.html</h4>
+		</span>
+		<h4>[reader@blog.justinduch.com]$<span id="blink">_</span></h4>
+	</div>
+
+	<div class="cell background cBody">
+		<h3 id="title">Setting up a LAMP stack on CentOS 7</h3>
+		<small id="category" style="display: none;">misc</small>
+		<small id="date">Date: 2018-02-23</small>
+		<p id="fp">Welcome to the first post of my blog! This article will teach you how to set up a LAMP[Linux(CentOS), Apache, MySQL, Python] web server from scratch, just like how I did to get this blog running. This guide will go through everything and not all of it may apply to your circumstance, so feel free to skip ahead using the table of contents.</p>
+		<p><strong>table of contents</strong></p>
+		<ul>
+			<li><a href="#0x100">the DNS and web server</a></li>
+			<li><a href="#0x200">initial server setup</a></li>
+			<li><a href="#0x300">AMP'ed up</a></li>
+			<li><a href="#0x400">the apache config</a></li>
+		</ul>
+
+		<p id="0x100"><strong>0x100: the DNS and web server</strong></p>
+		<p>The DNS (Domain Name System) is a system that resolves a server's domain name eg. <code>blog.justinduch.com</code> into an IP address. In order for your webpage to be viewable, you must point your domain name to the webserver.</p>
+		<p>As this process is different for every domain name registrar and server provider it is up to you to find the documentation to do this for your specific setup. As my server provider is DigitalOcean, I found <a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars" target="_blank">this guide</a> very handy.</p>
+		
+		<p id="0x200"><strong>0x200: initial server setup</strong></p>
+		<p>Once you have your new server, you can log into it through SSH with it's public IP address. On Linux/Mac machines, use the command:</p>
+		<pre>[user@okcomputer]$ ssh root@<span class="keyword">SERVER_IP</span></pre>
+		<p>or connect through PUTTY on a Windows machine.</p>
+		
+		<p><strong>0x201: adding a new user</strong></p>
+		<p>Now you are logged in as the <code>root</code> user, which is the administrative user in a Linux environment and is given heightend privilages. Because of this, we will create a new user that we will use to log in from now in order to help prevent making any destructive changes on accident.</p>
+		<pre>[root@okserver]# useradd <span class="keyword">USER_NAME</span></pre>
+		<p>Now you can assign the user a password:</p>
+		<pre>[root@okserver]# passwd <span class="keyword">USER_NAME</span></pre>
+		<p>Our new user has been set up, but it only has regular user privilages. If we ever want to do administrative tasks on the server (like installing packages in the later sections), our regular user will be denied access. To avoid having to go back to root, we can set up our user as a 'super user'. This allows the user to run commands with root privilages by adding <code>sudo</code> before each command.</p>
+		<p>To do this we will add our user to the <code>wheel</code> group. By default, on CentOS, members of the <code>wheel</code> group have sudo privileges.</p>
+		<pre>[root@okserver]# usermod -aG wheel <span class="keyword">USER_NAME</span></pre>
+		
+		<p><strong>0x202: configuring ssh</strong></p>
+		<p>To make our server more secure we will configure the SSH daemon to disallow remote SSH access from root and change the deafult SSH port. Changing the default port from 22 to someting more unique will help to stop many automated attacks, and make it harder to guess which port SSH is accessible from. You can enter any port number from 1024 to 32,767.</p>
+		<p>Open the configuration file on your text editor eg. vi or nano:</p>
+		<pre>[root@okserver]# vi /etc/ssh/sshd_config</pre>Look for the lines:<pre><span class="statement">Port</span> 22&#13;&#10;<span class="comment">#PermitRootLogin yes</span></pre>
+		<p>and change them to:</p>
+		<pre><span class="statement">Port</span> <span class="keyword">YOUR_PORT_NUMBER</span>&#13;&#10;<span class="statement">PermitRootLogin</span> no</pre>
+		<p>Now that we have made our changes, we will restart SSH and test our configuration:</p>
+		<pre>[root@okserver]# systemctl reload ssh</pre> 
+		<p>Open a <b>new</b> terminal window (do not disconnect from the old session until we can verify that the config works) and connect with the command:</p>
+		<pre>[user@okcomputer]$ ssh -p <span class="keyword">PORT</span> <span class="keyword">user</span>@<span class="keyword">SERVER_IP</span></pre>
+		<p>You should now be logged in as your new user through the new SSH port. If your server has a firewall you may also want to allow TCP connections through the new port and block the old port.</p>
+		
+		<p id="0x300"><strong>0x300: AMP'ed up</strong></p>
+		<p>With our server configured we can now go through the the final 3 letters of the LAMP stack.</p>
+		<p>Before we install anything we should update the system:</p>
+		<pre>[user@okserver]$ sudo yum -y update</pre>
+		<p>Remember that we need to use <code>sudo</code> from now on to gain root privilages!</p>
+		<p>From now on this guide will use vim instead of vi as it's text editor, to install vim enter:</p>
+		<pre>[user@okserver]$ sudo yum install vim</pre>
+
+		<p><strong>0x301: a for apache</strong></p>
+		<p>Install Apache with:</p>
+		<pre>[user@okserver]$ sudo yum install httpd</pre>
+		<p>now you can start and enable the service:</p>
+		<pre>[user@okserver]$ sudo systemctl start httpd.service&#13;&#10;[user@okserver]$ sudo systemctl enable httpd.service</pre>
+
+		<p><strong>0x302: m for mysql</strong></p>
+		<p>We are actually installing MariaDB for our database, but it still starts with a 'm' so it counts.</p>
+		<pre>[user@okserver]$ sudo yum install mariadb mariadb-server</pre>
+		<p>start and enable it:</p>
+		<pre>[user@okserver]$ sudo systemctl start mariadb&#13;&#10;[user@okserver]$ sudo systemctl enable mariadb</pre>
+		<p>Now you will want to set up the database. Add a root user with:</p>
+		<pre>[user@okserver]$ mysqladmin -u root password <span class="keyword">PASSWORD</span></pre>
+		<p>You can test it by connecting to the database with:</p>
+		<pre>[user@okserver]$ mysql -u root -p</pre>
+
+		<p><strong>0x303: p for python</strong></p>
+		<p>CentOS actually comes with Python2.7 by deafult, so if you are one of those neanderthals who still use 2.7 you can skip this step. For the rest of us intellectuals, you will need to install install IUS, which stands for Inline with Upstream Stable. IUS provides the Red Hat Package Manager (RPM) packages for some newer versions of select software.</p>
+		<pre>[user@okserver]$ sudo yum install https://centos7.iuscommunity.org/ius-release.rpm</pre>
+		<p>Now you can install Python3:</p>
+		<pre>[user@okserver]$ sudo yum install python36u</pre>
+		<p>You may also want to install pip and the development package needed for the mysqldb module:</p>
+		<pre>[user@okserver]$ sudo yum install python36u-pip python36u-devel</pre>
+
+		<p>Now your LAMP stack is installed! The next section goes through the Apache config to get you to the testing page.</p>
+
+		<p id="0x400"><strong>0x400: the apache config</strong></p>
+		<p>This section will go through how to get a set up a virtual host in Apache. You can choose many different ways to set up a virtual host, this guide will show the way I did it.</p>
+		<p>Create the required directories for the website:</p>
+		<pre>[user@okserver]$ sudo mkdir /var/www/<span class="keyword">YOUR_DOMAIN</span>&#13;&#10;[user@okserver]$ sudo mkdir /var/www/<span class="keyword">YOUR_DOMAIN</span>/cgi-bin&#13;&#10;[user@okserver]$ sudo mkdir /var/www/<span class="keyword">YOUR_DOMAIN</span>/html&#13;&#10;[user@okserver]$ sudo mkdir /var/www/<span class="keyword">YOUR_DOMAIN</span>/conf</pre>
+		<p><code>cgi-bin</code> is the directory where you will keep your scripts.</p>
+		<p><code>html</code> is the document root for Apache.</p>
+		<p><code>conf</code> is the directory where your virtual host config is placed.</p>
+		<p>Now create <code>vhost.conf</code> in the <code>conf</code> directory:</p>
+		<pre>[user@okserver]$ sudo touch /var/www/<span class="keyword">YOUR_DOMAIN</span>/conf/vhost.conf</pre>
+		<p>and and edit it: <pre>[user@okserver]$ sudo vim /var/www/example.com/conf/vhost.conf</pre> Here is a very basic example where <code>example.com</code> is my domain name:</p>
+<pre>
+&lt<span class="function">VirtualHost</span> *:80&gt
+    <span class="statement">ServerAdmin</span> admin@example.com
+    <span class="statement">ServerName</span> example.com
+    <span class="statement">ServerAlias</span> /app/ <span class="string">"/var/www/example.com/cgi-bin/"</span>
+    <span class="statement">DocumentRoot</span> /var/www/example.com/html
+&lt/<span class="function">VirtualHost</span>&gt
+</pre>
+		<p>Now we can edit the Apache config to include this virtual host config:</p>
+		<pre>[user@okserver]$ sudo vim /etc/httpd/conf/httpd.conf</pre>
+		<p>and add this line to the end of the file:</p>
+		<pre><span class="statement">Include</span> /var/www/example.com/conf/vhost.conf</pre>
+		<p>Restart Apache with:</p>
+		<pre>[user@okserver]$ sudo apachectl graceful</pre>
+		<p>That's it! You can test if your web server works by typing your domain into the browser, which should direct you to Apache's testing page. For more config options see the <a href="https://httpd.apache.org/docs/2.4/vhosts/" target="_blank">official documentation</a>.</p>
+	</div>
+
+	<div class="cell background cFoot">
+		<p><b>Copyleft</b> Justin Duch 2018<p>
+		<small>view page
+			<a href="https://github.com/apt-helion/blog" target="_blank" style="text-decoration: none;">
+				source code
+			</a>
+		</small>
+	</div>
+
+</div>
+</section>
+
+</body>
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+</html>
