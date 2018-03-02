@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$('#show-btn').click(function() {
 		if ($(window).width() < 1000) {
 			$('.cTree').slideToggle();
+			$('.bar').toggleClass("change");
 		}
 	});
 
@@ -23,5 +24,4 @@ $(document).ready(function() {
 			$('.cTree').show();
 		}
 	});
-
 });
