@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /harming/humans
+Disallow: /ignoring/human_orders
+Disallow: /harm_to_self
+
+Sitemap: https://blog.justinduch.com/sitemaps/sitemap.xml
