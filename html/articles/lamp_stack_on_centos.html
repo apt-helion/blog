@@ -73,7 +73,7 @@
 
 		<p id="0x100"><strong>0x100: the DNS and web server</strong></p>
 		<p>The DNS (Domain Name System) is a system that resolves a server's domain name eg. <code>blog.justinduch.com</code> into an IP address. In order for your webpage to be viewable, you must point your domain name to the webserver.</p>
-		<p>As this process is different for every domain name registrar and server provider it is up to you to find the documentation to do this for your specific setup. As my server provider is DigitalOcean, I found <a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars" target="_blank">this guide</a> very handy.</p>
+		<p>As this process is different for every domain name registrar and server provider it is up to you to find the documentation to do this for your specific setup. Once you have a sever and domain name aswell as pointed them, we can continue with the guide.</p>
 		
 		<p id="0x200"><strong>0x200: initial server setup</strong></p>
 		<p>Once you have your new server, you can log into it through SSH with it's public IP address. On Linux/Mac machines, use the command:</p>
@@ -92,9 +92,11 @@
 		<p><strong>0x202: configuring ssh</strong></p>
 		<p>To make our server more secure we will configure the SSH daemon to disallow remote SSH access from root and change the deafult SSH port. Changing the default port from 22 to someting more unique will help to stop many automated attacks, and make it harder to guess which port SSH is accessible from. You can enter any port number from 1024 to 32,767.</p>
 		<p>Open the configuration file on your text editor eg. vi or nano:</p>
-		<pre>[root@okserver]# vi /etc/ssh/sshd_config</pre>Look for the lines:<pre><span class="statement">Port</span> 22&#13;&#10;<span class="comment">#PermitRootLogin yes</span></pre>
+		<pre>[root@okserver]# vi /etc/ssh/sshd_config</pre>
+		<p>Look for the lines:</p>
+		<pre><span class="comment">...</span>&#13;&#10;<span class="statement">Port</span> 22&#13;&#10;<span class="comment">...</span>&#13;&#10;<span class="comment">#PermitRootLogin yes</span></pre>
 		<p>and change them to:</p>
-		<pre><span class="statement">Port</span> <span class="keyword">YOUR_PORT_NUMBER</span>&#13;&#10;<span class="statement">PermitRootLogin</span> no</pre>
+		<pre><span class="comment">...</span>&#13;&#10;<span class="statement">Port</span><span class="keyword"> YOUR_PORT_NUMBER</span>&#13;&#10;<span class="comment">...</span>&#13;&#10;<span class="statement">PermitRootLogin</span> no</pre>
 		<p>Now that we have made our changes, we will restart SSH and test our configuration:</p>
 		<pre>[root@okserver]# systemctl reload ssh</pre> 
 		<p>Open a <b>new</b> terminal window (do not disconnect from the old session until we can verify that the config works) and connect with the command:</p>

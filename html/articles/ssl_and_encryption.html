@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114590042-1"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+
+  		gtag('config', 'UA-114590042-1');
+	</script>
+
+
+	<meta charset="utf-8">
+	<meta name="viewport" background="width=device-width, initial-scale=1.0">
+
+	<title>Understanding and Configuring SSL</title>
+
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/code.css" rel="stylesheet">
+
+	<link href="/img/icon.png" rel="shortcut icon" type="image/png">
+
+</head>
+
+<body>
+
+<section class="container">
+<div class="grid">
+
+	<div class="cell background cTree">
+		<ul class="tree">
+			<li class="root">/</li>
+			<li><a href="/home">home</a></li>
+			<li>articles</li>
+			<ul>
+				<li><a href="/security">security</a></li>
+				<li><a href="/misc">misc</a></li>
+			</ul>
+			<li><a href="/info">info</a></li>
+			<li><a href="/contact-me">contact_me</a></li>
+		</ul>
+	</div>
+
+	<div id="show-btn" class="cell cHead">
+		<span id="top-header">
+			<h4>[reader@blog.justinduch.com]$pwd</h4>
+			<h4>/articles/ssl_and_encryption.html</h4>
+		</span>
+		<div>
+			<span class="bar">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</span>
+			<h4 style="display: inline-block;">[reader@blog.justinduch.com]$<span id="blink">_</span></h4>
+		</div>
+	</div>
+
+	
+	<div class="cell background cBody">
+		<h3 id="title">SSL and Encryption</h3> 
+		<small id="category" style="display: none;">security</small> 
+		<small id="date">Date: 2018-04-02</small>
+
+		<p id="fp">TLS(Transfer Layer Security)/SSL(Secure Socket Layer) are standard, cryptographic protocols that establish security over computer networks, between a web server and a browser. SSL provides a trusted environment where all data being transmitted is encrypted.</p>
+		<p>This article is technically a continuation of my <a href='/articles/lamp_stack_on_centos.html' target="_blank">last article</a> where we set up a CentOs7 server with Apache, and will go through explaining SSL aswell as setting it up our sever.</p>
+		<p><strong>table of contents</strong></p>
+		<ul>
+			<li><a href="#0x100">TLS/SSL?</a></li>
+			<li><a href="#0x200">a primer on encryption and SSL</a></li>
+			<li><a href="#0x300">the SSL certificate</a></li>
+			<li><a href="#0x400">let's encrypt</a></li>
+		</ul>
+
+		<p id="0x100"><strong>0x100: TLS/SSL?</strong></p>
+		<p>The terms SSL and TLS are often used interchangeably or in conjunction with each other (TLS/SSL), but one is in fact the predecessor of the other — SSL 3.0 served as the basis for TLS 1.0 which, as a result, is sometimes referred to as SSL 3.1.</p>
+		<p>As SSL was named by Netscape, the creators of the protocol, it was changed to TLS to avoid any legal issues with them so that the protocol could be "open and free". It also hints at the idea that the protocol works over any bidirectional stream of bytes, not just Internet-based sockets.</p>
+		<p>In order to prevent any confusion we will refer to TLS/SSL as just SSL from now on.</p>
+
+		<p id="0x200"><strong>0x200: a primer on encryption and SSL</strong></p>
+		<p><strong>0x201: asymertric and symmetric encryption</strong></p>
+		<p>Asymmetric encryption (or public-key cryptography) uses a separate key for encryption and decryption. Anyone can use the encryption key (public key) to encrypt a message. However, decryption keys (private keys) are secret. This way only the intended receiver can decrypt the message.</p>
+		<p>Asymmetric keys are typically 1024 or 2048 bits. However, keys smaller than 2048 bits are no longer considered safe to use. Though larger keys can be created, the increased computational burden is so significant that keys larger than 2048 bits are rarely used. To put it into perspective, it would take an average computer more than 14 billion years to crack a 2048-bit certificate.</p>
+		<p>Symmetric encryption (or pre-shared key encryption) uses a single key to both encrypt and decrypt data. Both the sender and the receiver need the same key to communicate.</p>
+		<p>Symmetric key sizes are typically 128 or 256 bits, where a larger key is harder to crack. For example, a 128-bit key has <code>340,282,366,920,938,463,463,374,607,431,768,211,456</code> encryption code possibilities.</p>
+		<p>Whether a 128-bit or 256-bit key is used depends on the encryption capabilities of both the server and the client software. SSL Certificates do not dictate what key size is used. </p>
+		
+		<p><strong>0x202: SSL</strong></p>
+		<p>An SSL encrypted connection is generated through both asymmetric and symmetric cryptography through an SSL handshake. In SSL communications, the server’s SSL Certificate contains an asymmetric public and private key pair. The session key that the server and the browser create during the SSL Handshake is symmetric. In essence:</p>
+		<ul>
+			<li>The handshake begins when a client connects to an SSL-enabled server requesting a secure connection.</li>
+			<li>The server then provides identification in the form of a digital certificate. The certificate contains the server name, the trusted certificate authority (CA) that vouches for the authenticity of the certificate, and the server's public encryption key.</li>
+			<li>The client confirms the validity of the certificate before proceeding and then creates a symmetric session key and encrypts it with the server's asymmetric public key. Then sends it to the server.</li>
+		</ul>
+		<p>This concludes the handshake and begins the secured connection, which is encrypted and decrypted with the session key until the connection closes. If any one of the above steps fails, then the SSL handshake fails and the connection is not created.</p>
+		
+		<p id="0x300"><strong>0x300: the SSL certificate</strong></p>
+		<p>The SSL certificate is the most important component when generating an SSL connection between the client and server. Anyone can create a certificate, but browsers only trust certificates that come from an organization on their list of trusted CAs. Browsers come with a pre-installed list of trusted CAs, known as the Trusted Root CA store. In order to be added to the Trusted Root CA store and thus become a Certificate Authority, a company must comply with and be audited against security and authentication standards established by the browsers.</p>
+		<p>SSL Certificates will contain details of whom the certificate has been issued to. This includes the domain name or common name, serial number; the details of the issuer; the period of validity - issue date and expiry date; SHA Fingerprints; subject public key algorithm, subject's public key; certificate signature algorithm, certificate signature value. Other important details such as the type of certificate, SSL/TLS version, Perfect Forward Secrecy status, and cipher suite details are included. Organization validated and extended validation certificates also contain verified identity information about the owner of the website, including organization name, address, city, state and country.</p>
+		<p>For our server we will get an SSL certificate from Let's Encrypt, a free, automated, and open CA, run for the public’s benefit.</p>
+		
+		<p id="0x400"><strong>0x0400: let's encrypt</strong></p>
+		<p>The first step to using Let's Encrypt to obtain an SSL certificate is to install the <code>certbot</code> software on our server. But before we begin, we must will need to enable the EPEL repository, which provides additional packages for CentOS, including the <code>certbot</code> package we need. We will also need to install the <code>mod_ssl</code> module to correctly serve encrypted traffic.</p>
+		<pre>[user@okserver]$ sudo yum install epel-release&#13;&#10;[user@okserver]$ sudo yum install mod_ssl python-certbot-apache</pre>
+		
+		<p><strong>0x202: requesting a certificate</strong></p>
+		<p>Using <code>certbot</code> to generate a certificate is quite easy. The client will automatically obtain and install a new SSL certificate that is valid for the domains provided as parameters. To execute the interactive installation and obtain the certificates, run the certbot command with:</p>
+		<pre>[user@okserver]$ sudo certbot --apache -d <span class="keyword">YOUR_DOMAIN</span> -d <span class="keyword">OPTIONAL_DOMAIN</span></pre>
+		<p>We will be presented with a step-by-step guide to customize our certificate options. We will be asked to provide an email address for lost key recovery and notices. If our Virtual Host files do not specify the domain they serve explicitly using the <code>ServerName</code> directive, we will be asked to choose the Virtual Host file (the default ssl.conf file should work).</p>
+		<p>That's pretty much it. The generated certificate files should be available within a subdirectory named after your base domain in the <code>/etc/letsencrypt/live</code> directory. However, as the default SSL configuration shipped with CentOS's version of Apache is a bit dated and as such, it is vulnerable to some more recent security issues and is recommended that we select more secure SSL options. I suggest going through Remy van Elst's <a href="https://raymii.org/s/tutorials/Strong_SSL_Security_On_Apache2.html" target="blank">tutorial</a> on strong SSL security on the Apache2 webserver, as it does a better job of explaining it's solutions than I would.</p>
+	</div>
+
+	<div class="cell background cFoot">
+		<p><b>Copyleft</b> Justin Duch 2018<p>
+		<small>view page
+			<a href="https://github.com/apt-helion/blog" target="_blank" style="text-decoration: none;">
+				source code
+			</a>
+		</small>
+	</div>
+
+</div>
+</section>
+
+</body>
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+</html>
