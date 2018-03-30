@@ -4,7 +4,7 @@
 	<div id="show-btn" class="cell cHead">
 		<span id="top-header">
 			<h4>[reader@blog.justinduch.com]$pwd</h4>
-			<h4>/home</h4>
+			<h4>/articles</h4>
 		</span>
 		<div>
 			<span class="bar">
