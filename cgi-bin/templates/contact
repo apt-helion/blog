@@ -17,9 +17,9 @@
 	</div>
 
 	<div class="cell background cBody">
-		<small>email me at <a href="mailto:blog.justinduch@protonmail.com">blog.justinduch@protonmail.com</a>
+		<small>email me at <a href="mailto:blog.justinduch@pm.me">blog.justinduch@pm.me</a>
 		       or fill out the form below.</small>
-		<form class="formview" action="https://formspree.io/blog.justinduch@protonmail.com" method="POST">
+		<form class="formview" action="https://formspree.io/blog.justinduch@pm.me" method="POST">
 			<small class="smaller">Powered by Formspree</small><br>
 			<input type="email" placeholder="Your email" name="_replyto"><br>
 			<textarea name="message" placeholder="Your message"></textarea><br>
