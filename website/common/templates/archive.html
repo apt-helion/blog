@@ -1,0 +1,32 @@
+{% extends "./common/templates/layout.html" %}
+
+{% block content %}
+
+<div class="recent-posts archive-posts">
+    <div class="container-fluid">
+        <div class="row archive-heading">
+            <div class="col-sm-12">
+                <h1 class="heading">Posts in {{title}}</h1>
+                <p class="extra-info">{{description}}</p>
+            </div>
+        </div>
+        <div class="row posts-wrapper col-3">
+
+            {% for article in articles %}
+            <div class="col-md-4 col-sm-6 post-grid-wrapper">
+                <article>
+                    <a href="single-post-with-sidebar.html" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-img"></a>
+                    <div class="post-summary">
+                        <div class="post-meta"><span class="post-date">{{article.date}}</span></div>
+                        <h2 class="post-title"><a href="single-post-with-sidebar.html">{{article.title}}</a></h2>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+
+           <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
