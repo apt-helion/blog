@@ -11,7 +11,6 @@ database = Config.DATABASE
 DateTimeField.formats.append('%Y-%m-%dT%H:%M:%S')
 DateField.formats.append('%Y-%m-%dT%H:%M:%S')
 
-
 class UnknownField(object):
     def __init__(self, *_, **__): pass
 
@@ -43,6 +42,7 @@ class BaseModel(Model):
 
 class Article(BaseModel):
     id = AutoField(column_name='id')
+    link = CharField(column_name='link', null=True)
     title = CharField(column_name='title', null=True)
     date = DateField(column_name='date', null=True)
     category = CharField(column_name='category', null=True)

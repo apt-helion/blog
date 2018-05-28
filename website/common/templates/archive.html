@@ -15,10 +15,10 @@
             {% for article in articles %}
             <div class="col-md-4 col-sm-6 post-grid-wrapper">
                 <article>
-                    <a href="single-post-with-sidebar.html" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-img"></a>
+                    <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-img"></a>
                     <div class="post-summary">
-                        <div class="post-meta"><span class="post-date">{{article.date}}</span></div>
-                        <h2 class="post-title"><a href="single-post-with-sidebar.html">{{article.title}}</a></h2>
+                        <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                        <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2>
                     </div>
                 </article>
             </div>

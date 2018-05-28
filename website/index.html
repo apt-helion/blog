@@ -24,10 +24,10 @@
             {% for article in infosec %}
             <div class="col-md-4 col-sm-6 post-grid-wrapper">
                 <article>
-                    <a href="single-post-with-sidebar.html" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
+                    <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
                     <div class="post-summary">
-                        <div class="post-meta"><span class="post-date">{{article.date}}</span></div>
-                        <h2 class="post-title"><a href="single-post-with-sidebar.html">{{article.title}}</a></h2></div>
+                        <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                        <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
                 </article>
             </div>
             {% endfor %}
@@ -49,15 +49,41 @@
             {% for article in development %}
             <div class="col-md-4 col-sm-6 post-grid-wrapper">
                 <article>
-                    <a href="single-post-with-sidebar.html" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
+                    <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
                     <div class="post-summary">
-                        <div class="post-meta"><span class="post-date">{{article.date}}</span></div>
-                        <h2 class="post-title"><a href="single-post-with-sidebar.html">{{article.title}}</a></h2></div>
+                        <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                        <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
                 </article>
             </div>
             {% endfor %}
 
             <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="recent-posts">
+        <div class="container-fluid">
+            <div class="row headline">
+                <div class="col-sm-6 heading">
+                    <h3>Engineering </h3></div>
+                <div class="col-sm-6 see-all-posts"><a href="/engineering" class="see-all-posts">See All in Engineering</a></div>
+            </div>
+            <div class="row posts-wrapper col-3">
+    
+                {% for article in engineering %}
+                <div class="col-md-4 col-sm-6 post-grid-wrapper">
+                    <article>
+                        <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
+                        <div class="post-summary">
+                            <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                            <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
+                    </article>
+                </div>
+                {% endfor %}
+    
+                <div class="clearfix"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -74,10 +100,10 @@
             {% for article in miscellaneous %}
             <div class="col-md-4 col-sm-6 post-grid-wrapper">
                 <article>
-                    <a href="single-post-with-sidebar.html" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
+                    <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
                     <div class="post-summary">
-                        <div class="post-meta"><span class="post-date">{{article.date}}</span></div>
-                        <h2 class="post-title"><a href="single-post-with-sidebar.html">{{article.title}}</a></h2></div>
+                        <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                        <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
                 </article>
             </div>
             {% endfor %}

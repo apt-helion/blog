@@ -18,6 +18,11 @@ def index(request):
            .order_by(Article.id.desc())
            .limit(3))
 
+    eng = (Article
+           .select()
+           .where(Article.category == 'engineering')
+           .order_by(Article.id.desc())
+           .limit(3))
 
     misc = (Article
             .select()
@@ -29,6 +34,7 @@ def index(request):
         'title'          : 'blag',
         'infosec'        : sec,
         'development'    : dev,
+        'engineering'    : eng,
         'misecellaneous' : misc
     }
 
@@ -36,15 +42,19 @@ def index(request):
 def archive(request, category):
     if category == 'infosec':
         title = 'Information Security'
-        description = 'hello'
+        description = 'CTF walkthroughs, infosec \'research\', and a bunch of other things I don\'t understand.'
 
     elif category == 'development':
         title = 'Software Development'
-        description = 'hello'
+        description = 'I write software and you read about it.'
+
+    elif category == 'engineering':
+        title = 'Engineering'
+        description = 'I build stuff and you read about it.'
 
     elif category == 'miscellaneous':
         title = 'Miscellaneous'
-        description = 'hello'
+        description = 'Other stuff.'
 
     else: pass # redirect 404
 
