@@ -26,9 +26,8 @@ CREATE TABLE `Article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` date NOT NULL,
-  `description` varchar(1024) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category` varchar(52) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` varchar(4096) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,4 +42,4 @@ CREATE TABLE `Article` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-28 14:10:59
+-- Dump completed on 2018-05-28 15:48:19

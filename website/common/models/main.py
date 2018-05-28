@@ -45,9 +45,8 @@ class Article(BaseModel):
     id = AutoField(column_name='id')
     title = CharField(column_name='title', null=True)
     date = DateField(column_name='date', null=True)
-    description = CharField(column_name='description', null=True)
     category = CharField(column_name='category', null=True)
-    content = CharField(column_name='content', null=True)
+    content = TextField(column_name='content', null=True)
     thumbnail = CharField(column_name='thumbnail', null=True)
 
     class Meta:
