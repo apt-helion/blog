@@ -1,0 +1,56 @@
+{% extends "./common/templates/layout.html" %}
+
+{% block content %}
+
+<article class="single-post">
+    <div class="container-fluid">
+        <div class="row meta">
+            <div class="col-md-12">
+                <ul class="list-inline meta text-center">
+                    <li>{{article.date}}</li>
+                </ul>
+                <h1 class="text-center single-title">{{article.title}}</h1>
+            </div>
+        </div>
+
+        <div class="row featured-image">
+            <div class="col-md-12"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></div>
+        </div>
+
+        <div class="row entry-content">
+            <div class="col-md-3 single-post-left-sidebar"></div>
+            <div class="col-md-6 single-content">
+                {{article.content}}
+                <p class="text-justify">The following is placeholder text known as <strong><span style="text-decoration: underline;">“lorem ipsum,”</span></strong> which is scrambled Latin used by designers to mimic real copy. Moby yo troll dolls berry lips mariah carey,
+                    furby instant messaging bill clinton miss cleo. Super mario world slap bracelet dial-up baseball jacket hoop earrings boy bands, vanilla coke hot pockets mtv fly body piercings. Portable cd players move it football head girl power
+                    scrunched socks trucks polo shirts with popped collars. Trl gordon bombay pearl jam the macarena trippin’ how do you like them apples, bill gates super soaker spice girls baywatch toyota supra. Mad props boombox arsenio hall oregon
+                    trail, christina aguilera keds I will always love you got milk accent braids ripped jeans.</p>
+                <blockquote>
+                    <p>Barbie super soaker playstation chuck taylor all-stars digital pets, aviators phat uncle phil fresh. </p>
+                    <footer>Ross &amp; Rachel Pixie </footer>
+                </blockquote>
+                <p><strong>Apollo 13 chandler bing</strong> hottie ghost pottery scene, fluorescent backstreet boys central perk crib tae bo. Business casual des’ree marky mark parting your hair down the middle discovery zone. Fanny packs stretch armstrong
+                    digital pets trainers honda accord. Fresh skate tees pagers alanis morissette bomber jacket, berry lips spiked hair tlc boombox atlanta braves.Home skillet topanga saved by the bell big lebowski, atlanta summer olympics beavis
+                    and butthead barbie cassette tape fluorescent. Biker shorts jeans the macarena digital pets pop punk mazda mpv, <em><span style="text-decoration: line-through;">harrison ford hulk hogan super soaker dial-up.</span></em> </p>
+                <p>Vhs tapes rad tootsie pop digital pets warheads kazaa. Natalie imbruglia charlotte hornets skifree vcr toni braxton. </p>
+                <p> <img class="img-responsive alignleft" src="assets/img/single-post-content-image1.jpg" alt="image-alternative">Magic johnson sitcoms bleached hair jeans life is like a box of chocolates. Super soaker flip flops gangsta rap mtv la gear, bop it mia hamm trippin’
+                    dotcom bubble cory matthews.&nbsp;</p>
+                <p class="text-justify"> <img class="img-responsive alignright" src="assets/img/single-post-content-image2.jpg" alt="image-alternative">Move it football head mad props deep blue good will hunting hotmail, garth brooks flip flops carlton dance oasis mc hammer pizza bagels. Pagers
+                    encarta did I do that aerosmith.</p>
+                <div class="entry-meta">
+                    <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category}}</a>
+                </div>
+            </div>
+            <div class="col-md-3 single-post-right-sidebar"></div>
+        </div>
+        <div class="row post-nav">
+            <div class="col-md-6 prev-post"><span>Previous </span>
+                <h4> <a href="#">Spotlight Post </a></h4></div>
+            <div class="col-md-6 next-post"><span>Next </span>
+                <h4> <a href="#">Draw Readers in With an Alluring Blog Post Title Here </a></h4></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

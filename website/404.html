@@ -1,0 +1,31 @@
+{% extends "./common/templates/layout.html" %}
+
+{% block content %}
+
+<article class="single-page">
+    <div class="container-fluid">
+        <div class="row page-body">
+            <div class="col-md-12 single-content">
+                <div class="entry-content">
+                    <p>We couldn't find the page you were looking for. This is either because: </p>
+                    <ul>
+                        <li>There is an error in the URL entered into your web browser. Please check the URL and try again. </li>
+                        <li>The page you are looking for has been moved or deleted. </li>
+                    </ul>
+                    <p>You can return to the homepage by <a href="/">clicking here</a>, or you can try searching for the content you are seeking by using the form below. </p>
+                </div>
+                <form class="search-form">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span><i class="fa fa-search"></i></span></div>
+                        <input class="form-control" type="text" required="" placeholder="I am looking for..">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button">Search </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

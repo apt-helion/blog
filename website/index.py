@@ -1,11 +1,10 @@
 #!/usr/bin/python3.6
 from simplerr.web import web
-from common.auth import Auth
 
-@web('/', '/home.html')
-def home(request):
+@web('/', '/index.html')
+def index(request):
     """Render homepage."""
-    return {'current': 'home'}
+    return {'title': 'blag'}
 
 @web('/favicon.ico', file=True)
 def favicon(request):
