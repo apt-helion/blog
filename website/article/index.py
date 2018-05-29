@@ -8,14 +8,14 @@ def article(request, name):
 
     article = Article.get(Article.link == name)
 
-    previous_article = Article.select(fn.MIN(Article.id)).where(Article.id > article.id)
-    next_article     = Article.select(fn.MAX(Article.id)).where(Article.id < article.id)
+    previous_article = Article.select().where(Article.id < article.id) or [{'title': '', 'link': '#'}]
+    next_article     = Article.select().where(Article.id > article.id) or [{'title': '', 'link': '#'}]
 
     return {
         'title'    : article.title,
         'article'  : article, 
-        'previous' : previous_article, 
-        'next'     : next_article
+        'previous' : previous_article[0],
+        'next'     : next_article[0]
     }
 
 @web('/article/wip', '/article/templates/wip.html')

@@ -35,14 +35,15 @@ def index(request):
         'infosec'        : sec,
         'development'    : dev,
         'engineering'    : eng,
-        'misecellaneous' : misc
+        'misecellaneous' : misc,
+        'random'         : Article.select().order_by(fn.Rand())[0]
     }
 
 @web('/<category>', '/common/templates/archive.html')
 def archive(request, category):
     if category == 'infosec':
         title = 'Information Security'
-        description = 'CTF walkthroughs, infosec \'research\', and a bunch of other things I don\'t understand.'
+        description = 'I attempt CTF walkthroughs, infosec \'research\', and you read about it.'
 
     elif category == 'development':
         title = 'Software Development'
@@ -54,11 +55,11 @@ def archive(request, category):
 
     elif category == 'miscellaneous':
         title = 'Miscellaneous'
-        description = 'Other stuff.'
+        description = 'I look at other stuff and you read about it.'
 
     else: pass # redirect 404
 
-    articles = Article.select().where(Article.category == category)
+    articles = Article.select().where(Article.category == category).order_by(Article.id.desc())
 
     return {
         'title'       : title,

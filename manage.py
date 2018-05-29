@@ -37,44 +37,5 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
 
     app.serve()
 
-@cli.command()
-def sqlite_init():
-    # Delete old database if exists
-    try:
-        os.remove("website/pplsrv.db")
-        print("Existing database deleted")
-    except FileNotFoundError:
-        print("No existing database found")
-
-    # Create new database from model
-    Config.DATABASE.create_tables(main.BaseModel.__subclasses__())
-    print("New database created")
-
-    # Add test data from JSONs
-    db = DataSet('sqlite:///website/pplsrv.db')
-    for table in db.tables:
-        db[table].thaw(format='json',
-                       filename='./migration/test_data/' + table + '.json')
-    print("Database populated with test data")
-    print("Database setup complete!")
-
-
-@cli.command()
-def dbexport():
-    """
-    Export a MySQL db records to JSON files.
-    Before running, modify db declaration to reflect your MySQL server
-    Example: 'mysql://root:Blockers12@localhost/pplsrv'
-    To run do `./manage.py dbexport`.
-    To generate a peewee model from a MySQL DB, use the following bash command:
-    python -m pwiz -e mysql -H localhost -u root -P pplsrv > model.py
-    Then enter the MySQL password
-    """
-    # Exports all tables in MySQL db
-    data_set = DataSet('mysql://root:Blockers12@localhost/pplsrv')
-    for table in data_set.tables:
-        data_set.freeze(data_set[table], format='json',
-                  filename='./migration/test_data/' + table + '.json')
-
 if __name__ == '__main__':
     cli()

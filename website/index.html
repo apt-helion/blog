@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<div class="highlight-post overlay-dark-5">
+<div class="highlight-post overlay-dark-5" style="background-image:url('/common/static/img/{{random.thumbnail}}');">
     <div class="container-fluid">
         <div class="intro">
-            <p class="text-center">Fila crib trippin’ hot pink umbro shorts atlanta braves!</p>
-            <h2 class="text-center">Union jack life is like a box of chocolates hot pockets umbro shorts the matrix cheetos.</h2>
-            <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="#">Read More</a></div>
+            <p class="text-center">Random Article</p>
+            <h2 class="text-center">{{random.title}}</h2>
+            <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="/article/{{random.link}}">Read More</a></div>
         </div>
     </div>
 </div>
@@ -63,27 +63,26 @@
 </div>
 
 <div class="recent-posts">
-        <div class="container-fluid">
-            <div class="row headline">
-                <div class="col-sm-6 heading">
-                    <h3>Engineering </h3></div>
-                <div class="col-sm-6 see-all-posts"><a href="/engineering" class="see-all-posts">See All in Engineering</a></div>
+    <div class="container-fluid">
+        <div class="row headline">
+            <div class="col-sm-6 heading">
+                <h3>Engineering </h3></div>
+            <div class="col-sm-6 see-all-posts"><a href="/engineering" class="see-all-posts">See All in Engineering</a></div>
+        </div>
+        <div class="row posts-wrapper col-3">
+
+            {% for article in engineering %}
+            <div class="col-md-4 col-sm-6 post-grid-wrapper">
+                <article>
+                    <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
+                    <div class="post-summary">
+                        <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
+                        <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
+                </article>
             </div>
-            <div class="row posts-wrapper col-3">
-    
-                {% for article in engineering %}
-                <div class="col-md-4 col-sm-6 post-grid-wrapper">
-                    <article>
-                        <a href="/article/{{article.link}}" class="post-thumbnail"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></a>
-                        <div class="post-summary">
-                            <div class="post-meta"><span class="post-date">{{article.date.strftime('%B %d, %Y')}}</span></div>
-                            <h2 class="post-title"><a href="/article/{{article.link}}">{{article.title}}</a></h2></div>
-                    </article>
-                </div>
-                {% endfor %}
-    
-                <div class="clearfix"></div>
-            </div>
+            {% endfor %}
+
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
@@ -113,19 +112,20 @@
     </div>
 </div>
 
-<div class="dual-call-to-action overlay-dark-5">
+<div class="col-sm-6 heading text-center"><h3>Software Projects</h3></div>
+<div class="dual-call-to-action overlay-dark-5" style="background-image:url('/common/static/img/dual-parallax.jpg');">
     <div class="container-fluid">
         <div class="intro">
             <div class="row">
                 <div class="col-md-6 col-sm-6 left">
-                    <p class="text-center">Super Mario, World Apollo&nbsp; </p>
-                    <h2 class="text-center">Blue Jeans</h2>
-                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="#">Learn More</a></div>
+                    <p class="text-center">Spotify Playlist Depression Score</p>
+                    <h2 class="text-center">SPDS</h2>
+                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="#">View</a></div>
                 </div>
                 <div class="col-md-6 col-sm-6 right">
-                    <p class="text-center"><em>How do You Like Them?</em> </p>
-                    <h2 class="text-center">White Shirt</h2>
-                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="#">Subscribe </a></div>
+                    <p class="text-center">Small Scale Internet Search Engine</p>
+                    <h2 class="text-center">Viperidae 2.0</h2>
+                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="#">View</a></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
