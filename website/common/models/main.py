@@ -48,6 +48,7 @@ class Article(BaseModel):
     category = CharField(column_name='category', null=True)
     content = TextField(column_name='content', null=True)
     thumbnail = CharField(column_name='thumbnail', null=True)
+    tags = CharField(column_name='tags', null=True)
 
     class Meta:
         table_name = 'Article'

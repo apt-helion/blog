@@ -20,9 +20,13 @@
         <div class="row entry-content">
             <div class="col-md-3 single-post-left-sidebar"></div>
             <div class="col-md-6 single-content">
+
                 {{article.content|safe}}
+
                 <div class="entry-meta">
                     <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category}}</a>
+                    {% set tags = article.tags.split(',') %}
+                    <p class="post-tags">Tags: {% for tag in tags %}<a href="#">{{tag}}</a>,&nbsp;{% endfor %}</p>
                 </div>
             </div>
             <div class="col-md-3 single-post-right-sidebar"></div>
