@@ -69,4 +69,4 @@ def archive(request, category):
 
 @web('/favicon.ico', file=True)
 def favicon(request):
-    return "common/static/img/favicon.ico"
+    return "./common/static/img/favicon.ico"
