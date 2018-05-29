@@ -21,27 +21,6 @@
             <div class="col-md-3 single-post-left-sidebar"></div>
             <div class="col-md-6 single-content">
 
-                <p>So far this blog has averaged 0.6 articles per month (including this one) since it was launched in Feburary. Normally you would assume this is just because I'm lazy or that social anxiety prevents me from writing anything on the internet because of a constant fear of judgement. And normally you'd be right, and you are. But it's also because of something else.</p>
-                <p>When I was first creating this blog, I wanted to make everything from scratch (the idiom, not the language) and I really do mean EVERYTHING. Flask? Literally any web framework? Why would I need that when I have Jinja and CGI? URL endpoints? HAH! I could just use the Apache config to map everything!</p>
-                <p>Obviously this was a terrible idea that came from my original plans to have the entire website emulate the command line (which is also a terrible idea that I also have no idea how to do). So now four months later, we will look at the old site and laugh at how stupid I was.</p>
-                <p>Right before I wrote this article, I mapped the old site on the Wayback Machine so you could go and <a target="_blank" href="https://web.archive.org/web/20180529040508/https://blog.justinduch.com">look at all 8 pages here.</a> You can also see the source code up to the final commit before this redesign <a target="_blank" href="https://github.com/apt-helion/blog/tree/484e9c3d808e08ab41605a3c8a36c4793ba49274">here.</a></p>
-                <h4>table of contents</h4>
-                <ul>
-                    <li><a href="#0x100">The Looks</a></li>
-                    <li><a href="#0x200">The Logic</a></li>
-                    <li><a href="#0x300">The Redesign</a></li>
-                    <li><a href="#0x400">What's Next</a></li>
-                </ul>
-
-                <h3 id="0x100">0x100: The Looks</h3><hr>
-                <p>There isn't too much to say here apart from: 'it isn't very nice'. It was my first time using CSS grid in any real capacity, and while I do like it - probably more than Bootstrap, I wasn't able to do very much with my more limited CSS knowledge. You can see I had my original plans in mind while desiging it, with all it's plain-ness, but not a good minimalist plain, the bad, uninteresting plain.</p>
-                <p>Let's just start with the homepage <code>/</code>. It's actually okay in my opinion, probably the best page in the site. The tree style directory map looks decent in the center, making the command line design inspiration very clear. Overall I don't hate it, although it is useless because no one would need to go to it.</p>
-                <p>Clicking on articles takes us to <code>/articles</code> and now we face the horror. This is pretty much what the entire site looks like. A harsh contrast of black and white making it very tough on the eyes. The command line design continues with the header showing a nice 'pwd' which displays your current directory. The tree style pages do not suit the format of a sidebar, and makes it look out of place. If you click on an article, you can see that the sidebar will grow along with the length of the article, but the tree will stay at the top, making the left side wasted space. The design is pretty utilitarian (in the bad way) and makes no attempt to please the reader.</p>
-                <p>That's all I have to say about the asthetics, I don't know how to properly critque this. I'm not a designer by any means and this should have shown you why.</p>
-
-                <h3 id="0x200">0x200: The Logic</h3><hr>
-                <p>Here is the real monster, the reason I haven't bothered to write any posts, and maybe even my worst attempt at designing a piece of software I've ever written. I'm not sure on where to even start, so many things are just wrong and inefficent.</p>
-                <p>How about the things I didn't do? Continuing on from the intro, I didn't use any web frameworks with only Jinja as a templating engine and pure CGI magic.</p>
 
                 <div class="entry-meta">
                     <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category}}</a>
