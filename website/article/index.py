@@ -14,8 +14,16 @@ def article(request, name):
     return {
         'title'    : article.title,
         'article'  : article, 
-        'previous' : previous_article[0],
+        'previous' : previous_article[-1:][0],
         'next'     : next_article[0]
+    }
+
+@web('/article', '/common/templates/archive.html')
+def article_archive(request):
+    return {
+        'title'       : 'Archive',
+        'description' : 'All my articles.',
+        'articles'    : Article.select().order_by(Article.id.desc())
     }
 
 @web('/article/wip', '/article/templates/wip.html')
@@ -27,8 +35,7 @@ def wip(request):
         'title': 'WIP',
         'category': 'WIP',
         'link': 'wip',
-        'thumbnail':
-        'dual-parallax.jpg',
+        'thumbnail': 'dual-parallax.jpg',
         'tags': 'wip,helpme,ohno'
     }
 
