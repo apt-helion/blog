@@ -6,10 +6,10 @@ from common.models.main import *
 def article(request, name):
     """Render article."""
 
-    article = Article.get(Article.link == name)
+    article = Article.get(Article.link == name, Article.wip == 'no')
 
-    previous_article = Article.select().where(Article.id < article.id) or [{'title': '', 'link': '#'}]
-    next_article     = Article.select().where(Article.id > article.id) or [{'title': '', 'link': '#'}]
+    previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
+    next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
 
     return {
         'title'    : article.title,
@@ -23,25 +23,5 @@ def article_archive(request):
     return {
         'title'       : 'Archive',
         'description' : 'All my articles.',
-        'articles'    : Article.select().order_by(Article.id.desc())
-    }
-
-@web('/article/wip', '/article/templates/wip.html')
-def wip(request):
-    from datetime import datetime
-
-    article = {
-        'date': datetime(1970, 1, 1),
-        'title': 'WIP',
-        'category': 'WIP',
-        'link': 'wip',
-        'thumbnail': 'dual-parallax.jpg',
-        'tags': 'wip,helpme,ohno'
-    }
-
-    return {
-        'title'    : 'Work in progress',
-        'article'  : article,
-        'previous' : article,
-        'next'     : article
+        'articles'    : Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
     }

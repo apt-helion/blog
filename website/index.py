@@ -8,26 +8,26 @@ def index(request):
 
     sec = (Article
            .select()
-           .where(Article.category == 'infosec')
-           .order_by(Article.id.desc())
+           .where(Article.category == 'infosec', Article.wip == 'no')
+           .order_by(Article.date.desc())
            .limit(3))
 
     dev = (Article
            .select()
-           .where(Article.category == 'development')
-           .order_by(Article.id.desc())
+           .where(Article.category == 'development', Article.wip == 'no')
+           .order_by(Article.date.desc())
            .limit(3))
 
     eng = (Article
            .select()
-           .where(Article.category == 'engineering')
-           .order_by(Article.id.desc())
+           .where(Article.category == 'engineering', Article.wip == 'no')
+           .order_by(Article.date.desc())
            .limit(3))
 
     misc = (Article
             .select()
-            .where(Article.category == 'miscellaneous')
-            .order_by(Article.id.desc())
+            .where(Article.category == 'miscellaneous', Article.wip == 'no')
+            .order_by(Article.date.desc())
             .limit(3))
 
     return {
@@ -36,7 +36,7 @@ def index(request):
         'development'    : dev,
         'engineering'    : eng,
         'misecellaneous' : misc,
-        'random'         : Article.select().order_by(fn.Rand())[0]
+        'random'         : Article.select().where(Article.wip == 'no').order_by(fn.Rand())[0]
     }
 
 @web('/<category>', '/common/templates/archive.html')
@@ -59,7 +59,7 @@ def archive(request, category):
 
     else: pass # redirect 404
 
-    articles = Article.select().where(Article.category == category).order_by(Article.id.desc())
+    articles = Article.select().where(Article.category == category, Article.wip == 'no').order_by(Article.date.desc())
 
     return {
         'title'       : title,

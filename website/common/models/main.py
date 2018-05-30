@@ -14,7 +14,6 @@ DateField.formats.append('%Y-%m-%dT%H:%M:%S')
 class UnknownField(object):
     def __init__(self, *_, **__): pass
 
-
 class BaseModel(Model):
     # Example usage
     #       doc = AdminDocument.create()
@@ -42,14 +41,14 @@ class BaseModel(Model):
 
 class Article(BaseModel):
     id = AutoField(column_name='id')
-    link = CharField(column_name='link', null=True)
-    title = CharField(column_name='title', null=True)
-    date = DateField(column_name='date', null=True)
-    category = CharField(column_name='category', null=True)
-    content = TextField(column_name='content', null=True)
-    thumbnail = CharField(column_name='thumbnail', null=True)
-    tags = CharField(column_name='tags', null=True)
+    link = CharField(column_name='link')
+    title = CharField(column_name='title')
+    date = DateField(column_name='date')
+    category = CharField(column_name='category')
+    content = TextField(column_name='content')
+    thumbnail = CharField(column_name='thumbnail')
+    tags = CharField(column_name='tags')
+    wip = CharField(column_name='wip')
 
     class Meta:
-        table_name = 'Article'
-
+        table_name = 'Articles'
