@@ -20,7 +20,7 @@ def admin(request):
         # To do: redirect
 
     if request.args.get('delete'):
-        article = Article.get(Article.link == request.args.get('delete'))
+        article = Article.get(Article.id == request.args.get('delete'))
         article.delete_instance()
 
     return {'title': 'admin', 'articles': Article.select()}

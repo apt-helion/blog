@@ -13,7 +13,7 @@
                         </header>
                         <div class="form-group name-input-wrapper">
                             <label class="control-label sr-only" for="link">Link</label>
-                            <input class="form-control" type="text" name="link" required="" placeholder="Link">
+                            <input class="form-control" type="text" name="link" required="" placeholder="Link" autocomplete="off">
                         </div>
                         <div class="contact-form-btn-wrapper">
                             <button class="btn btn-default btn-submit" type="submit">Create New Article</button>
@@ -49,7 +49,7 @@
                                 <td width="25%">
                                     <a href="/admin/edit_article/{{ article.id }}" class="btn btn-submit">Edit</a>
                                     <a href="/admin/view_article/{{ article.link }}" class="btn btn-submit">Preview</a>
-                                    <a href="/admin?delete={{ article.link }}" class="btn btn-submit">Delete</a>
+                                    <a href="/admin?delete={{ article.id }}" class="btn btn-submit">Delete</a>
                                 </td>
                             </tr>
                             {% endfor %}
