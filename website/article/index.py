@@ -8,6 +8,8 @@ def article(request, link):
 
     article = Article.get(Article.link == link, Article.wip == 'no')
 
+    if not article: return {'redirect': '/404'}
+
     previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
     next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
 

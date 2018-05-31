@@ -1,6 +1,7 @@
 #!/usr/bin/python3.6
 import os
 import datetime
+import sys
 
 from simplerr.web import web
 from common.models.main import *
@@ -13,7 +14,7 @@ def prod_check():
 
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
-    if not prod_check(): return
+    if not prod_check(): return 'ohno'
 
     if request.form.get('link'):
         Article.create(link=request.form.get('link')).save()
@@ -27,7 +28,7 @@ def admin(request):
 
 @web('/admin/edit_article/<article_id>', '/admin/templates/edit_article.html')
 def edit_article(request, article_id):
-    if not prod_check(): return
+    if not prod_check(): return 'ohno'
 
     article = Article.get(Article.id == article_id)
 
@@ -52,7 +53,7 @@ def edit_article(request, article_id):
 
 @web('/admin/view_article/<link>', '/article/templates/article_layout.html')
 def view_article(request, link):
-    if not prod_check(): return
+    if not prod_check(): return 'ohno'
 
     article = Article.get(Article.link == link)
 

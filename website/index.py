@@ -57,7 +57,7 @@ def archive(request, category):
         title = 'Miscellaneous'
         description = 'I look at other stuff and you read about it.'
 
-    else: pass # redirect 404
+    else: return {'redirect': '/404'}
 
     articles = Article.select().where(Article.category == category, Article.wip == 'no').order_by(Article.date.desc())
 
@@ -74,6 +74,10 @@ def archive(request):
         'description' : 'All my articles.',
         'articles'    : Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
     }
+
+@web('/404', '/404.html')
+def error404(request):
+    return {}
 
 @web('/favicon.ico', file=True)
 def favicon(request):
