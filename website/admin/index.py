@@ -11,62 +11,61 @@ def prod_check():
         if os.environ['DEVBOX'] == 'PROD': return False
     return True
 
-@web('/admin', '/admin/templates/admin.html', GET)
+@web('/admin', '/admin/templates/admin.html')
 def admin(request):
     if not prod_check(): return
+
+    if request.form.get('link'):
+        Article.create(link=request.form.get('link')).save()
+        # To do: redirect
 
     if request.args.get('delete'):
         article = Article.get(Article.link == request.args.get('delete'))
         article.delete_instance()
 
-    return {'articles': Article.select()}
+    return {'title': 'admin', 'articles': Article.select()}
 
-@web('/admin', '/admin/templates/admin.html', POST)
-def admin(request):
+@web('/admin/edit_article/<article_id>', '/admin/templates/edit_article.html')
+def edit_article(request, article_id):
     if not prod_check(): return
 
-    if request.form.get('createnew'):
-        Article.create(Article.link == request.form.get('link')).save()
-        # To do: redirect
+    article = Article.get(Article.id == article_id)
 
-    return {'articles': Article.select()}
+    if request.form.get('action') == 'save':
+        article.link      = request.form.get('link', '')
+        article.title     = request.form.get('title', '')
+        article.date      = request.form.get('date', datetime.datetime.now())
+        article.category  = request.form.get('category', '')
+        article.content   = request.form.get('content', '')
+        article.thumbnail = request.form.get('thumbnail', '')
+        article.tags      = request.form.get('tags', '')
 
-@web('/admin/edit_article/<link>', '/admin/templates/edit_article.html')
-def edit_article(request, link):
+        article.save()
+
+    if request.form.get('action') == 'publish':
+        article.wip  = 'no'
+        article.date = datetime.datetime.now()
+
+        article.save()
+
+    return {'title': 'edit article', 'article': article}
+
+@web('/admin/view_article/<link>', '/article/templates/article_layout.html')
+def view_article(request, link):
     if not prod_check(): return
 
-    if request.form.get('save'):
-        (Article
-            .update(
-                link=request.form.get('link'),
-                title=request.form.get('title'),
-                date=request.form.get('date', datetime.datetime.now),
-                category=request.form.get('category'),
-                content=request.form.get('content'),
-                thumbnail=request.form.get('thumbnail'),
-                tags=request.form.get('tags')
-            )
-            .where(Article.link == link)
-            .execute()
-        )
-
-    if request.form.get('publish'):
-        Article.update(wip='no', date=datetime.datetime.now).where(Article.link == link).execute()
-
-    return {'article': Article.get(Article.link == link)}
-
-@web('/admin/view_article/<name>', '/article/templates/article_layout.html')
-def view_article(request, name):
-    if not prod_check(): return
-
-    article = Article.get(Article.link == name)
+    article = Article.get(Article.link == link)
 
     previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
     next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
 
     return {
-        'title'    : article.title,
+        'title'    : f'Preview: {article.title}',
         'article'  : article, 
         'previous' : previous_article[-1:][0],
         'next'     : next_article[0]
     }
+
+@web('/admin/static/<path:file>', file=True)
+def files(request, file):
+    return './admin/static/' + file

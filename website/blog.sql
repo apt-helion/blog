@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.3.7-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.33-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: blog
 -- ------------------------------------------------------
--- Server version	10.3.7-MariaDB
+-- Server version	10.1.33-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,9 +26,9 @@ CREATE TABLE `Articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `link` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'wip',
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date DEFAULT NULL,
   `category` varchar(52) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'wip',
-  `content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'hello world!',
+  `content` mediumtext COLLATE utf8mb4_unicode_ci,
   `thumbnail` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'dual-parallax.jpg',
   `tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'wip',
   `wip` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-30 22:15:01
+-- Dump completed on 2018-05-31  9:01:36

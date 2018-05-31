@@ -1,0 +1,63 @@
+{% extends "./common/templates/layout.html" %}
+
+{% block content %}
+<article class="single-page">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" target="_self" enctype="multipart/form-data" id="editarticle" name="editarticle">
+                    <input type="hidden" name="action" value="" id="action">
+                    <input type="hidden" name="id" value="{{ article.id }}">
+                    <header>
+                        <h2 class="text-center heading">Edit Article</h2>
+                    </header>
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="link">Link</label>
+                        <input class="form-control" type="text" name="link" placeholder="Link" value="{{ article.link}}">
+                    </div>
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="title">Title</label>
+                        <input class="form-control" type="text" name="title" placeholder="title" value="{{ article.title }}">
+                    </div>
+                    {% if article.wip == 'no' %}
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="date">Date</label>
+                        <input class="form-control" type="text" name="date" placeholder="Date" value="{{ article.date }}">
+                    </div>
+                    {% endif %}
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="category">Category</label>
+                        <input class="form-control" type="text" name="category" placeholder="Category" value="{{ article.category }}">
+                    </div>
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="tags">Tags</label>
+                        <input class="form-control" type="text" name="tags" placeholder="Tags" value="{{ article.tags }}">
+                    </div>
+                    <div class="form-group name-input-wrapper">
+                        <label class="control-label sr-only" for="thumbnil">Thumbnail</label>
+                        <input class="form-control" type="text" name="thumbnail" placeholder="Thumbnail" value="{{ article.thumbnail }}">
+                    </div>
+                     <div class="form-group message-input-wrapper">
+                        <label class="control-label sr-only" for="content">Content</label>
+                        <textarea class="form-control" rows="30" name="content" placeholder="Content">{{ article.content }}</textarea>
+                    </div>
+                    <div class="contact-form-btn-wrapper">
+                        <a href="/admin" class="btn btn-default btn-submit" style="float: left">Back</a>
+                        <button class="btn btn-default btn-submit" type="submit" id="save">Save</button>
+                        <a href="/admin/view_article/{{ article.link }}" class="btn btn-default btn-submit" target="_blank">Preview</a>
+                        {% if article.wip == 'yes' %}
+                        <button class="btn btn-default btn-submit" type="submit" id="publish">Publish</button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</article>
+{% endblock %}
+
+{% block feet %}
+    <script src="/admin/static/js/edit_article.js"></script>
+{% endblock %}

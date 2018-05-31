@@ -67,6 +67,14 @@ def archive(request, category):
         'articles'    : articles
     }
 
+@web('/archive', '/common/templates/archive.html')
+def archive(request):
+    return {
+        'title'       : 'Archive',
+        'description' : 'All my articles.',
+        'articles'    : Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
+    }
+
 @web('/favicon.ico', file=True)
 def favicon(request):
     return "./common/static/img/favicon.ico"

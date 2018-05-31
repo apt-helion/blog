@@ -31,3 +31,13 @@ vim website/config.py
 ```
 
 You should be able to view it on `127.0.0.1:5000`.
+
+If you want you can set up your `/etc/hosts` to give it a hostname e.g:
+```
+# /etc/hosts
+
+# address           hostname
+
+127.0.0.1:5000      dev.blog
+```
+Now you can access it through `dev.blog`.
