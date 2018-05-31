@@ -57,13 +57,9 @@ def archive(request, category):
         title = 'Miscellaneous'
         description = 'I look at other stuff and you read about it.'
 
-    elif category == 'archive':
+    if category == 'archive':
         title = 'Archive'
         description = 'All my articles.'
-
-    else: return {'redirect': '/404'}
-
-    if category == 'archive':
         articles = Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
     else:
         articles = Article.select().where(Article.category == category, Article.wip == 'no').order_by(Article.date.desc())
@@ -76,7 +72,7 @@ def archive(request, category):
 
 @web('/404', '/404.html')
 def error404(request):
-    return {}
+    return {'title': '404'}
 
 @web('/favicon.ico', file=True)
 def favicon(request):
