@@ -57,22 +57,21 @@ def archive(request, category):
         title = 'Miscellaneous'
         description = 'I look at other stuff and you read about it.'
 
+    elif category == 'archive':
+        title = 'Archive'
+        description = 'All my articles.'
+
     else: return {'redirect': '/404'}
 
-    articles = Article.select().where(Article.category == category, Article.wip == 'no').order_by(Article.date.desc())
+    if category == 'archive':
+        articles = Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
+    else:
+        articles = Article.select().where(Article.category == category, Article.wip == 'no').order_by(Article.date.desc())
 
     return {
         'title'       : title,
         'description' : description,
         'articles'    : articles
-    }
-
-@web('/archive', '/common/templates/archive.html')
-def archive(request):
-    return {
-        'title'       : 'Archive',
-        'description' : 'All my articles.',
-        'articles'    : Article.select().where(Article.wip == 'no').order_by(Article.date.desc())
     }
 
 @web('/404', '/404.html')
