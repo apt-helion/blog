@@ -10,7 +10,7 @@ def prod_check():
     """Check if we are in production environment."""
     if 'DEVBOX' in os.environ:
         if os.environ['DEVBOX'] == 'PROD': return False
-    return True
+	return True
 
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
