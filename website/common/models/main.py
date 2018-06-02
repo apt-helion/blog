@@ -50,5 +50,15 @@ class Article(BaseModel):
     tags = CharField(column_name='tags')
     wip = CharField(column_name='wip')
 
+    @classmethod
+    def get_category(cls, category='all'):
+        if category == 'all':
+            return cls.select().where(cls.wip == 'no')
+        return cls.select().where(cls.category == category, cls.wip == 'no')
+    
+    @classmethod
+    def get_article(cls, link):
+        return cls.get(cls.link == link, cls.wip == 'no')
+
     class Meta:
         table_name = 'Articles'

@@ -10,7 +10,7 @@ def prod_check():
     """Check if we are in production environment."""
     if 'DEVBOX' in os.environ:
         if os.environ['DEVBOX'] == 'PROD': return False
-	return True
+    return True
 
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
@@ -55,7 +55,7 @@ def edit_article(request, article_id):
 def view_article(request, link):
     if not prod_check(): return 'ohno'
 
-    article = Article.get(Article.link == link)
+    article = Article.get_article(link)
 
     previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
     next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
