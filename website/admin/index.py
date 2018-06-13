@@ -55,7 +55,7 @@ def edit_article(request, article_id):
 def view_article(request, link):
     if not prod_check(): return 'RAISE_ERROR'
 
-    article = Article.get(Article.link == link)
+    article = Article.get_article(link)
 
     previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
     next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
