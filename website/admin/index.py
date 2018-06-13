@@ -1,7 +1,6 @@
 #!/usr/bin/python3.6
 import os
 import datetime
-import sys
 
 from simplerr.web import web
 from common.models.main import *
@@ -10,15 +9,16 @@ def prod_check():
     """Check if we are in production environment."""
     if 'DEVBOX' in os.environ:
         if os.environ['DEVBOX'] == 'PROD': return False
-	return True
+    return True
 
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
-    if not prod_check(): return 'ohno'
+    if not prod_check(): return 'RAISE_ERROR'
 
     if request.form.get('link'):
-        Article.create(link=request.form.get('link')).save()
-        # To do: redirect
+        query = Article.create(link=request.form.get('link'))
+        query.save()
+        return {'redirect': f'/admin/edit_article/{query.id}'}
 
     if request.args.get('delete'):
         article = Article.get(Article.id == request.args.get('delete'))
@@ -28,7 +28,7 @@ def admin(request):
 
 @web('/admin/edit_article/<article_id>', '/admin/templates/edit_article.html')
 def edit_article(request, article_id):
-    if not prod_check(): return 'ohno'
+    if not prod_check(): return 'RAISE_ERROR'
 
     article = Article.get(Article.id == article_id)
 
@@ -53,7 +53,7 @@ def edit_article(request, article_id):
 
 @web('/admin/view_article/<link>', '/article/templates/article_layout.html')
 def view_article(request, link):
-    if not prod_check(): return 'ohno'
+    if not prod_check(): return 'RAISE_ERROR'
 
     article = Article.get(Article.link == link)
 
@@ -62,7 +62,7 @@ def view_article(request, link):
 
     return {
         'title'    : f'Preview: {article.title}',
-        'article'  : article, 
+        'article'  : article,
         'previous' : previous_article[-1:][0],
         'next'     : next_article[0]
     }
