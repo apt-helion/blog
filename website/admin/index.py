@@ -7,8 +7,7 @@ from common.models.main import *
 
 def prod_check():
     """Check if we are in production environment."""
-    if 'DEVBOX' in os.environ:
-        if os.environ['DEVBOX'] == 'PROD': return False
+    if os.environ.get('DEVBOX', 'production') == 'production': return False
     return True
 
 @web('/admin', '/admin/templates/admin.html')
@@ -55,7 +54,7 @@ def edit_article(request, article_id):
 def view_article(request, link):
     if not prod_check(): return 'RAISE_ERROR'
 
-    article = Article.get_article(link)
+    article = Article.get(Article.link == link)
 
     previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
     next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
