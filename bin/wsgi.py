@@ -1,5 +1,8 @@
 import sys
 
+sys.path.insert(0, '/var/www/blog.justinduch.com/env/lib/python3.6/site-packages')
+sys.path.insert(0, '/var/www/blog.justinduch.com/env/src/simplerr')
+
 """Test Application
 Use this section for diagnosing apache issues, uncomment the following
 section, and comment out everything after `from simpler..`
