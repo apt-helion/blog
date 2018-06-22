@@ -2,7 +2,7 @@
 import os
 import datetime
 
-from simplerr.web import web
+from simplerr import web
 from common.models.main import *
 
 def prod_check():

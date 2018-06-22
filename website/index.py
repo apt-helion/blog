@@ -42,10 +42,19 @@ def archive(request, category):
         'articles'    : articles
     }
 
+@web('/about', '/about.html')
+def about(request):
+    return {}
+
+@web('/contact', '/contact.html')
+def contact(request):
+    return {}
+
 @web('/404', '/404.html')
 def error404(request):
-    return {'title': '404'}
+    return {}
 
 @web('/favicon.ico', file=True)
 def favicon(request):
     return "./common/static/img/favicon.ico"
+
