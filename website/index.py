@@ -11,7 +11,7 @@ def index(request):
         'development'    : Article.get_category('development').order_by(Article.date.desc()).limit(3),
         'engineering'    : Article.get_category('engineering').order_by(Article.date.desc()).limit(3),
         'misecellaneous' : Article.get_category('miscellaneous').order_by(Article.date.desc()).limit(3),
-        'random'         : Article.get_category().order_by(fn.Rand())[0]
+        'random'         : list(Article.get_category())[-1]
     }
 
 @web('/<category>', '/common/templates/archive.html')
