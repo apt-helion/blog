@@ -13,6 +13,8 @@ class ConfigBase(object):
                                 'user': '<user>',
                                 'passwd': '<password>'})
 
+class Config(ConfigBase): pass
+
 if 'DEVBOX' in os.environ:
     # Dev Box
     if os.environ['DEVBOX'] == '<devboxname>':
@@ -23,5 +25,3 @@ if 'DEVBOX' in os.environ:
                 password='<password>',
             )
 
-else:
-    class Config(ConfigBase): pass
