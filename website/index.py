@@ -2,6 +2,7 @@
 from simplerr.web import web
 from common.models.main import *
 
+
 @web('/', '/index.html')
 def index(request):
     """Render homepage."""
@@ -10,9 +11,10 @@ def index(request):
         'infosec'        : Article.get_category('infosec').order_by(Article.date.desc()).limit(3),
         'development'    : Article.get_category('development').order_by(Article.date.desc()).limit(3),
         'engineering'    : Article.get_category('engineering').order_by(Article.date.desc()).limit(3),
-        'misecellaneous' : Article.get_category('miscellaneous').order_by(Article.date.desc()).limit(3),
+        'miscellaneous'  : Article.get_category('miscellaneous').order_by(Article.date.desc()).limit(3),
         'random'         : list(Article.get_category())[-1]
     }
+
 
 @web('/<category>', '/common/templates/archive.html')
 def archive(request, category):
@@ -42,19 +44,19 @@ def archive(request, category):
         'articles'    : articles
     }
 
+
 @web('/about', '/about.html')
-def about(request):
-    return {}
+def about(request): pass
+
 
 @web('/contact', '/contact.html')
-def contact(request):
-    return {}
+def contact(request): pass
+
 
 @web('/404', '/404.html')
-def error404(request):
-    return {}
+def error404(request): pass
+
 
 @web('/favicon.ico', file=True)
 def favicon(request):
     return "./common/static/img/favicon.ico"
-
