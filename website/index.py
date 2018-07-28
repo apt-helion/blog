@@ -2,12 +2,14 @@
 from simplerr.web import web
 from common.models.main import *
 
+import random
+
 
 @web('/', '/index.html')
 def index(request):
     """Render homepage."""
     return {
-        'title'          : 'blag',
+        'title'          : 'blog',
         'infosec'        : Article.get_category('infosec').order_by(Article.date.desc()).limit(3),
         'development'    : Article.get_category('development').order_by(Article.date.desc()).limit(3),
         'engineering'    : Article.get_category('engineering').order_by(Article.date.desc()).limit(3),

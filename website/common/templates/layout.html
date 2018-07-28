@@ -31,11 +31,11 @@
 </head>
 
 <body>
-    <input type="hidden" id="redirect" value="{{ redirect }}">
     <header class="site-header">
         <nav class="navbar navbar-default primary-navigation">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand navbar-link" href="/">>blag_</a>
+                {% set titles = ['blag', 'bleg', 'blug', 'blom', 'bwoah'] %}
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="/">>{{ titles|random }}_</a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper"><span class="sr-only">Toggle navigation</span><span class="first-icon-bar icon-bar"></span><span class="icon-bar"></span><span class="last-icon-bar icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-wrapper">
@@ -54,13 +54,12 @@
                         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Projects <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation"><a href="https://www.playlistdepressionscore.com">SPDS</a></li>
-                                <li role="presentation"><a href="/viperidae2">Viperidae 2.0</a></li>
+                                <li role="presentation"><a href="https://viperidae.app">Viperidae</a></li>
                             </ul>
                         </li>
                         <li role="presentation"><a href="/contact">Contact </a></li>
                     </ul>
                     <p class="hidden-xs hidden-sm hidden-md navbar-text navbar-social-icons">
-                        <a class="navbar-link navbar-social-icon" href="#"><i class="fa fa-instagram"></i></a>
                         <a class="navbar-link navbar-social-icon" href="https://github.com/apt-helion"><i class="fa fa-github"></i></a>
                         <a class="navbar-link navbar-social-icon" href="https://twitter.com/beanpup_py"><i class="fa fa-twitter"></i></a>
                     </p>
@@ -85,11 +84,11 @@
             <li><a target="_blank" href="https://github.com/apt-helion/blog">Source Code</a></li>
         </ul>
         <div class="text-center footer-social-icons">
-            <a href="#"><i class="fa fa-instagram"></i></a>
             <a href="https://github.com/apt-helion"><i class="fa fa-github"></i></a>
             <a href="https://twitter.com/beanpup_py"><i class="icon ion-social-twitter"></i></a>
         </div>
     </footer>
+
     <script src="/common/static/js/jquery.min.js"></script>
     <script src="/common/static/js/redirect.js"></script>
     <script src="/common/static/bootstrap/js/bootstrap.min.js"></script>
