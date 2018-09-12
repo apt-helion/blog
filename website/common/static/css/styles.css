@@ -1712,7 +1712,7 @@ select.comments-sort:hover {
   width:50%;
   height:100%;
   position:absolute;
-  background-color:#222;
+  border: #222 solid 3px;
 }
 
 .widget-title h3 {
@@ -2838,3 +2838,10 @@ article.single-post .entry-content blockquote {
   padding-bottom:20px;
 }
 
+.htb_line {
+    margin: 0px !important;
+}
+
+.htb {
+    margin-bottom: 20px;
+}
