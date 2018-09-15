@@ -48,7 +48,7 @@ def send_emails(link):
             EmailLogs.create(
                 error = e,
                 email = email,
-                process = 'verification',
+                process = 'notification',
                 date = now
             ).save()
 
