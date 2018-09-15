@@ -10,6 +10,7 @@ def prod_check():
     if os.environ.get('DEVBOX', 'production') == 'production': return False
     return True
 
+
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
     if not prod_check(): return 'RAISE_ERROR'
@@ -17,13 +18,14 @@ def admin(request):
     if request.form.get('link'):
         query = Article.create(link=request.form.get('link'))
         query.save()
-        return {'redirect': f'/admin/edit_article/{query.id}'}
+        return web.redirect(f'admin/edit_article/{query.id}')
 
     if request.args.get('delete'):
         article = Article.get(Article.id == request.args.get('delete'))
         article.delete_instance()
 
     return {'title': 'admin', 'articles': Article.select()}
+
 
 @web('/admin/edit_article/<article_id>', '/admin/templates/edit_article.html')
 def edit_article(request, article_id):
@@ -50,6 +52,7 @@ def edit_article(request, article_id):
 
     return {'title': 'edit article', 'article': article}
 
+
 @web('/admin/view_article/<link>', '/article/templates/article_layout.html')
 def view_article(request, link):
     if not prod_check(): return 'RAISE_ERROR'
@@ -65,6 +68,7 @@ def view_article(request, link):
         'previous' : previous_article[-1:][0],
         'next'     : next_article[0]
     }
+
 
 @web('/admin/static/<path:file>', file=True)
 def files(request, file):
