@@ -12,6 +12,10 @@ class ConfigBase(object):
                                 'use_unicode': True,
                                 'user': '<user>',
                                 'passwd': '<password>'})
+    EMAIL = {
+        'username': '<username>',
+        'password': '<password>'
+    }
 
 class Config(ConfigBase): pass
 

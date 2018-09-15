@@ -1,8 +1,10 @@
 #!/usr/bin/python3.6
-from simplerr.web import web
-from common.models.main import *
-
+import uuid
 import random
+
+from simplerr.web import web, GET, POST
+from common.models.main import *
+from common.models.email import EmailVerifications
 
 
 @web('/', '/index.html')

@@ -114,23 +114,21 @@
     </div>
 </div>
 
-<div class="col-sm-6 heading text-center"><h3>Software Projects</h3></div>
-<div class="dual-call-to-action overlay-dark-5" style="background-image:url('/common/static/img/spider.png');">
+<div class="newsletter-subscribe overlay-dark-3" style="background-image:url('/common/static/img/spider.png');">
     <div class="container-fluid">
         <div class="intro">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 left">
-                    <p class="text-center">Spotify Playlist Depression Score</p>
-                    <h2 class="text-center">SPDS</h2>
-                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="https://www.playlistdepressionscore.com">View</a></div>
+            <header>
+                <h2 class="text-center heading">Never Miss A Post</h2>
+                <p class="text-center extra-info">Subscribe with your email below to be notified every time I publish a new article.</p>
+            </header>
+            <form class="form-inline" method="post" action="/emails/subscribe" enctype="multipart/form-data" name="newsletter-subscribe">
+                <div class="form-group newsletter-input-wrapper">
+                    <input class="form-control" type="email" name="email" required="" placeholder="Email Address">
                 </div>
-                <div class="col-md-6 col-sm-6 right">
-                    <p class="text-center">Open Source Search Engine API</p>
-                    <h2 class="text-center">Viperidae</h2>
-                    <div class="buttons"><a class="btn btn-default btn-readmore" role="button" href="https://viperidae.app">View</a></div>
+                <div class="form-group newsletter-button-wrapper">
+                    <button class="btn btn-default btn-submit-inverse" type="submit">Subscribe</button>
                 </div>
-                <div class="clearfix"></div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

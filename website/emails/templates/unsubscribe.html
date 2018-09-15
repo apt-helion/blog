@@ -1,0 +1,29 @@
+{% extends "./common/templates/layout.html" %}
+
+{% block title %}Unsubscribe{% endblock %}
+
+{% block content %}
+
+<article class="single-page">
+    <div class="container-fluid">
+        <div class="row page-body">
+            <div class="col-md-12 single-content">
+                <div class="entry-content">
+                    {% if success %}
+                    <h3>Unsubscribed.</h3>
+                    <p>You are now unsubscribed. Enjoy your freedom.</p>
+                    <p>You can return to the homepage by <a href="/">clicking here.</a></p>
+                    {% else %}
+                        {% if error == 'invalid_code' %}
+                        <h3>Oh no!</h3>
+                        <p>This code does is not valid.</p>
+                        <p>You can request a new one from the homepage by <a href="/">clicking here.</a></p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}
