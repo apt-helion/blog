@@ -1,13 +1,11 @@
 #!/bin/bash
 
-echo "hi"
+echo "Pushing Git"
 git config --global push.default matching
-echo "hi"
 git remote add deploy ssh://git@$IP:$PORT$DEPLOY_DIR
-echo "hi"
 git push deploy master
-echo "hi"
 
+echo "SSHing"
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
 EOF

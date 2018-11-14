@@ -11,6 +11,9 @@ before_install:
 install:
 - pip install -r requirements.txt
 script: python tests/run.py
+addons:
+  ssh_known_hosts:
+  - blog.justinduch.com
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_0df20a251864_key -iv $encrypted_0df20a251864_iv -in deploy/deploy_rsa.enc -out /tmp/deploy_rsa -d
 - eval "$(ssh-agent -s)"
