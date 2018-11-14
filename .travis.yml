@@ -18,7 +18,7 @@ before_deploy:
 - ssh-add /tmp/deploy_rsa
 deploy:
   provider: script
+  script: ./deploy/deploy.sh
   skip_cleanup: true
-  script: "./deploy/deploy.sh"
   on:
     branch: master
