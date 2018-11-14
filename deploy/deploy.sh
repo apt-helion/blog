@@ -5,7 +5,8 @@ git config --global push.default matching
 git remote add deploy ssh://git@$IP:$PORT$DEPLOY_DIR
 git push deploy master
 
-echo "SSHing"
+echo "SSH"
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
+  pwd
 EOF
