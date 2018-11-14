@@ -1,11 +1,12 @@
 language: python
 python:
-  - "3.6"
+  - '3.6'
 env:
   - DEVBOX=travis
 addons:
   mariadb: '10.0'
 before_install:
+  - openssl aes-256-cbc -K $encrypted_0df20a251864_key -iv $encrypted_0df20a251864_iv -in deploy_rsa.enc -out deploy_rsa -d
   - mysql -e "CREATE DATABASE blog;"
   - mysql blog < migrations/latest.sql
 install:
