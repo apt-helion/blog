@@ -7,7 +7,7 @@ from common.models.main import *
 
 def prod_check():
     """Check if we are in production environment."""
-    if os.environ.get('DEVBOX', 'production') == 'production': return False
+    if os.environ.get('PROD', 'production') == 'production': return False
     return True
 
 
