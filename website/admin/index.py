@@ -36,7 +36,7 @@ def edit_article(request, article_id):
     if request.form.get('action') == 'save':
         article.link      = request.form.get('link', '')
         article.title     = request.form.get('title', '')
-        article.date      = request.form.get('date', datetime.datetime.now())
+        article.date      = request.form.get('date', datetime.datetime.now().date())
         article.category  = request.form.get('category', '')
         article.content   = request.form.get('content', '')
         article.thumbnail = request.form.get('thumbnail', '')
@@ -46,7 +46,6 @@ def edit_article(request, article_id):
 
     if request.form.get('action') == 'publish':
         article.wip  = 'no'
-        article.date = datetime.datetime.now()
 
         article.save()
 
