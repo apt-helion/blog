@@ -1,11 +1,13 @@
 language: python
 python:
   - "3.6"
-  - "3.7"
-services:
-  - mysql
+env:
+  - DEVBOX=travis
+addons:
+  mariadb: '10.0'
 before_install:
-  - mysql -u root --password="" < migrations/latest.sql
+  - mysql -e "CREATE DATABASE blog;"
+  - mysql blog < migrations/latest.sql
 install:
   - pip install -r requirements.txt
 script: python tests/run.py
