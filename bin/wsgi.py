@@ -32,8 +32,8 @@ from simplerr import dispatcher
 env_file = '/var/www/environment.conf'
 with open(env_file, 'r') as f:
     for line in f:
-        variable = f.split(" ")
-        os.environ[variable[0]] = variable[1]
+        variable = line.split(" ")
+        os.environ[variable[0]] = variable[1][:-1]
 
 site = '/var/www/blog.justinduch.com/website'
 hostname = 'localhost'
