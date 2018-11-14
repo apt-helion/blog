@@ -1,3 +1,4 @@
+import os
 import sys
 
 sys.path.insert(0, '/var/www/blog.justinduch.com/env/lib/python3.6/site-packages')
@@ -27,6 +28,13 @@ section, and comment out everything after `from simpler..`
 Comment out everything below this to run the test_application instead.
 """
 from simplerr import dispatcher
+
+env_file = '/var/www/environment.conf'
+with open(env_file, 'r') as f:
+    for line in f:
+        variable = f.split(" ")
+        os.environ[variable[0]] = variable[1]
+
 site = '/var/www/blog.justinduch.com/website'
 hostname = 'localhost'
 port = 80
