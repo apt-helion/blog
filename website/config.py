@@ -31,7 +31,7 @@ if 'DEVBOX' in os.environ:
                 user='root',
                 password='',
             )
-    else:
+    elif os.environ['DEVBOX'] != 'production':
         # Default mysql stuff
         class Config(ConfigBase):
             DATABASE = MySQLDatabase(
