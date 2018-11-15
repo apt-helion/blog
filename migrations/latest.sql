@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.3.9-MariaDB)
 # Database: blog
-# Generation Time: 2018-11-15 22:08:37 +0000
+# Generation Time: 2018-11-15 22:11:49 +0000
 # ************************************************************
 
 
@@ -91,7 +91,7 @@ CREATE TABLE `EmailLogs` (
 DROP TABLE IF EXISTS `Emails`;
 
 CREATE TABLE `Emails` (
-  `email` varchar(255) NOT NULL DEFAULT ' ',
+  `email` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT ' ',
   `unsubscribe` varchar(36) NOT NULL DEFAULT ' ',
   `created` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`email`)
