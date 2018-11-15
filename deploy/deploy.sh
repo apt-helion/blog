@@ -8,5 +8,5 @@ git push deploy master
 echo "SSH"
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
-  pwd
+  mysql -u $DB_USER -p$DB_PASS blog < migrations/latest.sql
 EOF
