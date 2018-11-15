@@ -5,9 +5,9 @@
 # https://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.5.5-10.3.9-MariaDB)
+# Host: 165.227.57.12 (MySQL 5.5.60-MariaDB)
 # Database: blog
-# Generation Time: 2018-11-15 22:11:49 +0000
+# Generation Time: 2018-11-15 22:26:07 +0000
 # ************************************************************
 
 
@@ -72,8 +72,6 @@ UNLOCK TABLES;
 # Dump of table EmailLogs
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `EmailLogs`;
-
 CREATE TABLE `EmailLogs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `error` varchar(512) NOT NULL DEFAULT ' ',
@@ -88,8 +86,6 @@ CREATE TABLE `EmailLogs` (
 # Dump of table Emails
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `Emails`;
-
 CREATE TABLE `Emails` (
   `email` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT ' ',
   `unsubscribe` varchar(36) NOT NULL DEFAULT ' ',
@@ -101,8 +97,6 @@ CREATE TABLE `Emails` (
 
 # Dump of table EmailVerifications
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `EmailVerifications`;
 
 CREATE TABLE `EmailVerifications` (
   `code` varchar(36) NOT NULL DEFAULT '',
