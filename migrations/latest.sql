@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.3.9-MariaDB)
 # Database: blog
-# Generation Time: 2018-11-15 22:02:21 +0000
+# Generation Time: 2018-11-15 22:08:37 +0000
 # ************************************************************
 
 
@@ -27,7 +27,7 @@ SET NAMES utf8mb4;
 DROP TABLE IF EXISTS `Articles`;
 
 CREATE TABLE `Articles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `link` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'title',
   `date` date NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `EmailLogs` (
 DROP TABLE IF EXISTS `Emails`;
 
 CREATE TABLE `Emails` (
-  `email` varchar(256) NOT NULL DEFAULT ' ',
+  `email` varchar(255) NOT NULL DEFAULT ' ',
   `unsubscribe` varchar(36) NOT NULL DEFAULT ' ',
   `created` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`email`)
