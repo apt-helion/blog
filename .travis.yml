@@ -7,7 +7,8 @@ addons:
   mariadb: '10.0'
 before_install:
 - mysql -e "CREATE DATABASE blog;"
-- mysql blog < migrations/latest.sql
+- mysql blog < migrations/articles.sql
+- mysql blog < migrations/emails.sql
 install:
 - pip install -r requirements.txt
 script: python tests/run.py

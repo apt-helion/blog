@@ -7,7 +7,7 @@
 #
 # Host: 165.227.57.12 (MySQL 5.5.60-MariaDB)
 # Database: blog
-# Generation Time: 2018-11-15 22:26:07 +0000
+# Generation Time: 2018-11-15 22:30:10 +0000
 # ************************************************************
 
 
@@ -67,44 +67,6 @@ VALUES
 
 /*!40000 ALTER TABLE `Articles` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Dump of table EmailLogs
-# ------------------------------------------------------------
-
-CREATE TABLE `EmailLogs` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `error` varchar(512) NOT NULL DEFAULT ' ',
-  `email` varchar(256) NOT NULL DEFAULT ' ',
-  `process` varchar(24) NOT NULL DEFAULT ' ',
-  `date` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-# Dump of table Emails
-# ------------------------------------------------------------
-
-CREATE TABLE `Emails` (
-  `email` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT ' ',
-  `unsubscribe` varchar(36) NOT NULL DEFAULT ' ',
-  `created` date NOT NULL DEFAULT '0000-00-00',
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-# Dump of table EmailVerifications
-# ------------------------------------------------------------
-
-CREATE TABLE `EmailVerifications` (
-  `code` varchar(36) NOT NULL DEFAULT '',
-  `email` varchar(246) NOT NULL DEFAULT ' ',
-  `expiry` datetime NOT NULL,
-  PRIMARY KEY (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 
 
