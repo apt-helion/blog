@@ -57,7 +57,7 @@ def subscribe(request):
 def verify(request, code):
     if not code: return web.redirect('/')
 
-    verify = EmailVerifications.get_or_none(EmailVerifications.id == code)
+    verify = EmailVerifications.get_or_none(EmailVerifications.code == code)
     if not verify: return { 'success': False, 'error': 'invalid_code' }
 
     now = datetime.datetime.now()
