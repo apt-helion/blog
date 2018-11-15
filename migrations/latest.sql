@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.3.9-MariaDB)
 # Database: blog
-# Generation Time: 2018-11-14 04:22:00 +0000
+# Generation Time: 2018-11-15 21:53:54 +0000
 # ************************************************************
 
 
@@ -30,9 +30,9 @@ CREATE TABLE `Articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `link` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'title',
-  `date` date DEFAULT NULL,
+  `date` date NOT NULL,
   `category` varchar(52) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'category',
-  `content` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `thumbnail` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'dual-parallax.jpg',
   `tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'tag1,tag2',
   `wip` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
@@ -67,6 +67,44 @@ VALUES
 
 /*!40000 ALTER TABLE `Articles` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+# Dump of table EmailLogs
+# ------------------------------------------------------------
+
+CREATE TABLE `EmailLogs` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `error` varchar(512) NOT NULL DEFAULT ' ',
+  `email` varchar(256) NOT NULL DEFAULT ' ',
+  `process` varchar(24) NOT NULL DEFAULT ' ',
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+# Dump of table Emails
+# ------------------------------------------------------------
+
+CREATE TABLE `Emails` (
+  `email` varchar(256) NOT NULL DEFAULT ' ',
+  `unsubscribe` varchar(36) NOT NULL DEFAULT ' ',
+  `created` date NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+# Dump of table EmailVerifications
+# ------------------------------------------------------------
+
+CREATE TABLE `EmailVerifications` (
+  `code` varchar(36) NOT NULL DEFAULT '',
+  `email` varchar(246) NOT NULL DEFAULT ' ',
+  `expiry` datetime NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 
 

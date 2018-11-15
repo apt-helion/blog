@@ -1,10 +1,12 @@
+import datetime
+import uuid
+
 from peewee import *
 from common.models.main import BaseModel
 
 
 class Emails(BaseModel):
-    id = AutoField(column_name='id')
-    email = CharField(column_name='email')
+    email = CharField(column_name='email', primary_key=True)
     unsubscribe = CharField(column_name='unsubscribe')
     created = DateField(column_name='created')
 
@@ -24,9 +26,24 @@ class EmailLogs(BaseModel):
 
 
 class EmailVerifications(BaseModel):
-    id = CharField(column_name='id', primary_key=True)
+    code = CharField(column_name='code', primary_key=True)
     email = CharField(column_name='email')
     expiry = DateTimeField(column_name='expiry')
+
+
+    @classmethod
+    def create_verification(cls, email):
+        now = datetime.datetime.now()
+        expiry = now + datetime.timedelta(minutes = 30)
+
+        verify = cls.create(
+            code = uuid.uuid4().hex,
+            email = email,
+            expiry = expiry
+        )
+
+        return verify
+
 
     class Meta:
         table_name = 'EmailVerifications'

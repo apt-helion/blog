@@ -25,7 +25,7 @@ class BaseModel(Model):
 class Article(BaseModel):
     id = AutoField(column_name='id')
     link = CharField(column_name='link')
-    title = CharField(column_name='title')
+    title = CharField(column_name='title', default='')
     date = DateField(column_name='date', default=datetime.now().date())
     category = CharField(column_name='category', default='')
     content = TextField(column_name='content', default='')

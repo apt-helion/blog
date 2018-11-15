@@ -21,7 +21,7 @@ def send_emails(link):
         params = {
             'article_link'     : f'https://blog.justinduch.com/article/{link}',
             'article_title'    : article.title,
-            'unsubscribe_link' : f'https://blog.justinduch.com/emails/unsubscribe?code={subscriber.unsubscribe}'
+            'unsubscribe_link' : f'https://blog.justinduch.com/emails/unsubscribe/{subscriber.unsubscribe}'
         }
 
         template = EmailTemplate(template_name='new_post_template.html', values=params)

@@ -22,6 +22,7 @@ class test_processor(object):
     def __init__(self):
         self.modules = [
             'models.article',
+            'models.email',
         ]
 
         self.suite = unittest.TestSuite()

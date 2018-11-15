@@ -13,41 +13,24 @@ from common.models.email import *
 def redirect(request): return web.redirect('/')
 
 
-@web('/emails/subscribe', '/emails/templates/subscribe.html')
+@web('/emails/subscribe', '/emails/templates/subscribe.html', POST)
 def subscribe(request):
     email = request.form.get('email')
     if not email: return web.redirect('/')
-
     exists = Emails.get_or_none(Emails.email == email)
     if exists: return { 'success': False, 'error': 'already_exists' }
 
-    code = uuid.uuid4().hex
+    verify = EmailVerifications.create_verification(email)
 
-    now = datetime.datetime.now()
-    expiry = now + datetime.timedelta(minutes = 30)
-
-    verify = EmailVerifications.create(
-        id = code,
-        email = email,
-        expiry = expiry
-    )
-
-    verify.save()
-
-    # Send Email
-
-    # Create template
-    params = { 'verify_link' : f'https://blog.justinduch.com/emails/verify?code={code}' }
+    params = { 'verify_link' : f'https://blog.justinduch.com/emails/verify/{verify.code}' }
     template = EmailTemplate(template_name='verify_email_template.html', values=params)
 
-    # Specify server
     server = MailServer(
         server_name = 'smtp.gmail.com',
         username = Config.EMAIL['username'],
         password = Config.EMAIL['password']
     )
 
-    # Create message
     msg = MailMessage(
         from_email = 'noreply@noreply.justinduch.com',
         to_emails = [email],
@@ -70,13 +53,11 @@ def subscribe(request):
     return { 'success': True, 'email': email }
 
 
-@web('/emails/verify', '/emails/templates/verify.html')
-def verify(request):
-    code = request.args.get('code')
+@web('/emails/verify/<code>', '/emails/templates/verify.html')
+def verify(request, code):
     if not code: return web.redirect('/')
 
     verify = EmailVerifications.get_or_none(EmailVerifications.id == code)
-
     if not verify: return { 'success': False, 'error': 'invalid_code' }
 
     now = datetime.datetime.now()
@@ -96,15 +77,12 @@ def verify(request):
     return { 'success': True }
 
 
-@web('/emails/unsubscribe', '/emails/templates/unsubscribe.html')
-def unsubscribe(request):
-    code = request.args.get('code')
+@web('/emails/unsubscribe/<code>', '/emails/templates/unsubscribe.html')
+def unsubscribe(request, code):
     if not code: return web.redirect('/')
 
     unsub = Emails.get_or_none(Emails.unsubscribe == code)
-
     if not unsub: return { 'success': False, 'error': 'invalid_code' }
-
     unsub.delete_instance()
 
     return { 'success': True }
