@@ -1,7 +1,7 @@
 #!/usr/bin/python3.6
 import os
-import datetime
 
+from datetime import datetime
 from simplerr import web
 from common.models.main import *
 
@@ -36,7 +36,7 @@ def edit_article(request, article_id):
     if request.form.get('action') == 'save':
         article.link      = request.form.get('link', '')
         article.title     = request.form.get('title', '')
-        article.date      = request.form.get('date', datetime.datetime.now().date())
+        article.date      = request.form.get('date', datetime.now().date())
         article.category  = request.form.get('category', '')
         article.content   = request.form.get('content', '')
         article.thumbnail = request.form.get('thumbnail', '')
