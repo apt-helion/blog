@@ -1,5 +1,9 @@
 {% extends "./common/templates/layout.html" %}
 
+{% block meta %}
+    <meta name="{{title}}">
+{% endblock %}
+
 {% block title %}{{title}}{% endblock %}
 
 {% block content %}

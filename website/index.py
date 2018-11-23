@@ -61,6 +61,11 @@ def contact(request): pass
 def error404(request): pass
 
 
+@web('/robots.txt', file=True)
+def robots(request):
+    return "./common/static/robots.txt"
+
+
 @web('/favicon.ico', file=True)
 def favicon(request):
     return "./common/static/img/favicon.ico"
