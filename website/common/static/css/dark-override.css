@@ -2,7 +2,7 @@ body {
     background-color: #18191d;
 }
 
-a, p, h1, h2, h3, h4, h5, ul, li {
+i, a, p, h1, h2, h3, h4, h5, ul, li {
     color: #dbd9d5 !important;
 }
 
@@ -15,22 +15,12 @@ hr {
 }
 
 .btn.btn-submit:hover {
-    border-top-color: #5f5f5f;
-    border-right-color: #5f5f5f;
-    border-bottom-color: #5f5f5f;
-    border-left-color: #5f5f5f;
+    border-color: #5f5f5f;
     color: #dbd9d5;
 }
 
 #search-field {
-    border-top-color: currentcolor;
-    border-right-color: currentcolor;
-    border-left-color: currentcolor;
-    background-color: transparent;
-    background-image: none;
-    box-shadow: none;
     border-bottom-color: #5f5f5f;
-    outline-color: currentcolor;
 }
 
 form .form-control {
@@ -52,14 +42,19 @@ textarea {
 
 .btn.btn-submit-inverse {
     color: #dbd9d5;
-    border-top-color: #5f5f5f;
-    border-right-color: #5f5f5f;
-    border-bottom-color: #5f5f5f;
-    border-left-color: #5f5f5f;
+    border-color: #5f5f5f;
     background-color: transparent;
-    background-image: none;
     text-shadow: none;
     box-shadow: #1e2026 0px 0px 0px 1px inset;
+}
+
+.intro .buttons .btn-readmore::after, .btn.btn-submit::after, .btn.btn-submit-inverse::after {
+    background-color: #17181c;
+}
+
+.btn.btn-submit-inverse:hover {
+    border-color: #5f5f5f;
+    color: #ffffff;
 }
 
 /* Article stuff */
@@ -79,10 +74,7 @@ code {
 pre {
     color: #d5d2cd;
     background-color: #1a1b1f;
-    border-top-color: #3d3d3d;
-    border-right-color: #3d3d3d;
-    border-bottom-color: #3d3d3d;
-    border-left-color: #3d3d3d;
+    border-color: #3d3d3d;
 }
 
 .post-categories, .post-categories > * {
