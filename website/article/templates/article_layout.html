@@ -38,10 +38,19 @@
             <div class="col-md-3 single-post-right-sidebar"></div>
         </div>
         <div class="row post-nav">
+
+            {% if previous %}
             <div class="col-md-6 prev-post"><span>Previous </span>
-                <h4> <a href="/article/{{previous.link}}">{{previous.title}}</a></h4></div>
+                <h4> <a href="/article/{{previous.link}}">{{previous.title}}</a></h4>
+            </div>
+            {% endif %}
+
+            {% if next %}
             <div class="col-md-6 next-post"><span>Next </span>
-                <h4> <a href="/article/{{next.link}}">{{next.title}}</a></h4></div>
+                <h4> <a href="/article/{{next.link}}">{{next.title}}</a></h4>
+            </div>
+            {% endif %}
+
             <div class="clearfix"></div>
         </div>
     </div>
