@@ -2,6 +2,7 @@
 from simplerr.web import web
 from common.models.main import *
 
+
 @web('/article/<link>', '/article/templates/article_layout.html')
 def article(request, link):
     """Render article."""

@@ -14,6 +14,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Justin Duch" />
     {% block meta %}
     {% endblock %}
 
@@ -30,6 +31,7 @@
 
     {% block head %}
     {% endblock %}
+
     <link rel="shortcut icon" type="image/x-icon" href="/common/static/img/favicon.ico">
 </head>
 
@@ -38,7 +40,7 @@
         <nav class="navbar navbar-default primary-navigation">
             <div class="container-fluid">
                 {% set titles = ['blag', 'bleg', 'blug', 'blom', 'bwoah'] %}
-                <div class="navbar-header"><a class="navbar-brand navbar-link" href="/">>{{ titles|random }}_</a>
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="/">&gt;{{ titles|random }}&#95;</a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-wrapper"><span class="sr-only">Toggle navigation</span><span class="first-icon-bar icon-bar"></span><span class="icon-bar"></span><span class="last-icon-bar icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-wrapper">
@@ -54,7 +56,7 @@
                                 <li role="presentation"><a href="/miscellaneous">Miscellaneous</a></li>
                             </ul>
                         </li>
-                        <li role="presentation"><a href="/contact">Contact </a></li>
+                        <li role="presentation"><a href="/contact">Contact</a></li>
                     </ul>
                     <p class="hidden-xs hidden-sm hidden-md navbar-text navbar-social-icons">
                         <a class="navbar-link navbar-social-icon" aria-label="Github" rel="noopener" href="https://github.com/apt-helion"><i class="fa fa-github"></i></a>

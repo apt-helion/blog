@@ -6,7 +6,6 @@ import math
 
 database = Config.DATABASE
 
-
 # monkey patch the DateTimeField to add support for the isoformt which is what
 # peewee exports as from DataSet
 DateTimeField.formats.append('%Y-%m-%dT%H:%M:%S')
@@ -17,7 +16,6 @@ class UnknownField(object):
 
 
 class BaseModel(Model):
-
     class Meta:
         database = database
 
@@ -33,15 +31,17 @@ class Article(BaseModel):
     tags = CharField(column_name='tags', default='')
     wip = CharField(column_name='wip', default='yes')
 
+
     @classmethod
     def get_category(cls, category='all'):
-        if category == 'all':
-            return cls.select().where(cls.wip == 'no')
+        if category == 'all': return cls.select().where(cls.wip == 'no')
         return cls.select().where(cls.category == category, cls.wip == 'no')
+
     
     @classmethod
     def get_article(cls, link):
         return cls.get_or_none(cls.link == link, cls.wip == 'no')
+
 
     class Meta:
         table_name = 'Articles'

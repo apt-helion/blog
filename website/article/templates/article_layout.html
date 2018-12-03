@@ -1,7 +1,7 @@
 {% extends "./common/templates/layout.html" %}
 
 {% block meta %}
-    <meta name="{{title}}">
+    <meta name="keywords" content="{{article.tags}}">
 {% endblock %}
 
 {% block title %}{{title}}{% endblock %}
@@ -39,13 +39,13 @@
         </div>
         <div class="row post-nav">
 
-            {% if previous %}
+            {% if previous.title %}
             <div class="col-md-6 prev-post"><span>Previous </span>
                 <h4> <a href="/article/{{previous.link}}">{{previous.title}}</a></h4>
             </div>
             {% endif %}
 
-            {% if next %}
+            {% if next.title %}
             <div class="col-md-6 next-post"><span>Next </span>
                 <h4> <a href="/article/{{next.link}}">{{next.title}}</a></h4>
             </div>
