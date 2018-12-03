@@ -5,15 +5,10 @@ from datetime import datetime
 from simplerr import web
 from common.models.main import *
 
-def prod_check():
-    """Check if we are in production environment."""
-    if os.environ.get('PROD', 'production') == 'production': return False
-    return True
-
 
 @web('/admin', '/admin/templates/admin.html')
 def admin(request):
-    if not prod_check(): return 'RAISE_ERROR'
+    if not request.host.startswith('127.0.0.1'): raise
 
     if request.form.get('link'):
         query = Article.create(link=request.form.get('link'))
@@ -29,7 +24,7 @@ def admin(request):
 
 @web('/admin/edit_article/<article_id>', '/admin/templates/edit_article.html')
 def edit_article(request, article_id):
-    if not prod_check(): return 'RAISE_ERROR'
+    if not request.host.startswith('127.0.0.1'): raise
 
     article = Article.get(Article.id == article_id)
 
@@ -54,7 +49,7 @@ def edit_article(request, article_id):
 
 @web('/admin/view_article/<link>', '/article/templates/article_layout.html')
 def view_article(request, link):
-    if not prod_check(): return 'RAISE_ERROR'
+    if not request.host.startswith('127.0.0.1'): raise
 
     article = Article.get(Article.link == link)
 
@@ -71,4 +66,5 @@ def view_article(request, link):
 
 @web('/admin/static/<path:file>', file=True)
 def files(request, file):
+    if not request.host.startswith('127.0.0.1'): raise
     return './admin/static/' + file

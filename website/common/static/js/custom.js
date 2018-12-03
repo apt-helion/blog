@@ -3,7 +3,8 @@
     /* ---------------------------------------------- /*
      * Initialization general scripts for all pages
     /* ---------------------------------------------- */
-    var scroll_to = $('a.scroll-to');
+    var scroll_to = $('a.scroll-to'),
+        theme = localStorage.theme;
 
     /* ---------------------------------------------- /*
      * Strip pre tag whitespace
@@ -87,9 +88,27 @@
             });
         }
 
+
         /* ---------------------------------------------- /*
          * Pre tag whitespace
         /* ---------------------------------------------- */
         $( function() { $("PRE").prettyPre(); } );
+
+
+        /* ---------------------------------------------- /*
+         * Display Theme
+        /* ---------------------------------------------- */
+        if(theme === "dark") {
+            $("head").append('<link rel="stylesheet" href="/common/static/css/dark-override.css">');
+            $('#ToggleTheme').text('Light Mode');
+        }
+
+        $('#ToggleTheme').click(function() {
+            if(theme !== "dark") { localStorage.setItem('theme', 'dark'); }
+            else                 { localStorage.setItem('theme', 'light'); }
+
+            location.reload();
+        });
     });
+
 })(jQuery);
