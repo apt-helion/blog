@@ -9,7 +9,6 @@ TEMPLATE_DIR = '/templates/'
 
 class EmailTemplate(object):
 
-
     def __init__(self, template_name='', values={}):
         self.template_name = template_name
         self.values        = values
@@ -25,7 +24,6 @@ class EmailTemplate(object):
 
 
 class MailMessage(object):
-
 
     def __init__(self, from_email='', to_emails=[], cc_emails=[], subject='', body='', template=None, attachments=[]):
         self.from_email       = from_email
@@ -76,11 +74,10 @@ class MailMessage(object):
 
 class MailServer(object):
 
-
-    def __init__(self, server_name='smtp.gmail.com', username='<username>', password='<password>'):
-        self.server_name = server_name
+    def __init__(self, username, password, server_name='smtp.gmail.com'):
         self.username    = username
         self.password    = password
+        self.server_name = server_name
 
 
 def send_email(mail_msg, mail_server=MailServer()):
