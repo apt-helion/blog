@@ -3,5 +3,5 @@ Jinja2==2.10
 peewee==3.0.18
 python-dateutil==2.6.1
 markdown2==2.3.7
-beautifulsoup4=4.7.1
+beautifulsoup4==4.7.1
 git+https://github.com/yevrah/simplerr.git
