@@ -2,8 +2,7 @@ language: python
 python:
 - '3.6'
 env:
-- DB_USER=root
-- DB_PASS=
+  - DB_USER=root DB_PASS=""
 addons:
   mariadb: '10.0'
 before_install:
