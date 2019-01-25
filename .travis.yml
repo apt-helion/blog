@@ -7,7 +7,6 @@ addons:
   mariadb: '10.0'
 before_install:
 - mysql -e "CREATE DATABASE blog;"
-- mysql -e "CREATE TABLE blog.Articles;"
 - mysql blog < migrations/emails.sql
 install:
 - pip install -r requirements.txt

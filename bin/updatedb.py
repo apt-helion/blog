@@ -21,26 +21,29 @@ from emailsubscribers import send_emails
 MARKDOWN_PATH = 'website/article/markdown'
 
 if __name__ == '__main__':
+    table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', [])
     articles_sot = [ MDtoHTML.convert_article(Path(f).stem) for f in listdir(MARKDOWN_PATH) if isfile(join(MARKDOWN_PATH, f)) ]
-    articles_bee = dba.dict('SELECT * FROM Articles', [])
 
-    new_article = None
+    if table_exists is not None:
+        articles_bee = dba.dict('SELECT * FROM Articles', [])
 
-    for sot in articles_sot:
-        new = True
+        new_article = None
 
-        for bee in articles_bee:
-            if sot['link'] == bee['link']:
-                new = False
+        for sot in articles_sot:
+            new = True
 
-            if sot['content'] != bee['content']:
-                sot['updated'] = datetime.now().strftime('%Y-%m-%d')
-            else:
-                sot['updated'] = bee.get('updated') or bee['date']
+            for bee in articles_bee:
+                if sot['link'] == bee['link']:
+                    new = False
 
-        if new: new_article = sot
+                if sot['content'] != bee['content']:
+                    sot['updated'] = datetime.now().strftime('%Y-%m-%d')
+                else:
+                    sot['updated'] = bee.get('updated') or bee['date']
 
-    dba.empty('DROP TABLE IF EXISTS Articles', [])
+            if new: new_article = sot
+
+        dba.empty('DROP TABLE IF EXISTS Articles', [])
 
     Config.DATABASE.create_tables([Article])
 
