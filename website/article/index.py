@@ -1,11 +1,11 @@
 #!/usr/env/bin python
 
-from simplerr.web import web
+from simplerr.web import web, GET
 from common.models.main import *
 from common.mdtohtml import *
 
 
-@web('/article/<link>', '/article/templates/article_layout.html')
+@web('/article/<link>', '/article/templates/article_layout.html', GET)
 def article(request, link):
     """Render article."""
 
@@ -19,7 +19,7 @@ def article(request, link):
     }
 
 
-@web('/article/preview/<link>', '/article/templates/article_layout.html')
+@web('/article/preview/<link>', '/article/templates/article_layout.html', GET)
 def article_preview(request, link):
     """Render wip article."""
     if not request.host.startswith('127.0.0.1'): raise # das some shitty security right here
@@ -31,3 +31,8 @@ def article_preview(request, link):
         'previous' : { 'title': None },
         'next'     : { 'title': None }
     }
+
+
+@web('/article/static/img/<path:file>', file=True)
+def images(request, file):
+    return './article/static/img/' + file

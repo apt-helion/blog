@@ -3,9 +3,12 @@
 from markdown2 import markdown
 from datetime import datetime
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 
 class MDtoHTML(object):
+
+    MARDOWN_PATH = Path('website/article/markdown')
 
     MD_EXTRAS = {
         'code-friendly' : None,
@@ -31,7 +34,7 @@ class MDtoHTML(object):
 
     @staticmethod
     def _get_md_article(link):
-        with open(f'website/article/markdown/{link}.md', 'r') as f:
+        with open(str( MDtoHTML.MARDOWN_PATH / f'{link}.md' ), 'r') as f:
             content = f.read()
 
         return content

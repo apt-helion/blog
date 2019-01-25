@@ -21,7 +21,7 @@ This was my first repository on GitHub so you can go and look at it [here](https
 
 Setting it up is pretty straightforward. Create a virtual environment, pip install requirements.txt, and then run run.py. If you did that then type 127.0.0.1:5000 in your browser's url bar which should show you this:
 
-![image-alternative](/common/static/img/viperidae-old-start.png)
+![image-alternative](/article/static/img/viperidae-old-start.png)
 
 There are four fields to fill out here: search, depth, include external links, and seed. Unfortunately I don't have my original documentation which explained all of this and more, so I'll quickly explain why there are so many fields and what they do.
 

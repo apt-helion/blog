@@ -5,8 +5,6 @@ from datetime import datetime
 
 from playhouse.shortcuts import model_to_dict, dict_to_model, update_model_from_dict
 
-database = Config.DATABASE
-
 # monkey patch the DateTimeField to add support for the isoformt which is what
 # peewee exports as from DataSet
 DateTimeField.formats.append('%Y-%m-%dT%H:%M:%S')
@@ -19,7 +17,7 @@ class UnknownField(object):
 class BaseModel(Model):
 
     class Meta:
-        database = database
+        database = Config.DATABASE
 
 
     @classmethod

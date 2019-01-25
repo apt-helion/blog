@@ -9,11 +9,11 @@ description:
 
 Google Hacking (or Google Dorks) can be very useful when gathering information on a business as it is essentially a way to use the search engine to pinpoint websites that have certain flaws, vulnerabilities, and sensitive information that can be taken advantage of. Google offers the opportunity to perform advanced search queries using special operators. Beyond the common operators (AND, OR, +, -, “”) there are more specific filters that you can use.
 
-![image-alternative](/common/static/img/google-search.png)
+![image-alternative](/article/static/img/google-search.png)
 
 If you constantly look up code error messages on Google like me, you've more than likely come across a Google Dork when clicking the *'more results from stackoverflow.com'* which changes the search term to this.
 
-![image-alternative](/common/static/img/google-dork-search.png)
+![image-alternative](/article/static/img/google-dork-search.png)
 
 Basically it's just added site:stackoverflow.com to the search query which means that it will limit all the results to only those from the given website. There are far more operators, too many to include in this guide, but I'll go over some of the most common:
 
@@ -29,7 +29,7 @@ You can also prepend a hyphen to all of these (except cache) to exclude the filt
 
 Now let's look at another example. We will be looking for PDFs on the docker site by searching `site:www.docker.com filetype:pdf`.
 
-![image-alternative](/common/static/img/google-docker.png)
+![image-alternative](/article/static/img/google-docker.png)
 
 When used correctly, Google Dorks can uncover some incredible information such as email addresses and lists, login credentials, sensitive files, website vulnerabilities, and even financial information (e.g. payment card data).
 
