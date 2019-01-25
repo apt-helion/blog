@@ -19,7 +19,7 @@ from config import Config
 def send_emails(link):
     article = Article.get_article(link)
 
-    now = datetime.datetime.now()
+    now = datetime.now()
 
     for subscriber in Emails.select():
 
