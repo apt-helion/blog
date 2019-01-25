@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 import sys
-sys.path.append('./website/')
+
+from os.path import isfile, join
+from pathlib import Path
+
+project_path = Path(__file__).parent
+website_path = project_path.parent / 'website/'
+sys.path.append(str(website_path))
 
 import datetime
 
-from website.emails.mail import *
-from website.config import Config
-from website.common.models.email import *
-from website.common.models.main import *
+from emails.mail import *
+from common.models.email import *
+from common.models.main import *
+from config import Config
 
 
 def send_emails(link):
@@ -53,8 +59,3 @@ def send_emails(link):
             ).save()
 
             print(f'{subscriber.email} Error: {e}')
-
-
-
-if __name__ == '__main__':
-    send_emails(sys.argv[1])

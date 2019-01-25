@@ -74,10 +74,10 @@ class MailMessage(object):
 
 class MailServer(object):
 
-    def __init__(self, username, password, server_name='smtp.gmail.com'):
+    def __init__(self, server_name='smtp.gmail.com', username='', password=''):
+        self.server_name = server_name
         self.username    = username
         self.password    = password
-        self.server_name = server_name
 
 
 def send_email(mail_msg, mail_server=MailServer()):

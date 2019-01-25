@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 from pathlib import Path
+from colour_runner import runner
+from dotenv import load_dotenv
+
 import sys
 import unittest
-from colour_runner import runner
 import click
-
 
 # Idenify key project directories and add them to the python search path
 test_path = Path(__file__).parent
@@ -16,6 +16,9 @@ project_path = test_path.parent / 'website/'
 sys.path.append(str(project_path))
 sys.path.append(str(test_path))
 
+# Load env files
+env_path = Path('.') / '.env.local'
+load_dotenv(dotenv_path=env_path)
 
 class test_processor(object):
 
@@ -43,7 +46,6 @@ class test_processor(object):
                     unittest.defaultTestLoader.loadTestsFromName(t)
                 )
 
-        # unittest.TextTestRunner().run(suite)
         runner.ColourTextTestRunner(verbosity=self.verbosity).run(self.suite)
 
 
@@ -51,11 +53,9 @@ class test_processor(object):
 @click.pass_context
 def cli(ctx):
     if ctx.invoked_subcommand is None:
-        # click.echo('Running all tests.')
         tester = tests()
         tester.run()
     else:
-        # click.echo('I am about to invoke %s' % ctx.invoked_subcommand)
         click.echo('Running specified test.')
         pass
 

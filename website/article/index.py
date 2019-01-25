@@ -1,6 +1,8 @@
-#!/usr/bin/python3.6
+#!/usr/env/bin python
+
 from simplerr.web import web
 from common.models.main import *
+from common.mdtohtml import *
 
 
 @web('/article/<link>', '/article/templates/article_layout.html')
@@ -8,13 +10,24 @@ def article(request, link):
     """Render article."""
 
     article = Article.get_article(link)
-
-    previous_article = Article.select().where(Article.date < article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
-    next_article     = Article.select().where(Article.date > article.date, Article.wip == 'no') or [{'title': '', 'link': '#'}]
+    p, n    = article.get_prev_next()
 
     return {
-        'title'    : article.title,
         'article'  : article,
-        'previous' : previous_article[-1:][0],
-        'next'     : next_article[0]
+        'previous' : p or { 'title': None },
+        'next'     : n or { 'title': None }
+    }
+
+
+@web('/article/preview/<link>', '/article/templates/article_layout.html')
+def article_preview(request, link):
+    """Render wip article."""
+    if not request.host.startswith('127.0.0.1'): raise # das some shitty security right here
+
+    article = MDtoHTML.convert_article(link)
+
+    return {
+        'article'  : article,
+        'previous' : { 'title': None },
+        'next'     : { 'title': None }
     }

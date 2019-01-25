@@ -4,27 +4,37 @@
     <meta name="keywords" content="{{article.tags}}">
 {% endblock %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{article.title}}{% endblock %}
 
 {% block content %}
 
 <article class="single-post">
     <div class="container-fluid">
+
         <div class="row meta">
+
             <div class="col-md-12">
                 <ul class="list-inline meta text-center">
                     <li>{{article.date.strftime('%B %d, %Y')}}</li>
                 </ul>
+
                 <h1 class="text-center single-title">{{article.title}}</h1>
             </div>
+
         </div>
 
         <div class="row featured-image">
-            <div class="col-md-12"><img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image"></div>
+            <div class="col-md-12">
+                <img class="img-responsive" src="/common/static/img/{{article.thumbnail}}" alt="thumbnail-image">
+            </div>
         </div>
 
         <div class="row entry-content">
-            <div class="col-md-3 single-post-left-sidebar"></div>
+
+            <div class="col-md-3 single-post-left-sidebar">
+                <!-- TODO? -->
+            </div>
+
             <div class="col-md-6 single-content">
 
                 {{article.content|safe}}
@@ -32,26 +42,34 @@
                 <div class="entry-meta">
                     <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category|title}}</a>
                     {% set tags = article.tags.split(',') %}
-                    <p class="post-tags">Tags: {% for tag in tags %}<a href="/tag/{{tag}}">{{tag}}</a>{% if not loop.last %},&nbsp;{% endif %}{% endfor %}</p>
+                    <p class="post-tags">
+                        Tags: {% for tag in tags %}<a href="/tag/{{tag}}">{{tag}}</a>{% if not loop.last %},&nbsp;{% endif %}{% endfor %}
+                    </p>
                 </div>
             </div>
-            <div class="col-md-3 single-post-right-sidebar"></div>
+
+            <div class="col-md-3 single-post-right-sidebar">
+                <!-- TODO? -->
+            </div>
+
         </div>
+
         <div class="row post-nav">
 
-            {% if previous.title %}
             <div class="col-md-6 prev-post"><span>Previous </span>
-                <h4> <a href="/article/{{previous.link}}">{{previous.title}}</a></h4>
+                {% if previous.title %}
+                    <h4><a href="/article/{{previous.link}}">{{previous.title}}</a></h4>
+                {% endif %}
             </div>
-            {% endif %}
 
-            {% if next.title %}
             <div class="col-md-6 next-post"><span>Next </span>
-                <h4> <a href="/article/{{next.link}}">{{next.title}}</a></h4>
+                {% if next.title %}
+                    <h4><a href="/article/{{next.link}}">{{next.title}}</a></h4>
+                {% endif %}
             </div>
-            {% endif %}
 
             <div class="clearfix"></div>
+
         </div>
     </div>
 </article>

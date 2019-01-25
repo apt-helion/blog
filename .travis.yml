@@ -7,10 +7,11 @@ addons:
   mariadb: '10.0'
 before_install:
 - mysql -e "CREATE DATABASE blog;"
-- mysql blog < migrations/articles.sql
+- mysql -e "CREATE TABLE Articles;"
 - mysql blog < migrations/emails.sql
 install:
 - pip install -r requirements.txt
+- ./bin/updatedb.py
 script: python tests/run.py
 addons:
   ssh_known_hosts:

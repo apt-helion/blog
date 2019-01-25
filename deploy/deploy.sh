@@ -7,6 +7,10 @@ git push deploy master
 
 echo "SSH"
 ssh apps@$IP -p $PORT <<EOF
+  export PRODUCTION=true
   cd $DEPLOY_DIR
-  mysql -u $DB_USER -p$DB_PASS blog < migrations/articles.sql
+  source env/bin/activate
+  pip freeze | grep -v -f requirements.txt - | grep -v '^#' | grep -v '^-e ' | xargs pip uninstall -y
+  pip install -r requirements
+  ./bin/updatedb.py
 EOF

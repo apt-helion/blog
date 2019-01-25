@@ -1,13 +1,10 @@
 #!/usr/bin/env python
-"""Simplerr Configuration."""
 import sys
 sys.path.append('./website/')
+
 import click
-import os
+
 from simplerr import dispatcher
-from playhouse.dataset import DataSet
-from website.config import Config
-from website.common.models import main
 
 """
 Example usage
@@ -28,14 +25,18 @@ def cli(): pass
 @click.option('--processes', type=int, default=1, help="1")
 def runserver(site, hostname, port, reloader, debugger, evalex, threaded, processes):
     """Start a new development server."""
-    app = dispatcher.wsgi(site, hostname, port,
-                          use_reloader=reloader,
-                          use_debugger=debugger,
-                          use_evalex=evalex,
-                          threaded=threaded,
-                          processes=processes)  # ssl_context=(crt, key)
+
+    app = dispatcher.wsgi(
+        site, hostname, port,
+        use_reloader=reloader,
+        use_debugger=debugger,
+        use_evalex=evalex,
+        threaded=threaded,
+        processes=processes
+    )
 
     app.serve()
+
 
 if __name__ == '__main__':
     cli()
