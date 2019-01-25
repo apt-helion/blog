@@ -6,6 +6,8 @@ sys.path.insert(0, '/var/www/blog.justinduch.com/env/src/simplerr')
 
 from simplerr import dispatcher
 
+os.environ['PRODUCTION'] = 'true'
+
 site     = '/var/www/blog.justinduch.com/website'
 hostname = 'localhost'
 port     = 80
