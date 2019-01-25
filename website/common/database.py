@@ -11,8 +11,8 @@ class dba(object):
 
     _connection = MySQLdb.connect(
         host   = '127.0.0.1',
-        user   = os.environ.get('DB_USER'),
-        passwd = os.environ.get('DB_PASS'),
+        user   = os.environ.get('DB_USER', ''),
+        passwd = os.environ.get('DB_PASS', ''),
         db     = 'blog'
     )
 
