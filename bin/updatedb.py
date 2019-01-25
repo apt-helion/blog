@@ -19,23 +19,21 @@ from common.database import dba
 
 from emailsubscribers import send_emails
 
-if __name__ == '__main__':
+
+def import_articles():
     mdp = str(MDtoHTML.MARDOWN_PATH)
 
+    new_article  = False
     table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', [])
     articles_sot = [ MDtoHTML.convert_article(Path(f).stem) for f in listdir(mdp) if isfile(join(mdp, f)) ]
 
     if table_exists is not None:
         # Get old articles to see if stuff has changed
         articles_bee = dba.dict('SELECT * FROM Articles', [])
-        new_article  = None
 
         for sot, bee in itertools.product(articles_sot, articles_bee):
-            is_new = True
 
             if sot['link'] == bee['link']:
-                is_new = False
-
                 # Set updated field to today if content or desc is different
                 # Else get old updated field, or date
                 if sot['content'] != bee['content'] or sot['description'] != bee['description']:
@@ -43,7 +41,7 @@ if __name__ == '__main__':
                 else:
                     sot['updated'] = bee.get('updated') or bee['date']
 
-            if is_new: new_article = sot
+        if len(articles_sot) > len(articles_bee): new_article = True
 
         dba.empty('DROP TABLE IF EXISTS Articles', [])
 
@@ -53,5 +51,13 @@ if __name__ == '__main__':
     # Add data from source of truth
     for article in articles_sot: Article.create_from_dict(article)
 
-    if environ.get('PRODUCTION') and new_article is not None:
-        send_emails(new_article['link'])
+    return new_article
+
+
+if __name__ == '__main__':
+    new_article = import_articles()
+
+    # Send email if new article
+    if environ.get('PRODUCTION') and new_article:
+        articles = Article.select().orderby(Article.date.desc()).get()
+        send_emails(article.link)

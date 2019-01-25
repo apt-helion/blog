@@ -1,4 +1,3 @@
-# Imports {{{1
 from unittest import TestCase
 
 from common.models.main import Article

@@ -13,8 +13,8 @@ import click
 test_path = Path(__file__).parent
 project_path = test_path.parent / 'website/'
 
-sys.path.append(str(project_path))
 sys.path.append(str(test_path))
+sys.path.append(str(project_path))
 
 # Load env files
 env_path = Path('.') / '.env.local'
@@ -26,10 +26,12 @@ class test_processor(object):
         self.modules = [
             'models.article',
             'models.email',
+            'processes.email',
         ]
 
         self.suite = unittest.TestSuite()
         self.verbosity = 2
+
 
     def run(self):
 
