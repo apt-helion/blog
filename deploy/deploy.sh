@@ -9,8 +9,5 @@ echo "SSH"
 ssh apps@$IP -p $PORT <<EOF
   export PRODUCTION=true
   cd $DEPLOY_DIR
-  source env/bin/activate
-  pip freeze | grep -v -f requirements.txt - | grep -v '^#' | grep -v '^-e ' | xargs pip uninstall -y
-  pip install -r requirements
   ./bin/updatedb.py
 EOF
