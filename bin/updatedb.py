@@ -20,42 +20,46 @@ from common.database import dba
 from emailsubscribers import send_emails
 
 
-def import_articles():
-    mdp = str(MDtoHTML.MARDOWN_PATH)
+class UpdateDB(object):
 
-    new_article  = False
-    table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', [])
-    articles_sot = [ MDtoHTML.convert_article(Path(f).stem) for f in listdir(mdp) if isfile(join(mdp, f)) ]
+    @staticmethod
+    def import_articles(testing=False):
+        mdp = str(MDtoHTML.MARDOWN_PATH)
 
-    if table_exists is not None:
-        # Get old articles to see if stuff has changed
-        articles_bee = dba.dict('SELECT * FROM Articles', [])
+        new_article  = False
+        # Need testing bool because, sqlite doesnt have 'SHOW' command
+        table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', []) if not testing else True
+        articles_sot = [ MDtoHTML.convert_article(Path(f).stem) for f in listdir(mdp) if isfile(join(mdp, f)) ]
 
-        for sot, bee in itertools.product(articles_sot, articles_bee):
+        if table_exists is not None:
+            # Get old articles to see if stuff has changed
+            articles_bee = dba.dict('SELECT * FROM Articles', [])
 
-            if sot['link'] == bee['link']:
-                # Set updated field to today if content or desc is different
-                # Else get old updated field, or date
-                if sot['content'] != bee['content'] or sot['description'] != bee['description']:
-                    sot['updated'] = datetime.now().strftime('%Y-%m-%d')
-                else:
-                    sot['updated'] = bee.get('updated') or bee['date']
+            for sot, bee in itertools.product(articles_sot, articles_bee):
 
-        if len(articles_sot) > len(articles_bee): new_article = True
+                if sot['link'] == bee['link']:
+                    # Set updated field to today if content or desc is different
+                    # Else get old updated field, or date
+                    if sot['content'] != bee['content'] or sot['description'] != bee['description']:
+                        sot['updated'] = datetime.now().strftime('%Y-%m-%d')
+                    else:
+                        sot['updated'] = bee.get('updated') or bee['date']
 
-        dba.empty('DROP TABLE IF EXISTS Articles', [])
+            if len(articles_sot) > len(articles_bee): new_article = True
 
-    # Create table from current Article model
-    Config.DATABASE.create_tables([ Article ])
+            dba.empty('DROP TABLE IF EXISTS Articles', [])
 
-    # Add data from source of truth
-    for article in articles_sot: Article.create_from_dict(article)
+        # Create table from current Article model
+        Config.DATABASE.create_tables([ Article ])
 
-    return new_article
+        # Add data from source of truth
+        for article in articles_sot: Article.create_from_dict(article)
+
+        return new_article
 
 
 if __name__ == '__main__':
-    new_article = import_articles()
+    new_article = UpdateDB.import_articles()
 
     # Send email if new article
     if environ.get('PRODUCTION') and new_article:

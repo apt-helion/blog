@@ -1,4 +1,8 @@
 import sys
+import itertools
+
+from os import listdir, getcwd, environ, remove
+from os.path import isfile, join
 
 from pathlib import Path
 from unittest import TestCase
@@ -10,37 +14,75 @@ web_path  = test_path.parent.parent / 'website/'
 sys.path.append(str(bin_path))
 sys.path.append(str(web_path))
 
-from updatedb import import_articles
-from common.models.main import Article
+from peewee import *
+from updatedb import UpdateDB
 from common.mdtohtml import MDtoHTML
 
+from common.models.main import Article
+from common.database import dba
+from config import Config
 
-TEST_META = """
----
-title: test
-category: test
-date: 0000-00-00
-thumbnail: test-thumb.png
-tags: test
-description: test
----
-"""
+
+# Setup database
+DB_LOCATION = 'tests/blog.db'
+DATABASE    = SqliteDatabase(DB_LOCATION)
+
+# Change dbs to this one
+Article._meta.database = DATABASE
+dba._connection        = DATABASE
+Config.DATABASE        = DATABASE
+
+DATABASE.connect()
+DATABASE.create_tables([ Article ])
+UpdateDB.import_articles(testing=True)
 
 
 class EmailProcessTest(TestCase):
-    """Tests to make sure emails will be sent correctly"""
+    """Tests to make sure emails will be sent correctly if there is a new article"""
 
     def setUp(self):
-        pass
+        self.meta = "---\
+            \ntitle: test\
+            \ncategory: test\
+            \ndate: 2000-02-08\
+            \nthumbnail: test-thumb.png\
+            \ntags: test\
+            \ndescription: test\
+            \n---\
+        "
+
+        self.mdp       = str(MDtoHTML.MARDOWN_PATH)
+        self.test_link = self.mdp + '/test.md'
 
 
     def tearDown(self):
-        pass
+        try:
+            remove(self.test_link)
+            remove(DB_LOCATION)
+        except OSError:
+            pass
 
 
-    def test_will_email(self):
-        pass
+    def import_articles(self):
+        article_db_num = Article.select().count()
+        article_md_num = len([ f for f in listdir(self.mdp) if isfile(join(self.mdp, f)) ])
+
+        new_article = UpdateDB.import_articles(testing=True)
+
+        return new_article, article_db_num, article_md_num
 
 
-    def test_will_not_email(self):
-        pass
+    def test_will_email_correctly(self):
+        new_article, article_db_num, article_md_num = self.import_articles()
+
+        self.assertEqual( (article_md_num > article_db_num), new_article )
+        self.assertEqual( (article_md_num == article_db_num), (not new_article) )
+
+        # Test if new one is created
+        with open(self.test_link, 'w+') as f:
+            f.write(self.meta)
+
+        new_article, article_db_num, article_md_num = self.import_articles()
+
+        self.assertEqual( (article_md_num > article_db_num), new_article )
+        self.assertEqual( (article_md_num == article_db_num), (not new_article) )
