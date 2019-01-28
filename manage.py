@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 import sys
 sys.path.append('./website/')
+sys.path.append('./bin/')
 
 import click
 
+from os import environ
 from simplerr import dispatcher
+from updatedb import UpdateDB
+from common.models.main import Article
 
 """
 Example usage
@@ -36,6 +40,16 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
     )
 
     app.serve()
+
+
+@cli.command()
+def updatedb():
+    new_article = UpdateDB.import_articles()
+
+    # Send email if new article
+    if environ.get('PRODUCTION') and new_article:
+        articles = Article.select().orderby(Article.date.desc()).get()
+        send_emails(article.link)
 
 
 if __name__ == '__main__':

@@ -78,11 +78,12 @@ class EmailProcessTest(TestCase):
         self.assertEqual( (article_md_num > article_db_num), new_article )
         self.assertEqual( (article_md_num == article_db_num), (not new_article) )
 
-        # Test if new one is created
-        with open(self.test_link, 'w+') as f:
-            f.write(self.meta)
+        if not new_article:
+            # Test if new one is created
+            with open(self.test_link, 'w+') as f:
+                f.write(self.meta)
 
-        new_article, article_db_num, article_md_num = self.import_articles()
+            new_article, article_db_num, article_md_num = self.import_articles()
 
-        self.assertEqual( (article_md_num > article_db_num), new_article )
-        self.assertEqual( (article_md_num == article_db_num), (not new_article) )
+            self.assertEqual( (article_md_num > article_db_num), new_article )
+            self.assertEqual( (article_md_num == article_db_num), (not new_article) )

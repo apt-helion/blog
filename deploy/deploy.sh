@@ -8,5 +8,5 @@ ssh apps@$IP -p $PORT <<EOF
   export PRODUCTION=true
   cd $DEPLOY_DIR
   source env/bin/activate
-  ./bin/updatedb.py
+  ./manage.py updatedb
 EOF
