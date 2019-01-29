@@ -8,6 +8,7 @@ import click
 from os import environ
 from simplerr import dispatcher
 from updatedb import UpdateDB
+from emailsubscribers import send_emails
 from common.models.main import Article
 
 """
