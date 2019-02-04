@@ -67,7 +67,7 @@ class EmailProcessTest(TestCase):
         article_db_num = Article.select().count()
         article_md_num = len([ f for f in listdir(self.mdp) if isfile(join(self.mdp, f)) ])
 
-        new_article = UpdateDB.import_articles(testing=True)
+        new_article, u = UpdateDB.import_articles(testing=True)
 
         return new_article, article_db_num, article_md_num
 
