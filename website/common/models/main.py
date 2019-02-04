@@ -30,13 +30,13 @@ class BaseModel(Model):
 class Article(BaseModel):
     link        = CharField(primary_key=True)
     title       = CharField(default='')
-    date        = DateField(default='0000-00-00')
+    date        = DateField(default='1970-01-01')
     content     = TextField(default='')
     thumbnail   = CharField(default='')
     tags        = CharField(default='')
     description = CharField(default='')
     category    = CharField(default='')
-    updated     = DateField(default='000-00-00')
+    updated     = DateField(default='1970-01-01')
 
 
     @classmethod

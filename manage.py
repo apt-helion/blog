@@ -8,6 +8,7 @@ import click
 from os import environ
 from simplerr import dispatcher
 from updatedb import UpdateDB
+from exist import Exist
 from emailsubscribers import send_emails
 from common.models.main import Article
 
@@ -45,12 +46,19 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
 
 @cli.command()
 def updatedb():
-    new_article = UpdateDB.import_articles()
+    n, u = UpdateDB.import_articles()
 
-    # Send email if new article
-    if environ.get('PRODUCTION') and new_article:
-        articles = Article.select().orderby(Article.date.desc()).get()
-        send_emails(article.link)
+    # Things to do in production
+    if environ.get('PRODUCTION'):
+
+        # Send email if new article
+        if n:
+            articles = Article.select().orderby(Article.date.desc()).get()
+            send_emails(article.link)
+
+        # Update Exist custom tags if new article or updated
+        if n or u:
+            Exist.update_exist_tags(n, u)
 
 
 if __name__ == '__main__':

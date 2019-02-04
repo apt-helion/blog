@@ -26,7 +26,9 @@ class UpdateDB(object):
     def import_articles(testing=False):
         mdp = str(MDtoHTML.MARDOWN_PATH)
 
-        new_article  = False
+        new_article    = False
+        update_article = False
+
         # Need testing bool because, sqlite doesnt have 'SHOW' command
         table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', []) if not testing else True
         articles_sot = [ MDtoHTML.convert_article(Path(f).stem) for f in listdir(mdp) if isfile(join(mdp, f)) ]
@@ -42,6 +44,7 @@ class UpdateDB(object):
                     # Else get old updated field, or date
                     if sot['content'] != bee['content'] or sot['description'] != bee['description']:
                         sot['updated'] = datetime.now().strftime('%Y-%m-%d')
+                        update_article = True
                     else:
                         sot['updated'] = bee.get('updated') or bee['date']
 
@@ -55,13 +58,4 @@ class UpdateDB(object):
         # Add data from source of truth
         for article in articles_sot: Article.create_from_dict(article)
 
-        return new_article
-
-
-if __name__ == '__main__':
-    new_article = UpdateDB.import_articles()
-
-    # Send email if new article
-    if environ.get('PRODUCTION') and new_article:
-        articles = Article.select().orderby(Article.date.desc()).get()
-        send_emails(article.link)
+        return new_article, update_article

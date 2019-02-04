@@ -17,3 +17,5 @@ class Config(object):
         'username': os.environ.get('EMAIL_USER'),
         'password': os.environ.get('EMAIL_PASS')
     }
+
+    EXIST = { 'token': os.environ.get('EXIST_TOKEN') }
