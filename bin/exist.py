@@ -18,8 +18,7 @@ class Exist(object):
     This is a module for `https://exist.io`.
 
     It appends custom tags to the user's custom tags according to what work has
-    been done on the blog for the day (whether an article has been created or
-    updated).
+    been done on the blog for the day (whether a new article has been made).
 
     This requires your `https://exist.io` developer token to be
     located in a .env(.local/.production) file as:
@@ -32,16 +31,11 @@ class Exist(object):
     _custom_url = 'https://exist.io/api/1/attributes/custom/append/'
 
     @staticmethod
-    def update_exist_tags(new_article, update_article):
+    def update_exist_tags():
         token = Config.EXIST['token']
 
         headers = { 'Authorization': f'Bearer {token}', 'Content-Type': 'application/json' }
-        tags    = []
-
-        if new_article: tags.append({ 'value': 'blogpost' })
-        if update_article: tags.append({ 'value': 'blogupdate' })
-
-        payload = json.dumps(tags)
+        payload = json.dumps({ 'value': 'blogpost' })
 
         re = requests.post(Exist._custom_url, headers=headers, data=payload)
 

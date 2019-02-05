@@ -46,19 +46,15 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
 
 @cli.command()
 def updatedb():
-    n, u = UpdateDB.import_articles()
+    n = UpdateDB.import_articles()
 
-    # Things to do in production
-    if environ.get('PRODUCTION'):
-
-        # Send email if new article
-        if n:
-            articles = Article.select().orderby(Article.date.desc()).get()
-            send_emails(article.link)
-
-        # Update Exist custom tags if new article or updated
-        if n or u:
-            Exist.update_exist_tags(n, u)
+    # Things to do in production if theres a new article
+    if environ.get('PRODUCTION') and n:
+        # Send email
+        articles = Article.select().orderby(Article.date.desc()).get()
+        send_emails(article.link)
+        # Update Exist custom tags
+        Exist.update_exist_tags()
 
 
 if __name__ == '__main__':

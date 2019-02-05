@@ -26,8 +26,7 @@ class UpdateDB(object):
     def import_articles(testing=False):
         mdp = str(MDtoHTML.MARDOWN_PATH)
 
-        new_article    = False
-        update_article = False
+        new_article = False
 
         # Need testing bool because, sqlite doesnt have 'SHOW' command
         table_exists = dba.scalar('SHOW TABLES LIKE "Articles"', []) if not testing else True
@@ -44,7 +43,6 @@ class UpdateDB(object):
                     # Else get old updated field, or date
                     if sot['content'] != bee['content'] or sot['description'] != bee['description']:
                         sot['updated'] = datetime.now().strftime('%Y-%m-%d')
-                        update_article = True
                     else:
                         sot['updated'] = bee.get('updated') or bee['date']
 
@@ -58,4 +56,4 @@ class UpdateDB(object):
         # Add data from source of truth
         for article in articles_sot: Article.create_from_dict(article)
 
-        return new_article, update_article
+        return new_article
