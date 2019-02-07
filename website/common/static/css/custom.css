@@ -6,3 +6,11 @@ table {
     width: 100%;
     margin-bottom: 20px;
 }
+
+footer.site-footer .footer-social-icons > a {
+    width: 18px;
+}
+
+.navbar-social-icons .navbar-social-icon {
+    width: 16px;
+}
