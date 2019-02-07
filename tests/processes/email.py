@@ -22,6 +22,7 @@ from common.models.main import Article
 from common.database import dba
 from config import Config
 
+# This needs it's own 'sandboxed' database to be in
 
 # Setup database
 DB_LOCATION = 'tests/blog.db'

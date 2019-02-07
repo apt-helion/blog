@@ -6,28 +6,28 @@ from common.models.main import BaseModel
 
 
 class Emails(BaseModel):
-    email = CharField(column_name='email', primary_key=True)
+    email       = CharField(column_name='email', primary_key=True)
     unsubscribe = CharField(column_name='unsubscribe')
-    created = DateField(column_name='created')
+    created     = DateField(column_name='created')
 
     class Meta:
         table_name = 'Emails'
 
 
 class EmailLogs(BaseModel):
-    id = AutoField(column_name='id')
-    error = CharField(column_name='error')
-    email = CharField(column_name='email')
+    id      = AutoField(column_name='id')
+    error   = CharField(column_name='error')
+    email   = CharField(column_name='email')
     process = CharField(column_name='process')
-    date = DateField(column_name='date')
+    date    = DateField(column_name='date')
 
     class Meta:
         table_name = 'EmailLogs'
 
 
 class EmailVerifications(BaseModel):
-    code = CharField(column_name='code', primary_key=True)
-    email = CharField(column_name='email')
+    code   = CharField(column_name='code', primary_key=True)
+    email  = CharField(column_name='email')
     expiry = DateTimeField(column_name='expiry')
 
 

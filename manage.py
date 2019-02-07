@@ -7,10 +7,15 @@ import click
 
 from os import environ
 from simplerr import dispatcher
+from config import Config
+
 from updatedb import UpdateDB
 from exist import Exist
+
 from emailsubscribers import send_emails
+
 from common.models.main import Article
+from common.models.email import *
 
 """
 Example usage
@@ -42,6 +47,11 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
     )
 
     app.serve()
+
+
+@cli.command()
+def createdb():
+    Config.DATABASE.create_tables([ Article, Emails, EmailLogs, EmailVerifications ])
 
 
 @cli.command()

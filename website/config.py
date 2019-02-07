@@ -1,7 +1,8 @@
 import os
-from peewee import MySQLDatabase
 
+from peewee import MySQLDatabase
 from common.loadenv import LoadEnv
+
 LoadEnv.load_dot_env()
 
 class Config(object):
