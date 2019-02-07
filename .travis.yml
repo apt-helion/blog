@@ -7,9 +7,9 @@ addons:
   mariadb: '10.0'
 before_install:
 - mysql -e "CREATE DATABASE blog;"
-- ./manage.py createdb
 install:
 - pip install -r requirements.txt
+- ./manage.py createdb
 script: python tests/run.py
 addons:
   ssh_known_hosts:
