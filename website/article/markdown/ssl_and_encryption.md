@@ -1,5 +1,5 @@
 ---
-title: Setting up a LAMP Stack on CentOS 7
+title: SSL And Encryption
 category: development
 date: 2018-04-02
 thumbnail: ssl-enc-thumb.png
