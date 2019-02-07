@@ -61,7 +61,7 @@ def updatedb():
     # Things to do in production if theres a new article
     if environ.get('PRODUCTION') and n:
         # Send email
-        articles = Article.select().orderby(Article.date.desc()).get()
+        article = Article.get_latest()
         send_emails(article.link)
         # Update Exist custom tags
         Exist.update_exist_tags()
