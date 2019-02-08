@@ -7,7 +7,7 @@ from common.models.main import *
 from common.models.email import EmailVerifications
 
 
-@web('/', '/index.html')
+@web('/', '/common/templates/index.html')
 def index(request):
     """Render homepage."""
     return {
@@ -22,42 +22,45 @@ def index(request):
 
 @web('/<category>', '/common/templates/archive.html')
 def archive(request, category):
-    if category == 'infosec':
-        title = 'Information Security'
-        description = 'I attempt CTF walkthroughs, infosec \'research\', and you read about it.'
-    elif category == 'development':
-        title = 'Software Development'
-        description = 'I write software and you read about it.'
-    elif category == 'engineering':
-        title = 'Engineering'
-        description = 'I build stuff and you read about it.'
-    elif category == 'miscellaneous':
-        title = 'Miscellaneous'
-        description = 'I look at other stuff and you read about it.'
 
-    if category == 'archive':
-        title = 'Archive'
-        description = 'All my articles.'
-        articles = Article.get_category().order_by(Article.date.desc())
-    else:
-        articles = Article.get_category(category).order_by(Article.date.desc())
-
-    return {
-        'title'       : title,
-        'description' : description,
-        'articles'    : articles
+    hash_map = {
+        'infosec': {
+            'title':       'Information Security',
+            'description': 'I attempt CTF walkthroughs, infosec \'research\', and you read about it.',
+        },
+        'development': {
+            'title':       'Software Development',
+            'description': 'I write software and you read about it.',
+        },
+        'engineering': {
+            'title':       'Engineering',
+            'description': 'I build stuff and you read about it.',
+        },
+        'miscellaneous': {
+            'title':       'Miscellaneous',
+            'description': 'I look at other stuff and you read about it.',
+        },
+        'archive': {
+            'title':       'Archive',
+            'description': 'All my articles.',
+        }
     }
 
+    cat = hash_map.get(category, web.redirect('/404'))
+    if isinstance(cat, dict): cat['articles'] = Article.get_category(category).order_by(Article.date.desc())
 
-@web('/about', '/about.html')
+    return cat
+
+
+@web('/about', '/common/templates/about.html')
 def about(request): pass
 
 
-@web('/contact', '/contact.html')
+@web('/contact', '/common/templates/contact.html')
 def contact(request): pass
 
 
-@web('/404', '/404.html')
+@web('/404', '/common/templates/404.html')
 def error404(request): pass
 
 

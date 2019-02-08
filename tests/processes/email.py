@@ -52,7 +52,7 @@ class EmailProcessTest(TestCase):
             \n---\
         "
 
-        self.mdp       = str(MDtoHTML.MARDOWN_PATH)
+        self.mdp       = str(MDtoHTML.MARKDOWN_PATH)
         self.test_link = self.mdp + '/test.md'
 
 

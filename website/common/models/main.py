@@ -41,7 +41,7 @@ class Article(BaseModel):
 
     @classmethod
     def get_category(cls, category='all'):
-        if category == 'all': return cls.select()
+        if category == 'all' or category == 'archive': return cls.select()
         return cls.select().where(cls.category == category)
 
 

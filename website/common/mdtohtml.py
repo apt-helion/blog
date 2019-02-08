@@ -8,7 +8,8 @@ from pathlib import Path
 
 class MDtoHTML(object):
 
-    MARDOWN_PATH = Path('website/article/markdown')
+    _path = Path( __file__ ).parent
+    MARKDOWN_PATH = _path / '../../articles'
 
     MD_EXTRAS = {
         'code-friendly' : None,
@@ -32,9 +33,10 @@ class MDtoHTML(object):
         'strike': None,
     }
 
+
     @staticmethod
     def _get_md_article(link):
-        with open(str( MDtoHTML.MARDOWN_PATH / f'{link}.md' ), 'r') as f:
+        with open(str( MDtoHTML.MARKDOWN_PATH / f'{link}.md' ), 'r') as f:
             content = f.read()
 
         return content

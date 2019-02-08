@@ -24,7 +24,7 @@ class UpdateDB(object):
 
     @staticmethod
     def import_articles(testing=False):
-        mdp = str(MDtoHTML.MARDOWN_PATH)
+        mdp = str(MDtoHTML.MARKDOWN_PATH)
 
         new_article = False
 
