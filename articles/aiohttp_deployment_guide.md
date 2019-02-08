@@ -52,7 +52,7 @@ def index(request):
 
 async def factory():
     app = web.Application()
-    app.router.add\_get('/', index)
+    app.router.add_get('/', index)
     return app
 ```
 
