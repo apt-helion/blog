@@ -21,11 +21,11 @@ This is going to be a very short penetration test mainly focusing on low hanging
 
 The only field we can enter any inputs is this one here, where you can manually enter a playlist.
 
-![image-alternative](/article/static/img/wapt-spds-xss-find.png)
+![image-alternative](/website/article/static/img/wapt-spds-xss-find.png)
 
 So now let's inject some HTML code, I will try a `<h1>This shouldn't work</h1>`. It now displays this:
 
-![image-alternative](/article/static/img/wapt-spds-xss-attempt.png)
+![image-alternative](/website/article/static/img/wapt-spds-xss-attempt.png)
 
 Obviously, it didn't work because the playlist ID is never actually shown anywhere after you enter it (apart from the URL) and it is only used for the Spotify API. Entering a wrong ID will just to just not show anything, although it is only just now occurring to me that I should have implemented some sort of error message when you enter an ID that doesn't exist.
 
@@ -45,7 +45,7 @@ Okay then. What else can we do... session hijacking? We can log into Spotify whi
 
 The web framework we're using (Flask), stores a session identifier in a cookie like so:
 
-![image-alternative](/article/static/img/wapt-spds-session.png)
+![image-alternative](/website/article/static/img/wapt-spds-session.png)
 
 So if we manage to steal a victim's session, we will be logged into the victim's Spotify for our app! And this is where our pen test for SPDS ends. As far as I know, there is no way to get a session without having direct access to a victim's computer or the server hosting the app (or having it shown in a screenshot from a blog ;). Common ways like XSS won't work (as seen above) and packet sniffing won't work as everything goes through HTTPS while attempting to use HTTP instead will just redirect to this blog (for some reason. I should probably go fix that).
 
@@ -104,13 +104,13 @@ if __name__ == '__main__':
 
 Here is the memory usage before we start.
 
-![image-alternative](/article/static/img/wapt-viperidae-memory.png)
+![image-alternative](/website/article/static/img/wapt-viperidae-memory.png)
 
 Now we will run the script with the *'fix'* implemented.
 
 There was no difference, the graph is exactly the same. I even looked at the memory usage from the server itself with free -m before and after, and also found no difference. So maybe the fix really is a fix? Okay so now let's remove it and run the test again.
 
-![image-alternative](/article/static/img/wapt-viperidae-memory-after.png)
+![image-alternative](/website/article/static/img/wapt-viperidae-memory-after.png)
 
 Again no difference except from a small decrease, which is probably just from me restarting the app. Now it is possible that I just didn't request as many sites as I may have should, but I would still have expected even the slightest increase in memory usage. So it turns out my fears of a memory leak were wrong and the fix was unneeded.
 
@@ -127,14 +127,14 @@ With those out of the way, let's look at 'path file traversal'. If you look at t
 ```python
 @web('/common/static/', file=True)
 def files(request, file):
-	return './common/static/' + file
+    return './common/static/' + file
 ```
 
 Let's attempt a dot-dot-slash attack by prefacing the sequence with `../.` With this, it may be possible to access directories that are hierarchically higher than the one from which we are picking the file. Let's attempt to show `/etc/passwd`.
 
 Looking back at the code and it's directory structure, we can see that `/common/static/` is 4 directories down from the blog's root directory. Now we can assume (although I know it is) that the blog is hosted in `/var/www/` which is another 2 directories from root. In order to get to /etc/passwd, we will need to preface it with 6 `../`s. So it will look something like this:
 
-![image-alternative](/article/static/img/wapt-blog-file-test.png)
+![image-alternative](/website/article/static/img/wapt-blog-file-test.png)
 
 If you try it yourself, you will just see that it resolves to `blog.justinduch.com/etc/passwd` and returns a 404. I also did another test where I attempted to get a file just outside in the `common/` directory, but that didn't work too.
 
@@ -142,6 +142,6 @@ Finally, let's attempt to get into to `/admin` page, which is where all the arti
 
 The only problem is that I have no knowledge of environment variable exploits from a web app, but since this is the grand finale, let's do something I've not done so far but probably should have many times. I'm going to ~~Google~~ DuckDuckGo it.
 
-![image-alternative](/article/static/img/wapt-blog-duck.png)
+![image-alternative](/website/article/static/img/wapt-blog-duck.png)
 
 I didn't find anything. Not saying an exploit like that doesn't exist, just that I couldn't find anything like it. Either way, I really need to update this blog.

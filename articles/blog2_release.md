@@ -17,7 +17,7 @@ That's right, the search bar hasn't worked for the past year even though it look
 
 Now, to celebrate this ***momentous*** achievement, here's a look into notes I have of future blog developments.
 
-![image-alternative](/article/static/img/blog2-future.png)
+![image-alternative](/website/article/static/img/blog2-future.png)
 
 Neat stuff. Let's go through them and I'll explain why I'll probably never get them done.
 
