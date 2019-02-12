@@ -24,7 +24,8 @@ class MDtoHTML(object):
 
         # https://github.com/trentm/python-markdown2/wiki/fenced-code-blocks
         'fenced-code-blocks' : {
-            'linenos' : True
+            # TODO: get linenos to overflow properly when table text goes over width
+            # 'linenos' : True
         },
 
         'target-blank-links': None,
