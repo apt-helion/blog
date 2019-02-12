@@ -49,7 +49,6 @@ def send_emails(link):
 
         try:
             send_email(mail_msg=msg, mail_server=server)
-            print(f'Sent {subscriber.email}')
         except Exception as e:
             EmailLogs.create(
                 error = e,
@@ -57,5 +56,3 @@ def send_emails(link):
                 process = 'notification',
                 date = now
             ).save()
-
-            print(f'{subscriber.email} Error: {e}')
