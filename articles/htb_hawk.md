@@ -3,7 +3,7 @@ title: HackTheBox Notes - Hawk (ft. Procrastination)
 category: infosec
 date: 2019-02-13
 thumbnail: hawk-thumb.png
-tags: htb
+tags: htb,htbnotes
 description:
 ---
 
@@ -11,7 +11,7 @@ Due to my incredible laziness, my last HTB article was five months ago. This is 
 
 This is probably what I'm going to keep doing for HTB from now on, I have another three boxes that I'll publish when they are retired. But worry not, I promise after those boxes, I'll have much higher quality notes that won't be a confusing and poorly written mess.
 
-I'm also not doing those old thumbnails of the box pictures anymore because those are way to hard to draw on a touchpad.
+I'm also not doing those old thumbnails of the box identicons anymore because those are way to hard to draw on a touchpad.
 
 - - - -
 

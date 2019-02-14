@@ -3,7 +3,7 @@ title: HackTheBox - Dev0ops
 category: infosec
 date: 2018-10-15
 thumbnail: dev0ops-thumb.png
-tags: htb
+tags: htb,htbwalkthrough
 description:
 ---
 

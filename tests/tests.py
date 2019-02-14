@@ -49,32 +49,3 @@ class test_processor(object):
                 )
 
         runner.ColourTextTestRunner(verbosity=self.verbosity).run(self.suite)
-
-
-@click.group(invoke_without_command=True)
-@click.pass_context
-def cli(ctx):
-    if ctx.invoked_subcommand is None:
-        tester = tests()
-        tester.run()
-    else:
-        click.echo('Running specified test.')
-        pass
-
-
-@cli.command()
-def all():
-    tester = tests()
-    tester.run()
-
-
-@cli.command()
-@click.option('-m', '--module', multiple=True, default=None)
-def tests(module):
-    tester = test_processor()
-    tester.modules = module or tester.modules
-    tester.run()
-
-
-if __name__ == '__main__':
-    cli()

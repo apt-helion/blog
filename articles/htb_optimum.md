@@ -3,7 +3,7 @@ title: HackTheBox - Optimum (ft. PowerShell)
 category: infosec
 date: 2018-09-19
 thumbnail: optimum-thumb.png
-tags: htb,powershell
+tags: htb,powershell,htbwalkthrough
 description:
 ---
 

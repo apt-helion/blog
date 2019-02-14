@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import sys
+
 sys.path.append('./website/')
 sys.path.append('./bin/')
+sys.path.append('./tests/')
 
 import click
 
@@ -16,6 +18,8 @@ from emailsubscribers import send_emails
 
 from common.models.main import Article
 from common.models.email import *
+
+from tests import test_processor
 
 """
 Example usage
@@ -65,6 +69,20 @@ def updatedb():
         send_emails(article.link)
         # Update Exist custom tags
         Exist.update_exist_tags()
+
+
+@cli.command()
+def tests():
+    tester = test_processor()
+    tester.run()
+
+
+@cli.command()
+@click.option('-m', '--module', multiple=True, default=None)
+def runtest(module):
+    tester = test_processor()
+    tester.modules = module or tester.modules
+    tester.run()
 
 
 if __name__ == '__main__':

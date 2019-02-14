@@ -9,8 +9,8 @@ before_install:
 - mysql -e "CREATE DATABASE blog;"
 install:
 - pip install -r requirements.txt
-- ./manage.py createdb
-script: python tests/run.py
+- python manage.py createdb
+script: python manage.py tests
 addons:
   ssh_known_hosts:
   - $IP
@@ -22,7 +22,7 @@ before_deploy:
 - echo -e "Host $IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 deploy:
   provider: script
-  script: bash ./deploy/deploy.sh
+  script: bash deploy/deploy.sh
   skip_cleanup: true
   on:
     branch: master
