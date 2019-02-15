@@ -14,3 +14,7 @@ footer.site-footer .footer-social-icons > a {
 .navbar-social-icons .navbar-social-icon {
     width: 16px;
 }
+
+iframe {
+    border: none;
+}

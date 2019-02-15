@@ -28,6 +28,12 @@ class MDtoHTML(object):
             # 'linenos' : True
         },
 
+        # https://blog.justinduch.com/article/babys_first_fork
+        "iframes": {
+            'width': '100%',
+            'height': '380',
+        },
+
         'target-blank-links': None,
         'metadata': None,
         'wiki-tables': None,

@@ -8,7 +8,5 @@ ssh apps@$IP -p $PORT <<EOF
   export PRODUCTION=true
   cd $DEPLOY_DIR
   source env/bin/activate
-  pip install --upgrade -e git+https://github.com/yevrah/simplerr#egg=simplerr
-  pip install --upgrade -e git+https://github.com/beanpuppy/python-markdown2#egg=python-markdown2
   ./manage.py updatedb
 EOF
