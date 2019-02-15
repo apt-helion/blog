@@ -34,7 +34,6 @@ def article_preview(request, link):
 
 
 @web('/article/static/img/<path:file>', file=True)
-@web('/website/article/static/img/<path:file>', file=True)
 def images(request, file):
     # Also added a website route so can see images on GitHub when previewing the mardown article
     return './article/static/img/' + file

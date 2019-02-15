@@ -35,10 +35,8 @@ def cli(): pass
 @click.option('-p', '--port', type=int, default=5000, help="5000")
 @click.option('--reloader', is_flag=True, default=True)
 @click.option('--debugger', is_flag=True)
-@click.option('--evalex', is_flag=True, default=False)
-@click.option('--threaded', is_flag=True)
-@click.option('--processes', type=int, default=1, help="1")
-def runserver(site, hostname, port, reloader, debugger, evalex, threaded, processes):
+@click.option('--evalex',  default=False, is_flag=True)
+def runserver(site, hostname, port, reloader, debugger, evalex):
     """Start a new development server."""
 
     app = dispatcher.wsgi(
@@ -46,8 +44,8 @@ def runserver(site, hostname, port, reloader, debugger, evalex, threaded, proces
         use_reloader=reloader,
         use_debugger=debugger,
         use_evalex=evalex,
-        threaded=threaded,
-        processes=processes
+        threaded=True,
+        processes=1
     )
 
     app.serve()
