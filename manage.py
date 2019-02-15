@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import sys
 
-sys.path.append('./website/')
-sys.path.append('./bin/')
-sys.path.append('./tests/')
+sys.path.insert(0, './website/')
+sys.path.insert(0, './bin/')
+sys.path.insert(0, './tests/')
 
 import click
 
