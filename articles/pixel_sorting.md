@@ -7,7 +7,7 @@ tags: processing
 description:
 ---
 
-Pixel sorting is an intersting effect used to make forms of glitch art. It is
+Pixel sorting is an interesting effect used to make forms of glitch art. It is
 the process of isolating a horizontal or vertical line of pixels in an image
 and sorting their positions based on any number of criteria. For instance
 pixels positions may be sorted by each pixel’s luminosity, hue or saturation.
@@ -55,7 +55,7 @@ to a threshold, if it’s lower than the black threshold the pixel is deemed to 
 be black, if it’s higher it’s deemed to be black. You can adjust this threshold by
 changing the `blackValue` variable which is by default set to `-16000000`.
 
-This goes for the rest of the modes too. Mode `1` is brighness mode which
+This goes for the rest of the modes too. Mode `1` is brightness mode which
 starts when it finds a bright pixel and stops when it finds a dark one. While
 mode `2`, white mode is the opposite of mode `0`. These can also be
 adjusted by changing their corresponding variables - `brightnessValue` and
@@ -78,7 +78,7 @@ And that made it worse, okay how about `70`?
 ![image-alternative](/website/article/static/img/pixel-3.png)
 
 Good enough! Normally I would work on this a bit more and slowly change
-stuff until it's close to perfect but unfortunatly for me, I have crippling
+stuff until it's close to perfect but unfortunately for me, I have crippling
 anxiety and can't look at a picture of myself for too long without becoming
 incredibly uncomfortable.
 
