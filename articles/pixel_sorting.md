@@ -56,8 +56,8 @@ be black, if it’s higher it’s deemed to be black. You can adjust this thresh
 changing the `blackValue` variable which is by default set to `-16000000`.
 
 This goes for the rest of the modes too. Mode `1` is brighness mode which
-start when it finds a bright pixel and stop when it finds a dark one. While
-mode `2` is white mode which is the opposite io mode `0`. These can also be
+starts when it finds a bright pixel and stops when it finds a dark one. While
+mode `2`, white mode is the opposite of mode `0`. These can also be
 adjusted by changing their corresponding variables - `brightnessValue` and
 `whiteValue`.
 
