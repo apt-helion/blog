@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/beanpup_py
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.justinduch.com
+  * I am beanpup_py (https://keybase.io/beanpup_py) on keybase.
+  * I have a public key ASBJ3Q9Tnq2guWq1G72Q_V6v-Hi7RX-cYgBQ-Zb317LAmAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012049dd0f539eada0b96ab51bbd90fd5eaff878bb457f9c620050f996f7d7b2c0980a",
+      "host": "keybase.io",
+      "kid": "012049dd0f539eada0b96ab51bbd90fd5eaff878bb457f9c620050f996f7d7b2c0980a",
+      "uid": "685e94816701624484962db74bfa9b19",
+      "username": "beanpup_py"
+    },
+    "merkle_root": {
+      "ctime": 1553981840,
+      "hash": "132eacade33d57790b5aeecfc2294163088b25d392df25565ef74a36c87a37322139d8495b667c5e591eb2d8d11be0a864730344a5d3b982f8d0f10752f0a74c",
+      "hash_meta": "0f39b9acde55bf104a0b852acafbaba13fb21bb77c8317c33e18e114cae85aaf",
+      "seqno": 5062786
+    },
+    "service": {
+      "entropy": "Aj5wTFXS4EfEblfF7PNu99ZO",
+      "hostname": "blog.justinduch.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "3.1.2"
+  },
+  "ctime": 1553981849,
+  "expire_in": 504576000,
+  "prev": "37de8be6bdc560970ccb73b46e03d5364f84756aee11071de779ad49a9df43e9",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgSd0PU56toLlqtRu9kP1er/h4u0V/nGIAUPmW99eywJgKp3BheWxvYWTESpcCB8QgN96L5r3FYJcMy3O0bgPVNk+EdWruEQcd53mtSanfQ+nEIDHJ5e40XU6SrPP1Md1PQUZvw6CzGJBavZUivRBnQVdAAgHCo3NpZ8RA/hPPIPWgduD7PkxWY5s9qdgJJKUQcNu3oU7JYkjo1eLdmZ6u/aPp7BFx+Y0urAxWJxaXnrlz+TRHIFdlbLqXC6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIJI7VhYLFG9zVJWg+0P7Rk2DGF0zgiso7MSKPLQ5NytLo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/beanpup_py
+
+==================================================================

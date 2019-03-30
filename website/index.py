@@ -53,20 +53,28 @@ def archive(request, category):
 
 
 @web('/about', '/common/templates/about.html')
-def about(request): pass
+def about(request):
+    pass
 
 
 @web('/contact', '/common/templates/contact.html')
-def contact(request): pass
+def contact(request):
+    pass
 
 
 @web('/404', '/common/templates/404.html')
-def error404(request): pass
+def error404(request):
+    pass
 
 
 @web('/robots.txt', file=True)
 def robots(request):
     return "./common/static/robots.txt"
+
+
+@web('/keybase.txt', file=True)
+def keybase(request):
+    return "./common/static/keybase.txt"
 
 
 @web('/favicon.ico', file=True)
