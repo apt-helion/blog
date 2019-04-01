@@ -38,6 +38,7 @@ class MDtoHTML(object):
         'metadata': None,
         'wiki-tables': None,
         'strike': None,
+        'footnotes': None,
     }
 
 
