@@ -3,7 +3,7 @@ title: HackTheBox Notes - Curling (ft. Anger)
 category: infosec
 date: 2019-04-01
 thumbnail: curling-thumb.png
-tags: htb,htbnotes
+tags: htb,htb-notes
 description:
 ---
 
@@ -22,7 +22,7 @@ Host is up (0.49s latency).
 Not shown: 998 closed ports
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   2048 8a:d1:69:b4:90:20:3e:a7:b6:54:01:eb:68:30:3a:ca (RSA)
 |   256 9f:0b:c2:b2:0b:ad:8f:a1:4e:0b:f6:33:79:ef:fb:43 (ECDSA)
 |_  256 c1:2a:35:44:30:0c:5b:56:6a:3f:a5:cc:64:66:d9:a9 (ED25519)
@@ -50,7 +50,7 @@ to upload a PHP shell from [this](https://github.com/pentestmonkey/php-reverse-s
 	* Run `nc -lvpn <port_number>`
 	* Go to `10.10.10.150/templates/beez3/hello.php`
 	* Got shell as user `www-data`
-	
+
 ### PHP Reverse Shell
 * Can’t get `user.txt` because we don’t have permissions for `~/floris` but we
 can view another file `password_backup`[^1]. It’s a hexdump for something…
@@ -60,21 +60,21 @@ signatures](https://en.wikipedia.org/wiki/List_of_file_signatures) tells us the 
 * Copied `/home/floris/password_backup`
 * Reversed the hexdump back to a `bz2` file with `xxd -r password_backup password_backup.bz2`
 * Decompressed the file `bzip2 -d password_backup.bz2`
-* Contains the string 
+* Contains the string
 ```
-l[passwordrBZh91AY&SY6Ǎ@@Pt t"dhhOPIS@68ET>P@#I bՃ|3x(*N&Hk1x"{]B@6m
+l[passwordrBZh91AY&SY6@@Pt t"dhhOPIS@68ET>P@#I |3x(*N&Hk1x"{]B@6m
 ```
 What is this
 
 * Did a `file` on it
 `password_backup: gzip compressed data, was "password", last modified: Tue May 22 19:16:20 2018, from Unix`
-Oh it’s zipped again 
+Oh it’s zipped again
 
 * Added `.gz` as a file extension and unzipped it
 ```bash
 $ gunzip password_backup.gz
 $ cat password_backup
-BZh91AY&SY6Ǎ@@Pt t"dhhOPIS@68ET>P@#I bՃ|3x(*N&Hk1x"{]B@6
+BZh91AY&SY6@@Pt t"dhhOPIS@68ET>P@#I |3x(*N&Hk1x"{]B@6
 ```
 WHAT THE FUCK IS THIS
 

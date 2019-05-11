@@ -3,7 +3,7 @@ title: HackTheBox Notes - Hawk (ft. Procrastination)
 category: infosec
 date: 2019-02-13
 thumbnail: hawk-thumb.png
-tags: htb,htbnotes
+tags: htb,htb-notes
 description:
 ---
 
@@ -82,12 +82,10 @@ Just a base64 string
 
 * But decoding it makes some gibberish
 ```
-justin@sierra-fc282: ~ ➜ echo
+justin@sierra-fc282: ~ # echo
 "U2FsdGVkX19rWSAG1JNpLTawAmzz/ckaN1oZFZewtIM+e84km3Csja3GADUg2jJbCmSdwTtr/IIShvTbUd0yQxfe9OuoMxxfNIUN/YPHx+vVw/6eOD+Cc1ftaiNUEiQzQUf9FyxmCb2fuFoOXGphAMo+Pkc2ChXgLsj4RfgX+P7DkFa8w1ZA9Yj7kR+tyZfyt4M0qvmWvMhAj3fuuKCCeFoXpYBOacGvUHRGywb4YCk=" | base64 --decode
-Salted__kY ԓi-6�l���7Z����>{�$�p����5 �2[
-���������8?�sW�j#T$3AG�,f       ���Z\ja�>>G6
-�.��E���ÐV��V@�����ɗ�4�����@�w�xZ��Ni��PtF��`)%
-justin@sierra-fc282: ~ ➜
+<random giberish that breaks my mardown parser>
+justin@sierra-fc282: ~ #
 ```
 
 * Now as it turns out, I did in fact download it but I just didn’t see it because it was a hidden file and I was using a normal `ls`…

@@ -54,6 +54,7 @@ class UpdateDB(object):
         Config.DATABASE.create_tables([ Article ])
 
         # Add data from source of truth
-        for article in articles_sot: Article.create_from_dict(article)
+        for article in articles_sot:
+            Article.create_from_dict(article)
 
         return new_article

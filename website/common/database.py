@@ -6,15 +6,17 @@ import MySQLdb
 from .loadenv import LoadEnv
 LoadEnv.load_dot_env()
 
+
 class dba(object):
     """Simple Database Access Layer for MySQLdb"""
 
-    _connection = MySQLdb.connect(
-        host   = '127.0.0.1',
-        user   = os.environ.get('DB_USER', ''),
-        passwd = os.environ.get('DB_PASS', ''),
-        db     = 'blog'
-    )
+    _connection = MySQLdb.connect(**{
+        'host':   os.environ.get('DB_HOST') or '127.0.0.1',
+        'user':   os.environ.get('DB_USER') or 'root',
+        'passwd': os.environ.get('DB_PASS', ''),
+        'port':   int(os.environ.get('DB_PORT')) or 3306,
+        'db':     'blog'
+    })
 
     @staticmethod
     def _query(query, params):
@@ -47,11 +49,6 @@ class dba(object):
 
 
     @staticmethod
-    def json(query, params):
-        return json.dumps(dba.dict(query, params))
-
-
-    @staticmethod
     def empty(query, params):
         last_id   = None
         row_count = None
@@ -62,20 +59,3 @@ class dba(object):
         row_count = cursor.rowcount
 
         return last_id, row_count
-
-
-    @staticmethod
-    def transaction(queries):
-        result = []
-
-        try:
-            cur = config.DATABASE.cursor()
-            for query in queries:
-                sql, params = query
-                cur.execute(sql, params)
-                result.append( (cur.lastrowid, cur.rowcount) )
-            dba._connection.commit()
-        except:
-            dba._connection.rollback()
-
-        return result
