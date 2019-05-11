@@ -15,7 +15,7 @@ class Config(object):
         'host':   os.environ.get('DB_HOST') or '127.0.0.1',
         'user':   os.environ.get('DB_USER') or 'root',
         'passwd': os.environ.get('DB_PASS', ''),
-        'port':   int(os.environ.get('DB_PORT')) or 3306
+        'port':   int(os.environ.get('DB_PORT') or 3306)
     })
 
     EMAIL = {
