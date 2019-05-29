@@ -2723,7 +2723,7 @@ ul.light-gallery li {
 
 .post-thumbnail:after, .instafeed-thumbnail:after, .product-thumbnail:after {
     font-size:2.0625rem;
-    content:"\f270";
+    /* content:"\f270"; */
     display:inline-block;
     font-family:"Ionicons";
     speak:none;
