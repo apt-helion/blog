@@ -39,12 +39,19 @@
 
                 {{article.content|safe}}
 
-                <div class="entry-meta">
-                    <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category|title}}</a>
-                    {% set tags = article.tags.split(',') %}
-                    <p class="post-tags">
-                        Tags: {% for tag in tags %}<a href="/tag/{{tag}}">{{tag}}</a>{% if not loop.last %},&nbsp;{% endif %}{% endfor %}
-                    </p>
+                <div class="entry-meta flex space-between">
+                    <div>
+                        <p class="post-categories">Posted in: <a href="/{{article.category}}">{{article.category|title}}</a>
+                        {% set tags = article.tags.split(',') %}
+                        <p class="post-tags">
+                            Tags: {% for tag in tags %}<a href="/tag/{{tag}}">{{tag}}</a>{% if not loop.last %},&nbsp;{% endif %}{% endfor %}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="post-categories">
+                            See a mistake? Edit it <a href="https://github.com/beanpuppy/blog/edit/master/articles/{{link}}.md">here.</a>
+                        </p>
+                    </div>
                 </div>
             </div>
 
