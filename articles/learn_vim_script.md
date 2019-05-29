@@ -145,7 +145,7 @@ families](http://www.mirror.co.uk/news/ampp3d/housing-crisis-10-empty-homes-5008
 and [Bread for the World](http://www.bread.org/hunger/global/facts.html)
 estimate that **15 million** people die **each year** from preventable
 poverty, of whom 11 million are **children under the age of five**.
-[2](http://www.washingtonsblog.com/2015/08/crimes-against-humanity-01-poverty-murder-over-400-million-people-since-1995-more-than-all-wars-in-recorded-history.html).
+[[2]](http://www.washingtonsblog.com/2015/08/crimes-against-humanity-01-poverty-murder-over-400-million-people-since-1995-more-than-all-wars-in-recorded-history.html).
 - In the US alone, [20-40k deaths every
 year](http://obamacarefacts.com/facts-on-deaths-due-to-lack-of-health-insurance-in-us/)
 because of lack of health insurance / care. On average, that's 300k over the last decade.
@@ -167,8 +167,8 @@ in
 China.](https://www.businessinsider.com/china-boasts-that-its-healthy-life-expectancy-beats-the-us-is-correct-2018-5)
 - Suicide rates have leaped more than [33% in the last 20
 years.](https://politsturm.com/american-suicide-rate-up-33/)
-[2](https://www.cnn.com/2018/06/07/health/suicide-report-cdc/index.html),
-[3](https://www.washingtonpost.com/news/to-your-health/wp/2018/06/07/u-s-suicide-rates-rise-sharply-across-the-country-new-report-shows/?utm_term=.18c1060e6b2f)
+[[2]](https://www.cnn.com/2018/06/07/health/suicide-report-cdc/index.html),
+[[3]](https://www.washingtonpost.com/news/to-your-health/wp/2018/06/07/u-s-suicide-rates-rise-sharply-across-the-country-new-report-shows/?utm_term=.18c1060e6b2f)
 - [Most prisoners per capita AND by
 total](https://www.statista.com/statistics/262962/countries-with-the-most-prisoners-per-100-000-inhabitants/).
 Makes sense, since prison is Capitalism's boarding house. [Runs least 54
