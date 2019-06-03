@@ -10,7 +10,7 @@ os.environ['PRODUCTION'] = 'true'
 
 site     = '/var/www/blog.justinduch.com/website'
 hostname = 'localhost'
-port     = 80
+port     = 8090
 wsgi     = dispatcher.wsgi(site, hostname, port, threaded=True)
 
 application = wsgi.make_app()
