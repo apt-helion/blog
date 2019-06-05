@@ -2,7 +2,7 @@
 title: Setting up a LAMP Stack on CentOS 7
 category: development
 date: 2018-01-22
-thumbnail: lamp-stack-thumb.png
+thumbnail: lamp-stack-thumb.jpg
 tags: linux,centos,apache,mysql,python
 description:
 ---

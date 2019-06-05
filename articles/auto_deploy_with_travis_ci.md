@@ -2,7 +2,7 @@
 title: Auto Deploying WIth Travis CI And SSH
 category: development
 date: 2018-11-18
-thumbnail: travis-thumb.png
+thumbnail: travis-thumb.jpg
 tags: travisci,blogpost
 description:
 ---

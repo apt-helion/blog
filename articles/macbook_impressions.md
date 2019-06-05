@@ -2,7 +2,7 @@
 title: MacBook & MacOS First Impressions
 category: miscellaneous
 date: 2018-07-25
-thumbnail: macbook-thumb.png
+thumbnail: macbook-thumb.jpg
 tags: macos,macbook
 description:
 ---

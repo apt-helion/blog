@@ -2,7 +2,7 @@
 title: Looking At My .Vimrc
 category: miscellaneous
 date: 2018-09-12
-thumbnail: vimrc-thumb.png
+thumbnail: vimrc-thumb.jpg
 tags: vim,vimrc
 description:
 ---

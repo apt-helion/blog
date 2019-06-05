@@ -2,7 +2,7 @@
 title: Retro Exploits: Cross Site Tracing (XST)
 category: infosec
 date: 2018-06-22
-thumbnail: xst-thumb.png
+thumbnail: xst-thumb.jpg
 tags: xst,retro-exploits,xss
 description:
 ---

@@ -2,7 +2,7 @@
 title: Pixel Sorting And Hiding Your Face From Strangers On The Internet
 category: miscellaneous
 date: 2019-03-19
-thumbnail: pixel-sort-thumb.png
+thumbnail: pixel-sort-thumb.jpg
 tags: processing
 description:
 ---
@@ -31,7 +31,7 @@ I'm going to pixel sort this somewhat recent image to use for my
 [Instagram](https://www.instagram.com/beanpup.py/) which you should all follow
 if you want to see pictures of garbage on your timeline.
 
-![image-alternative](/website/article/static/img/pixel-no.png)
+![image-alternative](/website/article/static/img/pixel-no.jpg)
 
 Okay let's finally start.
 
@@ -64,18 +64,18 @@ adjusted by changing their corresponding variables - `brightnessValue` and
 We will be using mode `1` because the image is pretty bright. Here's the first
 run.
 
-![image-alternative](/website/article/static/img/pixel-1.png)
+![image-alternative](/website/article/static/img/pixel-1.jpg)
 
 A bit too much sorting, although it does hide my face quite well so that's
 pretty close to a win!
 
 Let's change the `brightnessValue` from `60` to `50`.
 
-![image-alternative](/website/article/static/img/pixel-2.png)
+![image-alternative](/website/article/static/img/pixel-2.jpg)
 
 And that made it worse, okay how about `70`?
 
-![image-alternative](/website/article/static/img/pixel-3.png)
+![image-alternative](/website/article/static/img/pixel-3.jpg)
 
 Good enough! Normally I would work on this a bit more and slowly change
 stuff until it's close to perfect but unfortunately for me, I have crippling

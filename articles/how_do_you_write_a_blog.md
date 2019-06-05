@@ -2,7 +2,7 @@
 title: How the Fuck Do You Write a Blog?
 category: development
 date: 2018-05-30
-thumbnail: blog1.0-404-thumb.png
+thumbnail: blog1.0-404-thumb.jpg
 tags: blogpost
 description:
 ---
@@ -26,13 +26,13 @@ Right before I wrote this article, I mapped the old site on the Wayback Machine 
 
 There isn't too much to say here apart from: 'it isn't very nice'. It was my first time using CSS grid in any real capacity, and while I do like it - probably more than Bootstrap, I wasn't able to do very much with my more limited CSS knowledge. You can see I had my original plans in mind while desiging it, with all it's plain-ness, but not a good minimalist plain, the bad, uninteresting plain.
 
-![image-alternative](/website/article/static/img/blog1.0-root.png)
+![image-alternative](/website/article/static/img/blog1.0-root.jpg)
 
 Figure 0: The homescreen with the tree style web page directory.
 
 Let's just start with the homepage `/`. It's actually okay in my opinion, probably the best page in the site. The tree style directory map looks decent in the center, making the command line design inspiration very clear. Overall I don't hate it, although it is useless because no one would need to go to it.
 
-![image-alternative](/website/article/static/img/blog1.0-articles.png)
+![image-alternative](/website/article/static/img/blog1.0-articles.jpg)
 
 Figure 1: The `/articles` page
 
