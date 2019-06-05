@@ -6,20 +6,20 @@ env:
 addons:
   mariadb: '10.0'
 before_install:
-- mysql -e "CREATE DATABASE blog;"
+  - mysql -e "CREATE DATABASE blog;"
 install:
-- pip install -r requirements.txt
-- python manage.py createdb
+  - pip install -r requirements.txt
+  - python manage.py createdb
 script: python manage.py tests
 addons:
   ssh_known_hosts:
   - $IP
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_0df20a251864_key -iv $encrypted_0df20a251864_iv -in deploy/deploy_rsa.enc -out /tmp/deploy_rsa -d
-- eval "$(ssh-agent -s)"
-- chmod 600 /tmp/deploy_rsa
-- ssh-add /tmp/deploy_rsa
-- echo -e "Host $IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - openssl aes-256-cbc -K $encrypted_0df20a251864_key -iv $encrypted_0df20a251864_iv -in deploy/deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
+  - echo -e "Host $IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 deploy:
   provider: script
   script: bash deploy/deploy.sh
