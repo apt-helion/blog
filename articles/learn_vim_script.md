@@ -2,7 +2,7 @@
 title: Let's Learn About Vim Script And The Ethics Of Capitalism
 category: miscellaneous
 date: 2019-05-12
-thumbnail:vim-script-thumb.jpg
+thumbnail:vim-script-thumb.webp
 tags: vim,capitalism
 description:
 ---

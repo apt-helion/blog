@@ -2,7 +2,7 @@
 title: How The Fuck Do You Write A Search Engine?
 category: development
 date: 2018-07-30
-thumbnail: viperidae-thumb.jpg
+thumbnail: viperidae-thumb.webp
 tags: viperidae,python
 description:
 ---
@@ -21,7 +21,7 @@ This was my first repository on GitHub so you can go and look at it [here](https
 
 Setting it up is pretty straightforward. Create a virtual environment, pip install requirements.txt, and then run run.py. If you did that then type 127.0.0.1:5000 in your browser's url bar which should show you this:
 
-![image-alternative](/website/article/static/img/viperidae-old-start.jpg)
+![image-alternative](/website/article/static/img/viperidae-old-start.webp)
 
 There are four fields to fill out here: search, depth, include external links, and seed. Unfortunately I don't have my original documentation which explained all of this and more, so I'll quickly explain why there are so many fields and what they do.
 

@@ -2,7 +2,7 @@
 title: A Basic Deployment Guide For Aiohttp + Gunicorn + Nginx
 category: development
 date: 2018-07-04
-thumbnail: aiohttp-deployment-thumb.jpg
+thumbnail: aiohttp-deployment-thumb.webp
 tags: aiohttp,gunicorn,nginx,python
 description:
 ---

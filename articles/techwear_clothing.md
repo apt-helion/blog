@@ -2,7 +2,7 @@
 title: Techwear Clothing and How To Live Out Your Dystopian Cyberpunk Dreams
 category: miscellaneous
 date: 2018-08-27
-thumbnail: techwear-thumb.jpg
+thumbnail: techwear-thumb.webp
 tags: techwear
 description:
 ---

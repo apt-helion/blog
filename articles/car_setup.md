@@ -2,7 +2,7 @@
 title: Race Car Setup Reference Manual (For Video Games)
 category: engineering
 date: 2018-09-27
-thumbnail: gt3-setup-thumb.jpg
+thumbnail: gt3-setup-thumb.webp
 tags: acc,car,sim
 description:
 ---

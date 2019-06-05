@@ -2,7 +2,7 @@
 title: And Remember To SMASH That Subscribe Button
 category: development
 date: 2018-09-15
-thumbnail: subscribe-thumb.jpg
+thumbnail: subscribe-thumb.webp
 tags: blogpost,python
 description:
 ---
@@ -43,19 +43,19 @@ While writing it I attempted to identify the most likely things that could be vu
 
 So let's try to XSS the initial subscription page, which shows you your email after you enter it on the next page. We will just put in a basic `<plaintext>` tag.
 
-![image-alternative](/website/article/static/img/subscribe-plaintext.jpg)
+![image-alternative](/website/article/static/img/subscribe-plaintext.webp)
 
 Oh no! It only accepts correct email addresses and stops us from submitting our code! Looks like this is unhackable...
 
 Is what an idiot would say. This shitty client side validation is no match against my best friend Burp Suite. We'll just give the input a correct value and my buddy will intercept the request and change it to the value we actual want.
 
-![image-alternative](/website/article/static/img/subscribe-burb.jpg)
+![image-alternative](/website/article/static/img/subscribe-burb.webp)
 
 Wow. I wish I could intercept like Burp.
 
-![image-alternative](/website/article/static/img/subscribe-fail.jpg) Oh. It didn't work and looking at the logs, it looks like it failed correctly.
+![image-alternative](/website/article/static/img/subscribe-fail.webp) Oh. It didn't work and looking at the logs, it looks like it failed correctly.
 
-![image-alternative](/website/article/static/img/subscribe-error.jpg) Looks like this is it then. The real end. It's been a good ride, have a great night everyone.
+![image-alternative](/website/article/static/img/subscribe-error.webp) Looks like this is it then. The real end. It's been a good ride, have a great night everyone.
 
 ...
 

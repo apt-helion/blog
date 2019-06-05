@@ -2,7 +2,7 @@
 title: HackTheBox Notes - Hawk (ft. Procrastination)
 category: infosec
 date: 2019-02-13
-thumbnail: hawk-thumb.jpg
+thumbnail: hawk-thumb.webp
 tags: htb,htb-notes
 description:
 ---

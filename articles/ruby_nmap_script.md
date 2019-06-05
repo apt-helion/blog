@@ -2,7 +2,7 @@
 title: Writing A Simple Ruby Script To Automate Nmap
 category: development
 date: 2018-10-29
-thumbnail: ruby-nmap-thumb.jpg
+thumbnail: ruby-nmap-thumb.webp
 tags: ruby,nmap
 description:
 ---

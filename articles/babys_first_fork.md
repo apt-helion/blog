@@ -2,7 +2,7 @@
 title: Baby's First Fork
 category: development
 date: 2019-02-16
-thumbnail: fork-thumb.jpg
+thumbnail: fork-thumb.webp
 tags: blogpost,markdown,python
 description:
 ---
@@ -11,11 +11,11 @@ While thinking of new posts to write, I thought of a certain something that I be
 
 Looking at the code, it seems to be a pretty simple task. We just need to add an options to `self.extras` for iframes and call the function if it is passed.
 
-![image-alternative](/website/article/static/img/fork-convert.jpg)
+![image-alternative](/website/article/static/img/fork-convert.webp)
 
 But first I'll need to decide on what syntax represent an iframe, since it isn't standard with markdown. I could add on to the normal syntax for links and add it to this `do_links` function:
 
-![image-alternative](/website/article/static/img/fork-links.jpg)
+![image-alternative](/website/article/static/img/fork-links.webp)
 
 I would need to add a handler to this for iframes with a similar syntax. Where an inline image is `![text](image-url)`, I could make iframes to be `?[text](frame-url)`.
 
@@ -23,17 +23,17 @@ However, since it isn't actual markdown I would rather make the syntax something
 
 Here we will add our option (in the previous `convert` function) to do iframes:
 
-![image-alternative](/website/article/static/img/fork-option.jpg)
+![image-alternative](/website/article/static/img/fork-option.webp)
 
 And here's the code for `_do_iframes`:
 
-![image-alternative](/website/article/static/img/fork-func.jpg)
+![image-alternative](/website/article/static/img/fork-func.webp)
 
 Very simple.
 
 Now we can add it to the bottom of this site's `requirements.txt` and add the iframes option to `mdtohtml`.
 
-![image-alternative](/website/article/static/img/fork-requirements.jpg)
+![image-alternative](/website/article/static/img/fork-requirements.webp)
 
 To prove that it works here's a YouTube video:
 

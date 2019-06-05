@@ -2,7 +2,7 @@
 title: Spotify Playlist Depression Score
 category: development
 date: 2018-06-15
-thumbnail: spds-thumb.jpg
+thumbnail: spds-thumb.webp
 tags: spds,python,flask
 description:
 ---

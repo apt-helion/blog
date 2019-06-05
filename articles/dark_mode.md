@@ -2,7 +2,7 @@
 title: Saving The World One Dark Mode Setting At A Time
 category: development
 date: 2018-12-03
-thumbnail: dark-mode-thumb.jpg
+thumbnail: dark-mode-thumb.webp
 tags: blogpost,javascript
 description:
 ---
@@ -11,7 +11,7 @@ According to very reputable [sources](https://en.wikipedia.org/wiki/List_of_sauc
 
 Anyway, now you must be wondering why my blog looks like this.
 
-![image-alternative](/website/article/static/img/dark-mode-no.jpg)
+![image-alternative](/website/article/static/img/dark-mode-no.webp)
 
 And that's because I haven't been bothered to change any of the CSS from the Bootstrap template I bought.
 
@@ -19,11 +19,11 @@ But I've decided that I've had enough! I've gotten off my lazy ass and immediate
 
 Now your eyes will be saved from the global warming, IQ destroying tyranny of light modes by just pressing the Dark Mode button at the bottom of the page.
 
-![image-alternative](/website/article/static/img/dark-mode-button.jpg)
+![image-alternative](/website/article/static/img/dark-mode-button.webp)
 
 Now look at it... beautiful.
 
-![image-alternative](/website/article/static/img/dark-mode-yes.jpg)
+![image-alternative](/website/article/static/img/dark-mode-yes.webp)
 
 And in case you wanted it. Here's the code.
 
