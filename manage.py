@@ -4,10 +4,53 @@ import click
 
 from os import environ
 from simplerr import dispatcher
+from peewee import OperationalError
 
 sys.path.insert(0, './website/')
 from common.loadenv import LoadEnv  # noqa
 LoadEnv.load_dot_env()
+
+
+def create_app(site, hostname='127.0.0.1', port=5000, *args, **kwargs):
+    from common.database import DATABASE
+
+    wsgi = dispatcher.wsgi(
+        site, hostname, port,
+        **kwargs
+    )
+
+    @wsgi.pre_response
+    def db_connect(request):
+        restart = False
+        try:
+            DATABASE.connect()
+        except OperationalError:
+            restart = True
+
+        if restart:
+            try:
+                DATABASE.close()
+                DATABASE.connect()
+            except Exception:
+                pass
+
+
+    @wsgi.post_response
+    def db_close(request, response):
+        try:
+            DATABASE.close()
+        except Exception:
+            pass
+
+
+    @wsgi.post_exception
+    def db_close_exception(request, error):
+        try:
+            DATABASE.close()
+        except Exception:
+            pass
+
+    return wsgi
 
 
 @click.group()
@@ -21,18 +64,10 @@ def cli():
 @click.option('-p', '--port', type=int, default=5000, help="5000")
 @click.option('--reloader', is_flag=True, default=True)
 @click.option('--debugger', is_flag=True)
+@click.option('--processes', type=int, default=1, help="1")
 @click.option('--evalex',  default=False, is_flag=True)
-def runserver(site, hostname, port, reloader, debugger, evalex):
-    """Start a new development server."""
-    app = dispatcher.wsgi(
-        site, hostname, port,
-        use_reloader=reloader,
-        use_debugger=debugger,
-        use_evalex=evalex,
-        threaded=True,
-        processes=1
-    )
-
+def runserver(site, hostname, port, reloader, debugger, processes, evalex):
+    app = create_app(site, hostname, port, reloader, debugger, evalex, processes)
     app.serve()
 
 

@@ -1,4 +1,3 @@
-#!/usr/env/bin python
 from simplerr.web import web, GET
 
 from common.models.main import Article

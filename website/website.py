@@ -1,6 +1,5 @@
-#!/usr/env/bin python
+from simplerr.web import web
 
-from simplerr.web import web, GET
 
 @web('/website/article/static/img/<path:file>', file=True)
 def article_images(request, file):

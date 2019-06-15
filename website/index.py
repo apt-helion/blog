@@ -1,4 +1,3 @@
-#!/usr/bin/python3.6
 from simplerr.web import web, GET
 from common.models.main import Article
 
