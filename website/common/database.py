@@ -1,26 +1,67 @@
 #!/usr/bin/env python
 
 import os
-import MySQLdb
 
-from .loadenv import LoadEnv
-LoadEnv.load_dot_env()
+from playhouse.pool import PooledDatabase
+from peewee import MySQLDatabase, OperationalError
+
+
+class PooledConnection(PooledDatabase, MySQLDatabase):
+
+    def execute_sql(self, *args, **kwargs):
+        """
+        Overwritting `execute_sql` to prevent `Error 2006: MySQL server has gone away`.
+
+        If there's an error in execution, the connection is probably dead so we close the
+        connection (not returning it to the pool), make a new one, and execute it again.
+        """
+        try:
+            return super().execute_sql(*args, **kwargs)
+        except OperationalError:
+            self.manual_close()
+            self.connect()
+            return super().execute_sql(*args, **kwargs)
+
+    def _is_closed(self, key, conn):
+        """
+        Taken from original `playhouse.pool.PooledMySQLDatabase` class.
+
+        Not sure what it's for. I think it may trying to solve the same issue our `execute_sql` function,
+        but the ping function isn't working correctly. As in, if you ping a dead connection, it should
+        return an error, but it doesn't. No idea why.
+        """
+        is_closed = super()._is_closed(key, conn)
+
+        if not is_closed:
+            try:
+                conn.ping(False)
+            except Exception:
+                is_closed = True
+
+        return is_closed
+
+
+DATABASE = PooledConnection(
+    'blog',
+    max_connections=15,
+    timeout=60,
+    stale_timeout=60, **{
+        'host': os.environ.get('DB_HOST') or '127.0.0.1',
+        'user': os.environ.get('DB_USER') or 'root',
+        'passwd': os.environ.get('DB_PASS', ''),
+        'port': int(os.environ.get('DB_PORT') or 3306),
+    }
+)
 
 
 class dba(object):
     """Simple Database Access Layer for MySQLdb"""
 
-    _connection = MySQLdb.connect(**{
-        'host':   os.environ.get('DB_HOST') or '127.0.0.1',
-        'user':   os.environ.get('DB_USER') or 'root',
-        'passwd': os.environ.get('DB_PASS', ''),
-        'port':   int(os.environ.get('DB_PORT') or 3306),
-        'db':     'blog'
-    })
+    database = DATABASE
 
     @staticmethod
     def _query(query, params):
-        cursor = dba._connection.cursor()
+        cursor = dba.database.cursor()
         cursor.execute(query, params)
 
         return cursor

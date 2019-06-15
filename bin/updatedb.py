@@ -3,7 +3,7 @@
 import sys
 import itertools
 
-from os import listdir, getcwd, environ
+from os import listdir
 from os.path import isfile, join
 from pathlib import Path
 from datetime import datetime
@@ -12,12 +12,9 @@ project_path = Path(__file__).parent
 website_path = project_path.parent / 'website/'
 sys.path.append(str(website_path))
 
-from config import Config
-from common.models.main import Article
-from common.mdtohtml import MDtoHTML
-from common.database import dba
-
-from emailsubscribers import send_emails
+from common.models.main import Article  # noqa
+from common.mdtohtml import MDtoHTML  # noqa
+from common.database import dba, DATABASE  # noqa
 
 
 class UpdateDB(object):
@@ -37,7 +34,6 @@ class UpdateDB(object):
             articles_bee = dba.dict('SELECT * FROM Articles', [])
 
             for sot, bee in itertools.product(articles_sot, articles_bee):
-
                 if sot['link'] == bee['link']:
                     # Set updated field to today if content or desc is different
                     # Else get old updated field, or date
@@ -51,7 +47,7 @@ class UpdateDB(object):
             dba.empty('DROP TABLE IF EXISTS Articles', [])
 
         # Create table from current Article model
-        Config.DATABASE.create_tables([ Article ])
+        DATABASE.create_tables([ Article ])
 
         # Add data from source of truth
         for article in articles_sot:

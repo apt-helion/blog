@@ -9,22 +9,8 @@
         <div class="row page-body">
             <div class="col-md-12 single-content">
                 <div class="entry-content">
-                    {% if success %}
                     <h3>Thank you for subscribing!</h3>
-                    <p>A verification email has been sent to: <b>{{email}}</b></p>
                     <p>You can return to the homepage by <a href="/">clicking here.</a></p>
-                    {% else %}
-                        {% if error == 'already_exists' %}
-                        <h3>Error</h3>
-                        <p>This email is already being used.</p>
-                        <p>You can return to the homepage by <a href="/">clicking here.</a></p>
-                        {% endif %}
-                        {% if error == 'whodunit' %}
-                        <h3>Oh no!</h3>
-                        <p>Something has gone wrong :(</p>
-                        <p>You can try again from the homepage by <a href="/">clicking here.</a></p>
-                        {% endif %}
-                    {% endif %}
                 </div>
             </div>
         </div>

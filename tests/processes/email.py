@@ -1,37 +1,34 @@
 import sys
-import itertools
 
-from os import listdir, getcwd, environ, remove
+from os import listdir, remove
 from os.path import isfile, join
 
 from pathlib import Path
 from unittest import TestCase
+from peewee import SqliteDatabase
 
 test_path = Path(__file__).parent
-bin_path  = test_path.parent.parent / 'bin/'
-web_path  = test_path.parent.parent / 'website/'
+bin_path = test_path.parent.parent / 'bin/'
+web_path = test_path.parent.parent / 'website/'
 
 sys.path.append(str(bin_path))
 sys.path.append(str(web_path))
 
-from peewee import *
-from updatedb import UpdateDB
-from common.mdtohtml import MDtoHTML
-
-from common.models.main import Article
-from common.database import dba
-from config import Config
+from updatedb import UpdateDB  # noqa
+from common.mdtohtml import MDtoHTML  # noqa
+from common.models.main import Article  # noqa
+from common.database import dba  # noqa
 
 # This needs it's own 'sandboxed' database to be in
 
 # Setup database
 DB_LOCATION = 'tests/blog.db'
-DATABASE    = SqliteDatabase(DB_LOCATION)
+DATABASE = SqliteDatabase(DB_LOCATION)
 
 # Change dbs to this one
 Article._meta.database = DATABASE
-dba._connection        = DATABASE
-Config.DATABASE        = DATABASE
+dba.database = DATABASE
+UpdateDB.DATABASE = DATABASE
 
 DATABASE.connect()
 DATABASE.create_tables([ Article ])
@@ -52,9 +49,8 @@ class EmailProcessTest(TestCase):
             \n---\
         "
 
-        self.mdp       = str(MDtoHTML.MARKDOWN_PATH)
+        self.mdp = str(MDtoHTML.MARKDOWN_PATH)
         self.test_link = self.mdp + '/test.md'
-
 
     def tearDown(self):
         try:
@@ -63,7 +59,6 @@ class EmailProcessTest(TestCase):
         except OSError:
             pass
 
-
     def import_articles(self):
         article_db_num = Article.select().count()
         article_md_num = len([ f for f in listdir(self.mdp) if isfile(join(self.mdp, f)) ])
@@ -71,7 +66,6 @@ class EmailProcessTest(TestCase):
         new_article = UpdateDB.import_articles(testing=True)
 
         return new_article, article_db_num, article_md_num
-
 
     def test_will_email_correctly(self):
         new_article, article_db_num, article_md_num = self.import_articles()

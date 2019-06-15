@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 
 import sys
 import unittest
-import click
 
 # Idenify key project directories and add them to the python search path
 test_path = Path(__file__).parent
@@ -20,12 +19,12 @@ sys.path.append(str(project_path))
 env_path = Path('.') / '.env.local'
 load_dotenv(dotenv_path=env_path)
 
+
 class test_processor(object):
 
     def __init__(self):
         self.modules = [
             'models.article',
-            'models.email',
             'processes.email',
         ]
 
@@ -34,7 +33,6 @@ class test_processor(object):
 
 
     def run(self):
-
         for t in self.modules:
             try:
                 # If the module defines a suite() function, call it to get

@@ -1,4 +1,6 @@
-import os, email, smtplib
+import os
+import smtplib
+
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -13,12 +15,11 @@ class EmailTemplate(object):
         self.template_name = template_name
         self.values        = values
 
-
     def render(self):
         content = open(path + TEMPLATE_DIR + self.template_name).read()
 
-        for k,v in self.values.items():
-            content = content.replace('[%s]' % k,v)
+        for k, v in self.values.items():
+            content = content.replace('[%s]' % k, v)
 
         return content
 
@@ -26,18 +27,16 @@ class EmailTemplate(object):
 class MailMessage(object):
 
     def __init__(self, from_email='', to_emails=[], cc_emails=[], subject='', body='', template=None, attachments=[]):
-        self.from_email       = from_email
-        self.to_emails        = to_emails
-        self.cc_emails        = cc_emails
-        self.subject          = subject
-        self.template         = template
-        self.body             = body
+        self.from_email = from_email
+        self.to_emails = to_emails
+        self.cc_emails = cc_emails
+        self.subject = subject
+        self.template = template
+        self.body = body
         self.file_attachments = attachments
-
 
     def attach_file(self, path):
         self.file_attachments.append(path)
-
 
     def get_message(self):
         if isinstance(self.to_emails, str):
@@ -51,14 +50,14 @@ class MailMessage(object):
 
         msg = MIMEMultipart('alternative')
 
-        msg['To']      = ', '.join(self.to_emails)
-        msg['Cc']      = ', '.join(self.cc_emails)
-        msg['From']    = self.from_email
+        msg['To'] = ', '.join(self.to_emails)
+        msg['Cc'] = ', '.join(self.cc_emails)
+        msg['From'] = self.from_email
         msg['Subject'] = self.subject
 
         if self.template:
             msg.attach(MIMEText(self.body, 'plain'))
-            msg.attach(MIMEText(self.template.render(),'html'))
+            msg.attach(MIMEText(self.template.render(), 'html'))
         else:
             msg.attach(MIMEText(self.body, 'plain'))
 
@@ -76,8 +75,8 @@ class MailServer(object):
 
     def __init__(self, server_name='smtp.gmail.com', username='', password=''):
         self.server_name = server_name
-        self.username    = username
-        self.password    = password
+        self.username = username
+        self.password = password
 
 
 def send_email(mail_msg, mail_server=MailServer()):

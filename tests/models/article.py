@@ -1,7 +1,6 @@
 from unittest import TestCase
 
 from common.models.main import Article
-from datetime import date
 
 
 class ArticleModelTest(TestCase):
