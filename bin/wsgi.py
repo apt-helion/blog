@@ -23,8 +23,6 @@ os.environ['PRODUCTION'] = 'true'
 wsgi = create_app(
     site=site,
     hostname='localhost',
-    debugger=False,
-    cache=True,
     port=8090
 )
 

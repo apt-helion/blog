@@ -22,7 +22,7 @@ class PooledConnection(PooledDatabase, MySQLDatabase):
             self.connect()
             return super().execute_sql(*args, **kwargs)
 
-    def _is_closed(self, key, conn):
+    def _is_closed(self, conn):
         """
         Taken from original `playhouse.pool.PooledMySQLDatabase` class.
 
@@ -30,7 +30,7 @@ class PooledConnection(PooledDatabase, MySQLDatabase):
         but the ping function isn't working correctly. As in, if you ping a dead connection, it should
         return an error, but it doesn't. No idea why.
         """
-        is_closed = super()._is_closed(key, conn)
+        is_closed = super()._is_closed(conn)
 
         if not is_closed:
             try:
