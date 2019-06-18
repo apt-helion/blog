@@ -1,9 +1,12 @@
-import os
-import smtplib
+#!/usr/bin/env python
 
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
+# using SendGrid's Python Library
+# https://github.com/sendgrid/sendgrid-python
+
+import os
+
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 path = os.path.dirname(__file__)
 TEMPLATE_DIR = '/templates/'
@@ -13,7 +16,7 @@ class EmailTemplate(object):
 
     def __init__(self, template_name='', values={}):
         self.template_name = template_name
-        self.values        = values
+        self.values = values
 
     def render(self):
         content = open(path + TEMPLATE_DIR + self.template_name).read()
@@ -24,64 +27,31 @@ class EmailTemplate(object):
         return content
 
 
-class MailMessage(object):
+def send_mail(to_email, subject, content, process='notification'):
+    message = Mail(
+        from_email='Justin Duch <noreply@justinduch.com>',
+        to_emails=to_email,
+        subject=subject,
+        html_content=content
+    )
 
-    def __init__(self, from_email='', to_emails=[], cc_emails=[], subject='', body='', template=None, attachments=[]):
-        self.from_email = from_email
-        self.to_emails = to_emails
-        self.cc_emails = cc_emails
-        self.subject = subject
-        self.template = template
-        self.body = body
-        self.file_attachments = attachments
-
-    def attach_file(self, path):
-        self.file_attachments.append(path)
-
-    def get_message(self):
-        if isinstance(self.to_emails, str):
-            self.to_emails = [self.to_emails]
-
-        if isinstance(self.cc_emails, str):
-            self.cc_emails = [self.cc_emails]
-
-        if len(self.to_emails) == 0 or self.from_email == '':
-            raise ValueError('Invalid From or To email address(es)')
-
-        msg = MIMEMultipart('alternative')
-
-        msg['To'] = ', '.join(self.to_emails)
-        msg['Cc'] = ', '.join(self.cc_emails)
-        msg['From'] = self.from_email
-        msg['Subject'] = self.subject
-
-        if self.template:
-            msg.attach(MIMEText(self.body, 'plain'))
-            msg.attach(MIMEText(self.template.render(), 'html'))
-        else:
-            msg.attach(MIMEText(self.body, 'plain'))
-
-        for attachment in self.file_attachments:
-            with open(attachment, "rb") as f:
-                filename = os.path.basename(attachment)
-                part = MIMEApplication(f.read(), Name=filename)
-                part['Content-Disposition'] = 'attachment; filename="' + str(filename) + '"'
-                msg.attach(part)
-
-        return msg
+    sg = SendGridAPIClient(os.environ.get('SENDGRID_KEY'))
+    return sg.send(message)
 
 
-class MailServer(object):
+if __name__ == '__main__':
+    import sys
+    from pathlib import Path
 
-    def __init__(self, server_name='smtp.gmail.com', username='', password=''):
-        self.server_name = server_name
-        self.username = username
-        self.password = password
+    current_path = Path(__file__).parent
+    website_path = str(Path(current_path / '../').resolve())
 
+    sys.path.append(website_path)
 
-def send_email(mail_msg, mail_server=MailServer()):
-    server = smtplib.SMTP_SSL(mail_server.server_name)
-    # server.set_debuglevel(1)
-    server.login(mail_server.username, mail_server.password)
-    server.sendmail(mail_msg.from_email, (mail_msg.to_emails + mail_msg.cc_emails), mail_msg.get_message().as_string())
-    server.close()
+    from common.loadenv import LoadEnv
+    LoadEnv.load_dot_env()
+
+    res = send_mail('justin@justinduch.com', 'test', EmailTemplate(template_name='new_post_template.html').render())
+    print(res.status_code)
+    print(res.body)
+    print(res.headers)
