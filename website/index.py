@@ -67,6 +67,11 @@ def robots(request):
     return "./common/static/robots.txt"
 
 
+@web('/publickey.txt', file=True)
+def pgp(request):
+    return "./common/static/publickey.txt"
+
+
 @web('/favicon.ico', file=True)
 def favicon(request):
     return "./common/static/img/favicon.ico"

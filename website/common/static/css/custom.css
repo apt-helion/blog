@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+pre {
+    font-family: monospace;
+}
+
 table {
     width: 100%;
     margin-bottom: 20px;

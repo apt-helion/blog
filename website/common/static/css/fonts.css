@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Herr Von Muellerhoff";
+    font-weight: 400;
+    font-style: normal;
+    src: url(/common/static/webfonts/Herr_Von_Muellerhoff/HerrVonMuellerhoff-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 400;
+    font-style: normal;
+    src: url(/common/static/webfonts/Lato/Lato-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 400;
+    font-style: italic;
+    src: url(/common/static/webfonts/Lato/Lato-Italic.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 400;
+    font-style: italic;
+    src: url(/common/static/webfonts/Lato/Lato-Italic.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 300;
+    font-style: normal;
+    src: url(/common/static/webfonts/Lato/Lato-Light.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 700;
+    font-style: normal;
+    src: url(/common/static/webfonts/Lato/Lato-Bold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Libre Baskerville";
+    font-weight: 400;
+    font-style: normal;
+    src: url(/common/static/webfonts/Libre_Baskerville/LibreBaskerville-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: "Libre Baskerville";
+    font-weight: 400;
+    font-style: italic;
+    src: url(/common/static/webfonts/Libre_Baskerville/LibreBaskerville-Italic.ttf) format("truetype")
+}
