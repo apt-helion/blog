@@ -8,7 +8,7 @@ project_path = Path(__file__).parent
 website_path = project_path.parent / 'website/'
 sys.path.append(str(website_path))
 
-from emails.mail import EmailTemplate, send_email # noqa
+from emails.mail import EmailTemplate, send_mail # noqa
 from common.models.email import Emails, EmailLogs  # noqa
 from common.models.main import Article  # noqa
 
@@ -29,7 +29,7 @@ def send_emails(link):
         html_template = EmailTemplate(template_name='new_post_template.html', values=params).render()
 
         try:
-            send_email(
+            send_mail(
                 to_email=subscriber.email,
                 subject=f'New Article: {article.title}',
                 content=html_template
