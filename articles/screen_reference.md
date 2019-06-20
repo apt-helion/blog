@@ -2,7 +2,7 @@
 title: A Reference Of Linux Screen Commands Because I Keep Forgetting Them
 category: miscellaneous
 date: 2019-06-12
-thumbnail: default-thumb.webp
+thumbnail: default-thumb.png
 tags: linux,screen
 description:
 ---

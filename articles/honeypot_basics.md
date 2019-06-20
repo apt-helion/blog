@@ -2,7 +2,7 @@
 title: An Introduction to Honeypots/Honeynets
 category: infosec
 date: 2018-07-09
-thumbnail: honeypot-thumb.webp
+thumbnail: honeypot-thumb.png
 tags: honeypot,honeynet
 description:
 ---

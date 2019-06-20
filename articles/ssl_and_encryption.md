@@ -2,7 +2,7 @@
 title: SSL And Encryption
 category: development
 date: 2018-04-02
-thumbnail: ssl-enc-thumb.webp
+thumbnail: ssl-enc-thumb.png
 tags: ssl,tls,encryption,centos,apache
 description:
 ---

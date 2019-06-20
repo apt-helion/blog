@@ -2,7 +2,7 @@
 title: Life Is Temporary And So Are Hard Drives
 category: miscellaneous
 date: 2019-02-08
-thumbnail: harddrive-thumb.webp
+thumbnail: harddrive-thumb.png
 tags: backups,macos
 description:
 ---

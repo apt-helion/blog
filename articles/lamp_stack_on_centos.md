@@ -2,7 +2,7 @@
 title: Setting up a LAMP Stack on CentOS 7
 category: development
 date: 2018-01-22
-thumbnail: lamp-stack-thumb.webp
+thumbnail: lamp-stack-thumb.png
 tags: linux,centos,apache,mysql,python
 description:
 ---
@@ -18,7 +18,7 @@ Welcome to the first post of my blog! This article will teach you how to set up 
 
 ### 0x100: the DNS and web server
 
-The DNS (Domain Name System) is a system that resolves a server's domain name eg. blog.justinduch.com into an IP address. In order for your webpage to be viewable, you must point your domain name to the webserver.
+The DNS (Domain Name System) is a system that resolves a server's domain name eg. blog.justinduch.com into an IP address. In order for your pngage to be viewable, you must point your domain name to the webserver.
 
 As this process is different for every domain name registrar and server provider it is up to you to find the documentation to do this for your specific setup. Once you have a sever and domain name aswell as pointed them, we can continue with the guide.
 

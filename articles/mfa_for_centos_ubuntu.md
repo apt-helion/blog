@@ -2,7 +2,7 @@
 title: Adding 2FA For CentOS/Ubuntu Servers
 category: development
 date: 2019-01-22
-thumbnail: 2fa-thumb.webp
+thumbnail: 2fa-thumb.png
 tags: 2fa,centos,ubuntu
 description:
 ---

@@ -2,7 +2,7 @@
 title: I Finally Finish This Blog's First Production Release
 category: development
 date: 2019-01-24
-thumbnail: blog2-thumb.webp
+thumbnail: blog2-thumb.png
 tags: blogpost
 description:
 ---
@@ -17,7 +17,7 @@ That's right, the search bar hasn't worked for the past year even though it look
 
 Now, to celebrate this ***momentous*** achievement, here's a look into notes I have of future blog developments.
 
-![image-alternative](/website/article/static/img/blog2-future.webp)
+![image-alternative](/website/article/static/img/blog2-future.png)
 
 Neat stuff. Let's go through them and I'll explain why I'll probably never get them done.
 

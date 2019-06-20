@@ -2,7 +2,7 @@
 title: I Put A Bunch Of VMs Together And Call It A Lab
 category: infosec
 date: 2018-12-14
-thumbnail: labo-thumb.webp
+thumbnail: labo-thumb.png
 tags: vm,lab
 description:
 ---

@@ -2,7 +2,7 @@
 title: HackTheBox Notes - Curling (ft. Anger)
 category: infosec
 date: 2019-04-01
-thumbnail: curling-thumb.webp
+thumbnail: curling-thumb.png
 tags: htb,htb-notes
 description:
 ---
