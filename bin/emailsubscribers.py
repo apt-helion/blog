@@ -16,8 +16,6 @@ from common.models.main import Article  # noqa
 def send_emails(link):
     article = Article.get_article(link)
 
-    now = datetime.now()
-
     for subscriber in Emails.select():
         # Create template
         params = {
@@ -39,5 +37,4 @@ def send_emails(link):
                 error=e,
                 email=subscriber.email,
                 process='notification',
-                date=now
             ).save()
