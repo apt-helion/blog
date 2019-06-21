@@ -81,3 +81,6 @@ This one probably doesn't matter as much, but for the past week I've been
 tampering with different image types to see if it would speed up the load
 times. Moving to WebP didn't actually do all that much and it cost me Safari
 support, so I've just moved back to pngs.
+
+**Update 12/06/2019:** I forgot that the search bar uses Google (and the fact
+that there even was a search bar) so I've switched it to use DuckDuckGo.
