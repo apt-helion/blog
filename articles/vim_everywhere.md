@@ -1,7 +1,7 @@
 ---
 title: Vim EVERYWHERE
 category: miscellaneous
-date: 2019-12-07
+date: 2019-07-12
 thumbnail: vim-e-thumb.png
 tags: vim
 description:
