@@ -69,8 +69,8 @@ for a look at some of the options.
 
 There's an application called [vim-anywhere][] which opens up a vim buffer
 whenever invoked. However, I find this a bit too cumbersome to use. Instead I
-use [Karabiner-Elements][] which a low level macOS kernel extension that gives
-you a virtual keyboard you can heavily customize to your own liking.
+use [Karabiner-Elements][] which is a low level macOS kernel extension that
+gives you a virtual keyboard you can heavily customize to your own liking.
 
 Karabiner comes with a [vi-mode][] modification. Once you've added and enabled
 it, you can "trigger" vi-mode by pressing simultaneously either the key `D` or
