@@ -16,7 +16,7 @@ Two years ago I intentionally let my phone die, leaving me completely lost in
 Tokyo. I had a vague understanding of the layout of Tokyo due to all the anime
 and video games I consume, but I had no idea how to get back to the Airbnb.
 While trying to find my way, I made a stop into a café and that's when I first
-discovered coffee siphons. I ordered some coffee and The owner (I think?)
+discovered coffee siphons. I ordered some coffee and the owner (I think?)
 explained how it works. When I got back home I bought a coffee siphon off
 Amazon and tried to brew some coffee using his instructions.
 
