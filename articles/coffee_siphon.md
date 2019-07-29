@@ -21,7 +21,7 @@ explained how it works. When I got back home I bought a coffee siphon off
 Amazon and tried to brew some coffee using his instructions.
 
 Also please note that he explained it in Japanese, a language I don't
-understand, so I might be doing everything wrong. But I've been doing like
+understand, so I might be doing everything wrong. But I've been doing it like
 this for two years and I think it tastes okay so it's probably close to
 correct.
 
